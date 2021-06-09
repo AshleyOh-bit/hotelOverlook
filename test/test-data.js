@@ -44,7 +44,28 @@
 
 
 //Customers
-
+let customers = [
+  {
+    "id": 65,
+    "name": "Willy Tenenbaum"
+  },
+  {
+    "id": 66,
+    "name": "Rushka Altoos"
+  },
+  {
+    "id": 67,
+    "name": "Hoyt Incanstance"
+  },
+  {
+    "id": 68,
+    "name": "Grotchen Proxim"
+  },
+  {
+    "id": 69,
+    "name": "Hugh Flobear"
+  }
+]
 
 
 //Bookings
