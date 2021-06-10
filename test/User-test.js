@@ -5,10 +5,11 @@ const expect = chai.expect;
 import { rooms, customers, bookings } from './test-data';
 
 describe('User', function() {
-  let user, booking1;
+  let user, booking1, booking2;
   beforeEach(() => {
-    booking1 = new Booking("582hdia80caplask1", 227, "2020/03/28", 105)
-    booking2 = new Booking("727hdia80caplask1", 228, "2020/03/29", 102)
+    //Instantiate all data here
+    // booking1 = new Booking("582hdia80caplask1", 227, "2020/03/28", 105)
+    //booking2 = new Booking("727hdia80caplask1", 228, "2020/03/29", 102)
     user = new User(227, "Brandy", "BrandyBoo22", "12345", "2020/03/27")
   });
   it.skip('should be a function', function() {
@@ -92,5 +93,13 @@ describe('User', function() {
     user.bookARoom(227, "2020/03/28", 105)
 
     expect(user.bookARoom(227, "2020/03/28", 105)).to.equal(`Thank you for your purchase! We will see you on 03/28/2020 in room 105`);
+  });
+  //Maybe handle this in HTML/post
+  //How do we check if a room is available other than date?
+  it.skip('should alert the user if booking is unsuccessful', function() {
+    user.logIn("BrandyBoo22", "12345");
+    user.bookARoom(227, "2020/03/21", 105)
+
+    expect(user.bookARoom(227, "2020/03/21", 105)).to.equal(`Sorry, we cannot book a room for you on that date. Please select another date`);
   });
 });
