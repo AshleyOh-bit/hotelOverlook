@@ -30,4 +30,26 @@ describe('Booking', function() {
   it.skip('should be prepared to store room service charges', function() {
     expect(booking.roomServiceCharges).to.deep.equal([]);
   });
+  it.skip('should have an id', function() {
+    expect(booking.id).to.equal(null);
+  });
+  //Methods
+  it.skip('should generate a random id', function() {
+    //Make sure to check all bookings to check if available?
+    booking.generateRandomId(bookings);
+    expect(booking.id.length).to.equal(17);
+  });
+
+//   function makeid(length) {
+//     var result           = '';
+//     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+//     var charactersLength = characters.length;
+//     for ( var i = 0; i < length; i++ ) {
+//       result += characters.charAt(Math.floor(Math.random() *
+//  charactersLength));
+//    }
+//    return result;
+// }
+//
+// console.log(makeid(5));
 });
