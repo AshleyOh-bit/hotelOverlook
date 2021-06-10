@@ -7,9 +7,10 @@ import Manager from '../src/classes/Manager';
 import { rooms, customers, bookings } from './test-data';
 
 describe('Manager', function() {
-  let manager, hotel, instRooms, instCustomers, instBookings;
+  let manager, hotel, instRooms, instCustomers, instBookings, customer;
   beforeEach(() => {
-    //Instantiate all data here?
+    customer = new Customer(229, "Cranston Shival", "ratPerson999", "54321", "2020/04/04")
+
     instRooms = rooms.map(room => {
       return room = new Room(room.number, room.roomType, room.bidet, room.bedSize, room.numBeds, room.costPerNight)
     });
@@ -22,8 +23,8 @@ describe('Manager', function() {
       return booking = new Booking(booking.userID, booking.date, booking.roomNumber)
     });
 
-    manager = new Manager(000, "Hambun Grettibean", "IamTheManager", "00000", "2020/04/01")
     hotel = new Hotel(instRooms, instCustomers, instBookings,"2020/04/01")
+    manager = new Manager(000, "Hambun Grettibean", "IamTheManager", "00000", "2020/04/01", hotel)
   });
   it.skip('should be a function', function() {
     expect(Manager).to.be.a.function();
@@ -54,4 +55,9 @@ describe('Manager', function() {
     expect(manager.isLoggedIn).to.equal(false);
   });
 //Manager-specific properties
+
+  it.skip('should be able to search for a a customer', function() {
+    manager.searchForCustomer(69)
+    expect(manager.searchForCustomer(69)).to.equal();
+  });
 });

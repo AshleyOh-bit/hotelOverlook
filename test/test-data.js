@@ -47,7 +47,7 @@ export const rooms = [
 export const customers = [
   {
     "id": 65,
-    "name": "Willy Tenenbaum"
+    "ame": "Willy Tenenbaum"
   },
   {
     "id": 66,
