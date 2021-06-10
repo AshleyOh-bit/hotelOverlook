@@ -81,6 +81,7 @@ describe('User', function() {
     expect(user.isLoggedIn).to.equal(true);
     expect(user.bookARoom( 227, "2020/03/28", 105)).to.deep.equal(booking1);
   });
+  //Can we post an instance of a class?
   it.skip('should instantiate a new Booking', function() {
     user.logIn("BrandyBoo22", "12345");
     user.bookARoom(227, "2020/03/28", 105)
