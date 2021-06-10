@@ -18,5 +18,16 @@ describe('Booking', function() {
   it.skip('should be an instance of Booking', function() {
     expect(booking).to.be.an.instanceof(Booking);
   });
-
+  it.skip('should store the user\'s id number', function() {
+    expect(booking.userID).to.equal(227);
+  });
+  it.skip('should store the date to be booked', function() {
+    expect(booking.date).to.equal("2020/03/28");
+  });
+  it.skip('should store the date to be booked', function() {
+    expect(booking.roomNumber).to.equal(105);
+  });
+  it.skip('should be prepared to store room service charges', function() {
+    expect(booking.roomServiceCharges).to.deep.equal([]);
+  });
 });
