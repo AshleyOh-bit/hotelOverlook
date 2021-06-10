@@ -44,5 +44,60 @@ describe('Manager', function() {
   it.skip('should store the date', function() {
     expect(hotel.todayDate).to.deep.equal("2020/04/01");
   });
+  //Hotel methods
+  it.skip('should be able to filter rooms by availability', function() {
+    customer.bookARoom(229, "2020/04/25", 105);
+    hotel.filterRoomsByAvailability("2020/04/025");
+    //filters bookings with date to return room numbers of booked rooms
+    //then it takes that array and compares each element to the rooms array
+    //and filters out all AVAILABLE rooms
+    expect(hotel.filterRoomsByAvailability("2020/04/25")).to.deep.equal([    {
+        "number": 101,
+        "roomType": "suite",
+        "bidet": false,
+        "bedSize": "queen",
+        "numBeds": 1,
+        "costPerNight": 154.77
+      },
+      {
+        "number": 102,
+        "roomType": "single room",
+        "bidet": false,
+        "bedSize": "full",
+        "numBeds": 2,
+        "costPerNight": 325.88
+      },
+      {
+        "number": 103,
+        "roomType": "junior suite",
+        "bidet": true,
+        "bedSize": "king",
+        "numBeds": 1,
+        "costPerNight": 267.05
+      },
+      {
+        "number": 104,
+        "roomType": "residential suite",
+        "bidet": true,
+        "bedSize": "queen",
+        "numBeds": 1,
+        "costPerNight": 406.29
+      }
+    ]);
+  });
+  it.skip('should alert the customer if there are no rooms available', function() {
+    customer.bookARoom(229, "2020/04/25", 105);
+    customer.bookARoom(229, "2020/04/25", 104);
+    customer.bookARoom(229, "2020/04/25", 103);
+    customer.bookARoom(229, "2020/04/25", 102);
+    customer.bookARoom(229, "2020/04/25", 101);
+    hotel.filterRoomsByAvailability("2020/04/025");
+    expect(hotel.filterRoomsByAvailability("2020/04/25")).to.equal(`Sorry, there are no rooms available for that date. Please try another date.`);
+  });
+  //This may happen in the HTML
+  it.skip('should alert the customer if their input is invalid', function() {
+    hotel.filterRoomsByAvailability("2018/04/025");
+    expect(hotel.filterRoomsByAvailability("2018/04/25")).to.equal(`Please choose a valid date.`);
+  });
 
 });
