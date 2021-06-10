@@ -1,14 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <title>Overlook Hotel</title>
+  <!-- <link href="./styles.css" rel="stylesheet"> -->
+  <!-- Do i need these or in sass? -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
-  
+  <header>
+    <h1>The Overlook Hotel</h1>
+    <h2>Welcome, Ghost!</h2>
+    <nav>
+      <button>Home</button>
+      <button>Book a Room</button>
+      <button>Your Account</button>
+    </nav>
+  </header>
+  <main>
+    <section class="home-view" id="homeView">
+      <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
+    </section>
+    <section class="customer-view" id="customerView">
+      <h3>Your bookings:</h3>
+      <section class="upcoming" id="upcomingBookings">
+        <h4>Upcoming Visits:</h4>
+        <div class="upcoming-view" id="upcomingView">
+          <article class="booking-card">
+          </article>
+        </div>
+      </section>
+      <section class="past" id="pastBookings">
+        <h4>Past Visits:</h4>
+        <div class="past-view" id="pastView">
+          <article class="booking-card">
+          </article>
+        </div>
+      </section>
+      <section class="total-spent" id="totalSpent">
+        <h4>Your total spent to date:</h4>
+        <h4 class="total-spent" id="totalSpent"></h4>
+      </section>
+    </section>
+    <section class="booking-view" id="booking-view">
+      <h3>Book your stay</h3>
+      <section class="date-selection" id="dateSelection">
+        <input type="date" class="drop-down-calendar" id="dateStart" name="book-start" value="" min="2020-01-01">
+        <input type="date" class="drop-down-calendar" id="dateEnd" name="book-end" value="" min="2020-01-01">
+      </section>
+      <section class="room-view" id="roomView">
+        <article class="room-card">
+        </article>
+      </section>
+    </section>
+  </main>
+  <footer>
+    <h5>666 West Bachmann Drive, Castle Rock, ME</h5>
+    <h5>666-214-7000</h5>
+    <h5>theHotelOverlook@cujo.com</h5>
+  </footer>
+
   <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
 
