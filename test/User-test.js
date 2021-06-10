@@ -1,7 +1,8 @@
 // import { expect } from 'chai';
 import chai from 'chai';
 const expect = chai.expect;
-//import User from '../src/User';
+import User from '../src/classes/User';
+import Booking from '../src/classes/Booking';
 import { rooms, customers, bookings } from './test-data';
 
 describe('User', function() {
