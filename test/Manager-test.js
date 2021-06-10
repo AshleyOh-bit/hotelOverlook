@@ -83,5 +83,28 @@ describe('Manager', function() {
     manager.searchForCustomer("sarah kettabaum")
     expect(manager.searchForCustomer("sarah kettabaum")).to.deep.equal(`Sorry, Hambun Grettibean, we could not find any customers to match your search.`);
   });
-
+  //removes a booking
+  //happy path
+    it.skip('should be able to remove a booking by booking id', function() {
+      customer.bookARoom(229, "2020/04/18", 105);
+      manager.removeBooking("8kjhdia80caplask13");
+      expect(manager.hotel.bookings.length).to.equal(10);
+    });
+    //sad path
+    it.skip('should alert manager if booking can\'t be found', function() {
+      customer.bookARoom(229, "2020/04/18", 105);
+      manager.removeBooking("8kjhdia80caplaoo3");
+      expect(manager.removeBooking("8kjhdia80capla3")).to.equal(`Sorry, Hambun Grettibean, we could not find any bookings to match your search.`);
+    });
+    //prevent this in the HTML
+    it.skip('should alert manager if input type in incorrect can\'t be found', function() {
+      customer.bookARoom(229, "2020/04/18", 105);
+      manager.removeBooking(229);
+      expect(manager.removeBooking(229)).to.equal(`Please enter a valid booking id.`);
+    });
+    it.skip('should alert manager if input type in incorrect can\'t be found', function() {
+      customer.bookARoom(229, "2020/04/18", 105);
+      manager.removeBooking("");
+      expect(manager.removeBooking("")).to.equal(`Please enter a valid booking id.`);
+    });
 });
