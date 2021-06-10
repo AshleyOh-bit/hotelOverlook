@@ -29,7 +29,7 @@ describe('Manager', function() {
   it.skip('should be a function', function() {
     expect(Manager).to.be.a.function();
   });
-  it.skip('should be an instance of User', function() {
+  it.skip('should be an instance of Manager', function() {
     expect(manager).to.be.an.instanceof(Manager);
   });
   //Should be an extension of the User class?

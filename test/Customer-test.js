@@ -17,7 +17,7 @@ describe('Customer', function() {
   it.skip('should be a function', function() {
     expect(Customer).to.be.a.function();
   });
-  it.skip('should be an instance of User', function() {
+  it.skip('should be an instance of Customer', function() {
     expect(customer).to.be.an.instanceof(Customer);
   });
   //Should be an extension of the User class?
