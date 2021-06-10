@@ -69,3 +69,76 @@ let customers = [
 
 
 //Bookings
+
+let bookings = [
+  {
+    "id": "8kjhdia80caplask1",
+    "userID": 66,
+    "date": "2020/03/27",
+    "roomNumber": 102,
+    "roomServiceCharges": []
+  },
+  {
+    "id": "8kjhdia80caplask2",
+    "userID": 609,
+    "date": "2020/02/02",
+    "roomNumber": 110,
+    "roomServiceCharges": []
+  },
+  {
+    "id": "8kjhdia80caplask3",
+    "userID": 65,
+    "date": "2020/02/15",
+    "roomNumber": 103,
+    "roomServiceCharges": []
+  },
+  {
+    "id": "8kjhdia80caplask4",
+    "userID": 66,
+    "date": "2020/01/31",
+    "roomNumber": 102,
+    "roomServiceCharges": []
+  },
+  {
+    "id": "8kjhdia80caplask5",
+    "userID": 68,
+    "date": "2020/03/15",
+    "roomNumber": 104,
+    "roomServiceCharges": []
+  },
+  {
+    "id": "8kjhdia80caplask6",
+    "userID": 69,
+    "date": "2020/01/22",
+    "roomNumber": 104,
+    "roomServiceCharges": []
+  },
+  {
+    "id": "8kjhdia80caplask7",
+    "userID": 66,
+    "date": "2020/03/21",
+    "roomNumber": 101,
+    "roomServiceCharges": []
+  },
+  {
+    "id": "8kjhdia80caplask8",
+    "userID": 69,
+    "date": "2020/02/21",
+    "roomNumber": 105,
+    "roomServiceCharges": []
+  },
+  {
+    "id": "8kjhdia80caplask9",
+    "userID": 85,
+    "date": "2020/03/30",
+    "roomNumber": 109,
+    "roomServiceCharges": []
+  },
+  {
+    "id": "8kjhdia80caplask10",
+    "userID": 69,
+    "date": "2020/01/01",
+    "roomNumber": 102,
+    "roomServiceCharges": []
+  }
+]
