@@ -19,5 +19,30 @@ describe('Customer', function() {
   it.skip('should be an instance of User', function() {
     expect(customer).to.be.an.instanceof(Customer);
   });
+  //Should be an extension of the User class?
+  //
+  //Properties
+  it.skip('should have an id', function() {
+    expect(customer.id).to.equal(229);
+  });
+  it.skip('should have a name', function() {
+    expect(customer.name).to.equal("Cranston Shival");
+  });
+  //THE FOLLOWING THREE TESTS MAY BE UNECESSARY
+  it.skip('should have a username', function() {
+    expect(custsomer.username).to.equal("ratPerson999");
+  });
+  it.skip('should have a password', function() {
+    expect(customer.password).to.equal("54321");
+  });
+  it.skip('should store the date', function() {
+    expect(customer.date).to.equal("2020/04/04");
+  });
+  it.skip('should be logged out by default', function() {
+    expect(customer.isLoggedIn).to.equal(false);
+  });
+  it.skip('should have a place to store their bookings', function() {
+    expect(customer.bookings).to.equal([]);
+  });
 
 });
