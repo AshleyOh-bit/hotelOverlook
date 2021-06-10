@@ -71,5 +71,26 @@ describe('User', function() {
     expect(user.isLoggedIn).to.equal(false);
     expect(user.logIn("", "12345")).to.equal(`Sorry, we could not find any users to match that password. Please try again.`);
   });
+  //Booking a Room
+  //Happy:
+  it.skip('should be logged in to book a room', function() {
+    user.logIn("BrandyBoo22", "12345");
+    user.bookARoom(227, "2020/03/28", 105)
 
+    expect(user.isLoggedIn).to.equal(true);
+    expect(user.bookARoom( 227, "2020/03/28", 105)).to.deep.equal(booking1);
+  });
+  it.skip('should instantiate a new Booking', function() {
+    user.logIn("BrandyBoo22", "12345");
+    user.bookARoom(227, "2020/03/28", 105)
+
+    expect(booking1).to.be.an.instanceof(Booking);
+  });
+  //This one may not be possible with the double return
+  it.skip('should alert the user of a successful booking', function() {
+    user.logIn("BrandyBoo22", "12345");
+    user.bookARoom(227, "2020/03/28", 105)
+
+    expect(user.bookARoom(227, "2020/03/28", 105)).to.equal(`Thank you for your purchase! We will see you on 03/28/2020 in room 105`);
+  });
 });
