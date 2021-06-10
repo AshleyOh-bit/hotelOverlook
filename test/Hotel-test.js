@@ -99,5 +99,71 @@ describe('Manager', function() {
     hotel.filterRoomsByAvailability("2018/04/025");
     expect(hotel.filterRoomsByAvailability("2018/04/25")).to.equal(`Please choose a valid date.`);
   });
+  //Filter by roomType
+  //happy
+  it.skip('should be able to filter rooms by type', function() {
+    hotel.filterRoomsByType(["suite"]);
+    expect(hotel.filterRoomsByType(["suite"])).to.deep.equal([
+      {
+        "number": 101,
+        "roomType": "suite",
+        "bidet": false,
+        "bedSize": "queen",
+        "numBeds": 1,
+        "costPerNight": 154.77
+      },
+      {
+        "number": 105,
+        "roomType": "suite",
+        "bidet": false,
+        "bedSize": "queen",
+        "numBeds": 1,
+        "costPerNight": 344.66
+      }
+    ]);
+  });
+  it.skip('should be able to filter rooms by date and type', function() {
+    customer.bookARoom(229, "2020/04/25", 105);
+    hotel.filterRoomsByType("2020/04/25", ["suite"]);
+    expect(hotel.filterRoomsByType("2020/04/25", ["suite"])).to.deep.equal([
+      {
+        "number": 101,
+        "roomType": "suite",
+        "bidet": false,
+        "bedSize": "queen",
+        "numBeds": 1,
+        "costPerNight": 154.77
+      }
+    ]);
+  });
+  it.skip('should be able to filter rooms by date and multiple types', function() {
+    customer.bookARoom(229, "2020/04/25", 105);
+    hotel.filterRoomsByType("2020/04/25", ["suite", "single room"]);
+    expect(hotel.filterRoomsByType("2020/04/25", ["suite", "single room"])).to.deep.equal([
+      {
+        "number": 101,
+        "roomType": "suite",
+        "bidet": false,
+        "bedSize": "queen",
+        "numBeds": 1,
+        "costPerNight": 154.77
+      },
+      {
+        "number": 102,
+        "roomType": "single room",
+        "bidet": false,
+        "bedSize": "full",
+        "numBeds": 2,
+        "costPerNight": 325.88
+      }
+    ]);
+  });
+  //sad
+  it.skip('should be able to filter rooms by date and type', function() {
+    customer.bookARoom(229, "2020/04/25", 105);
+    customer.bookARoom(229, "2020/04/25", 101);
+    hotel.filterRoomsByType("2020/04/25", ["suite"]);
+    expect(hotel.filterRoomsByType("2020/04/25", ["suite"])).to.equal(`Sorry, there are no suites available on that date. Please choose another room type or date.`);
+  });
 
 });
