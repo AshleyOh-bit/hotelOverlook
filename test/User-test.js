@@ -10,7 +10,7 @@ describe('User', function() {
     //Instantiate all data here
     // booking1 = new Booking("582hdia80caplask1", 227, "2020/03/28", 105)
     //booking2 = new Booking("727hdia80caplask1", 228, "2020/03/29", 102)
-    user = new User(227, "Brandy", "BrandyBoo22", "12345", "2020/03/27")
+    user = new User(227, "Brandy Badabing", "BrandyBoo22", "12345", "2020/03/27")
   });
   it.skip('should be a function', function() {
     expect(User).to.be.a.function();
@@ -23,7 +23,7 @@ describe('User', function() {
     expect(user.id).to.equal(227);
   });
   it.skip('should have a name', function() {
-    expect(user.name).to.equal("Brandy");
+    expect(user.name).to.equal("Brandy Badabing");
   });
   //THE FOLLOWING THREE TESTS MAY BE UNECESSARY
   it.skip('should have a username', function() {
