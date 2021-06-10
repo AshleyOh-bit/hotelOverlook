@@ -1,5 +1,5 @@
 //Rooms
-  let rooms = [
+export const rooms = [
     {
     "number": 101,
     "roomType": "suite",
@@ -44,7 +44,7 @@
 
 
 //Customers
-let customers = [
+export const customers = [
   {
     "id": 65,
     "name": "Willy Tenenbaum"
@@ -70,7 +70,7 @@ let customers = [
 
 //Bookings
 
-let bookings = [
+export const bookings = [
   {
     "id": "8kjhdia80caplask1",
     "userID": 66,
