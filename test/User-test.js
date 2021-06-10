@@ -119,6 +119,7 @@ describe('User', function() {
   });
   //Maybe handle this in HTML/post
   //How do we check if a room is available other than date?
+  //calls a method in Hotel as well? 
   it.skip('should alert the user if booking is unsuccessful', function() {
     user.logIn("BrandyBoo22", "12345");
     user.bookARoom(227, "2020/03/21", 105)
