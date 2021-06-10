@@ -44,5 +44,18 @@ describe('Customer', function() {
   it.skip('should have a place to store their bookings', function() {
     expect(customer.bookings).to.equal([]);
   });
+  //Methods
+  //sort bookings - find some sad paths?
+  it.skip('should sort bookings by date', function() {
+    customer.bookings.push("2019/03/04");
+    customer.bookings.push("2020/03/08");
+    customer.bookARoom(229, "2020/04/25", 105);
+    customer.bookARoom(229, "2020/04/18", 105);
+    customer.sortBookingsByDate("2020/04/04");
 
+    expect(customer.bookings[0]).to.equal("2019/03/04");
+    expect(customer.bookings[1]).to.equal("2020/03/08");
+    expect(customer.bookings[2]).to.equal("2020/04/20");
+    expect(customer.bookings[3]).to.equal("2020/04/25");
+  });
 });
