@@ -5,11 +5,10 @@ const expect = chai.expect;
 import { rooms, customers, bookings } from './test-data';
 
 describe('User', function() {
-  let user;
+  let user, booking1;
   beforeEach(() => {
-    // usersData = userTestData.map(user => new User(user));
-    // userTestRepository = new UserRepository(usersData, sleepTestData, activityTestData, hydrationTestData);
-    // user = userTestRepository.users[0];
+    booking1 = new Booking("582hdia80caplask1", 227, "2020/03/28", 105)
+    booking2 = new Booking("727hdia80caplask1", 228, "2020/03/29", 102)
     user = new User(227, "Brandy", "BrandyBoo22", "12345", "2020/03/27")
   });
   it.skip('should be a function', function() {
@@ -35,8 +34,42 @@ describe('User', function() {
   it.skip('should store the date', function() {
     expect(user.date).to.equal("2020/03/27");
   });
-  it.skip('should determine whether user is logged in', function() {
+  it.skip('should be logged out by default', function() {
     expect(user.isLoggedIn).to.equal(false);
   });
-  
+  ///////Methods
+  //Logging in
+  //Happy:
+  it.skip('should be able to log in', function() {
+    user.logIn("BrandyBoo22", "12345")
+
+    expect(user.isLoggedIn).to.equal(true);
+  });
+  //Sad:
+  it.skip('should check username credentials', function() {
+    user.logIn("11432", "12345")
+
+    expect(user.isLoggedIn).to.equal(false);
+    expect(user.logIn("11432", "12345")).to.equal(`Sorry, we could not find any users with that username. Please try again.`);
+  });
+  it.skip('should check password credentials', function() {
+    user.logIn("BrandyBoo22", "123455")
+
+    expect(user.isLoggedIn).to.equal(false);
+    expect(user.logIn("BrandyBoo22", "123455")).to.equal(`Sorry, we could not find any users to match that password. Please try again.`);
+  });
+  //These probably can be handled in HTML with required + DOM error handling
+  it.skip('should check if username input field is empty', function() {
+    user.logIn("", "12345")
+
+    expect(user.isLoggedIn).to.equal(false);
+    expect(user.logIn("", "12345")).to.equal(`Sorry, we could not find any users with that username. Please try again.`);
+  });
+  it.skip('should check if password input field is empty', function() {
+    user.logIn("BrandyBoo22", "")
+
+    expect(user.isLoggedIn).to.equal(false);
+    expect(user.logIn("", "12345")).to.equal(`Sorry, we could not find any users to match that password. Please try again.`);
+  });
+
 });
