@@ -67,8 +67,13 @@ function instantiateData() {
     return new Customer(customer.id, customer.name)
   });
 
-  instBookings = bookingsData.map(booking => {
-    return new Booking(booking.userID, booking.date, booking.roomNumber)
+  // instBookings = bookingsData.map(booking => {
+  //   return new Booking(booking.userID, booking.date, booking.roomNumber)
+  // });
+  instBookings = bookings.map(booking => {
+  booking = new Booking(booking.userID, booking.date, booking.roomNumber)
+  booking.generateRandomId(bookings)
+  return booking
   });
 
   hotel = new Hotel(instRooms, instBookings, instCustomers, todayDate);

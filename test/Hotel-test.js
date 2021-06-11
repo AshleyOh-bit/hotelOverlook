@@ -13,6 +13,8 @@ describe('Hotel', function() {
   let hotel, instRooms, instCustomers, instBookings, customer;
   beforeEach(() => {
     customer = new Customer(229, "Cranston Shival")
+    customer.setCredentials("ratMan", "12222");
+    customer.logIn("ratMan", "1222")
 
     instRooms = rooms.map(room => {
       return new Room(room.number, room.roomType, room.bidet, room.bedSize, room.numBeds, room.costPerNight)
@@ -23,7 +25,9 @@ describe('Hotel', function() {
     });
 
     instBookings = bookings.map(booking => {
-      return new Booking(booking.userID, booking.date, booking.roomNumber)
+    booking = new Booking(booking.userID, booking.date, booking.roomNumber)
+    booking.generateRandomId(bookings)
+    return booking
     });
 
     hotel = new Hotel(instRooms, instBookings, instCustomers, "2020/04/01");
@@ -47,9 +51,9 @@ describe('Hotel', function() {
     expect(hotel.todayDate).to.deep.equal("2020/04/01");
   });
   //Hotel methods
-  it.skip('should be able to filter rooms by availability', function() {
-    customer.bookARoom(229, "2020/04/25", 105);
-    hotel.filterRoomsByAvailability("2020/04/025");
+  it('should be able to filter rooms by availability', function() {
+    customer.bookARoom(229, "2020/04/25", 105, bookings);
+    hotel.filterRoomsByAvailability("2020/04/25");
     //filters bookings with date to return room numbers of booked rooms
     //then it takes that array and compares each element to the rooms array
     //and filters out all AVAILABLE rooms

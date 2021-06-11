@@ -49,7 +49,7 @@ describe('Customer', function() {
   it('should push a future booking into the bookings array', function() {
     customer.setCredentials("BrandyBoo22", "12345")
     customer.logIn("BrandyBoo22", "12345")
-    customer.bookARoom(22, "2020/04/25", 101, bookings)
+    customer.bookARoom(22, "2020/04/25", 105, bookings)
 
     expect(customer.bookings.length).to.equal(1);
   });
