@@ -44,27 +44,45 @@ describe('Customer', function() {
     expect(customer.isLoggedIn).to.equal(false);
   });
   it('should have a place to store their bookings', function() {
-    expect(customer.bookings).to.deep.equal({past: [], future: []});
+    expect(customer.bookings).to.deep.equal([]);
   });
-  it('should push a future booking into the future bookings array', function() {
+  it('should push a future booking into the bookings array', function() {
     customer.setCredentials("BrandyBoo22", "12345")
     customer.logIn("BrandyBoo22", "12345")
     customer.bookARoom(22, "2020/04/25", 101, bookings)
 
-    expect(customer.bookings.future.length).to.equal(1);
+    expect(customer.bookings.length).to.equal(1);
   });
   //Methods
   //sort bookings - find some sad paths?
-  it('should sort bookings by past and upcoming', function() {
-    customer.bookings.past.push(booking1);
-    customer.bookings.past.push(booking2);
+  it('should filter bookings to find past bookings', function() {
     customer.setCredentials("BrandyBoo22", "12345")
     customer.logIn("BrandyBoo22", "12345")
     customer.bookARoom(229, "2020/04/25", 105, bookings);
     customer.bookARoom(229, "2020/04/18", 105, bookings);
-    customer.sortBookingsByDate("2020/04/04");
+    customer.filterPastBookings("2020/05/04");
 
-    expect(customer.bookings.past).to.deep.equal([booking1, booking2]);
+    expect(customer.filterPastBookings("2020/05/04").length).to.equal(2);
+  });
+  it('should filter bookings to find future bookings', function() {
+    customer.setCredentials("BrandyBoo22", "12345")
+    customer.logIn("BrandyBoo22", "12345")
+    customer.bookARoom(229, "2020/04/25", 105, bookings);
+    customer.bookARoom(229, "2020/04/18", 105, bookings);
+    customer.filterFutureBookings("2020/03/04");
+
+    expect(customer.filterFutureBookings("2020/03/04").length).to.equal(2);
+  });
+  it('should filter bookings to find future and present bookings', function() {
+    customer.setCredentials("BrandyBoo22", "12345")
+    customer.logIn("BrandyBoo22", "12345")
+    customer.bookARoom(229, "2020/04/25", 105, bookings);
+    customer.bookARoom(229, "2020/04/18", 105, bookings);
+    customer.filterFutureBookings("2020/04/18");
+
+    expect(customer.filterFutureBookings("2020/04/18").length).to.equal(2);
+  });
+    //expect(customer.bookings.past).to.deep.equal([booking1, booking2]);
     //figure out id numbers!!!
     // expect(customer.bookings.future).to.deep.equal([
     //   {
@@ -82,6 +100,25 @@ describe('Customer', function() {
     //     "roomServiceCharges": []
     //   }
     // ]);
-    expect(customer.bookings.future.length).to.equal(2);
-  });
+    //expect(customer.bookings.future.length).to.equal(2);
+  // it.skip('should sort bookings by past and upcoming', function() {
+  //   customer.setCredentials("BrandyBoo22", "12345")
+  //   customer.logIn("BrandyBoo22", "12345")
+  //   customer.bookARoom(229, "2020/04/25", 105, bookings);
+  //   customer.bookARoom(229, "2020/04/18", 105, bookings);
+  //   customer.sortBookingsByDate("2020/03/04");
+  //
+  //   expect(customer.bookings.past.length).to.equal(0);
+  //   expect(customer.bookings.future.length).to.equal(2);
+  // });
+  // it.skip('should sort bookings by past and upcoming', function() {
+  //   customer.setCredentials("BrandyBoo22", "12345")
+  //   customer.logIn("BrandyBoo22", "12345")
+  //   customer.bookARoom(229, "2020/04/25", 105, bookings);
+  //   customer.bookARoom(229, "2020/04/18", 105, bookings);
+  //   customer.sortBookingsByDate("2020/05/04");
+  //
+  //   expect(customer.bookings.past.length).to.equal(2);
+  //   expect(customer.bookings.future.length).to.equal(0);
+  // });
 });

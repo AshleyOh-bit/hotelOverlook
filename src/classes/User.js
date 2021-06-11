@@ -42,11 +42,12 @@ class User {
     let newBooking;
     if (this.isLoggedIn && (!this.bookings)) {
       newBooking = new Booking(userId, date, roomNumber)
+      newBooking.generateRandomId(bookings)
       return newBooking
     } else if (this.isLoggedIn && (this.bookings)) {
       newBooking = new Booking(userId, date, roomNumber)
       newBooking.generateRandomId(bookings)
-      this.bookings.future.push(newBooking)
+      this.bookings.push(newBooking)
       return newBooking
     } else {
       return `Please log in to book a room.`
