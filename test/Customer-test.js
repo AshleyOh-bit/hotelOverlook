@@ -1,4 +1,3 @@
-// import { expect } from 'chai';
 import chai from 'chai';
 const expect = chai.expect;
 //import User from '../src/User';

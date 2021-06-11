@@ -1,21 +1,15 @@
-// import { expect } from 'chai';
 import chai from 'chai';
 const expect = chai.expect;
 import User from '../src/classes/User';
 import Booking from '../src/classes/Booking';
-//import { rooms, customers, bookings } from './test-data';
 
 describe('User', function() {
   let user, booking1;
   beforeEach(() => {
-    //Instantiate all data here
-    // booking1 = new Booking("582hdia80caplask1", 227, "2020/03/28", 105)
-    //booking2 = new Booking("727hdia80caplask1", 228, "2020/03/29", 102)
-    //user = new User(227, "Brandy Badabing", "BrandyBoo22", "12345", "2020/03/27")
     user = new User(227, "Brandy Badabing")
   });
   it.skip('should be a function', function() {
-    expect(User).to.be.a.function();
+    expect(User).to.be.a("function");
   });
   it.skip('should be an instance of User', function() {
     expect(user).to.be.an.instanceof(User);
@@ -40,12 +34,12 @@ describe('User', function() {
     expect(user.password).to.equal("12345");
   });
   //Sad
-  it.skip('should be not able to set username and password with empty strings', function() {
+  it.skip('should be not able to set username with an empty string', function() {
     user.setCredentials("", "12345")
 
     expect(user.setCredentials("", "12345")).to.equal(`Please enter a username with letters, numbers, and symbols`);
   });
-  it.skip('should be not able to set username and password with empty strings', function() {
+  it.skip('should be not able to set password with an empty string', function() {
     user.setCredentials("BrandyBoo22", "")
 
     expect(user.setCredentials("BrandyBoo22", "")).to.equal(`Please enter a password with letters, numbers, and symbols`);
