@@ -2,6 +2,7 @@ import chai from 'chai';
 const expect = chai.expect;
 import User from '../src/classes/User';
 import Booking from '../src/classes/Booking';
+import { rooms, customers, bookings } from './test-data';
 
 describe('User', function() {
   let user, booking;
@@ -109,24 +110,24 @@ describe('User', function() {
   it('should be logged in to book a room', function() {
     user.setCredentials("BrandyBoo22", "12345")
     user.logIn("BrandyBoo22", "12345");
-    user.bookARoom(227, "2020/03/28", 105)
+    user.bookARoom(227, "2020/03/28", 105, bookings)
 
     expect(user.isLoggedIn).to.equal(true);
-    expect(user.bookARoom(227, "2020/03/28", 105)).to.deep.equal(booking);
+    expect(user.bookARoom(227, "2020/03/28", 105, bookings)).to.deep.equal(booking);
   });
   //Can we POST an instance of a class?
   it('should instantiate a new Booking', function() {
     user.setCredentials("BrandyBoo22", "12345")
     user.logIn("BrandyBoo22", "12345");
-    user.bookARoom(227, "2020/03/28", 105)
+    user.bookARoom(227, "2020/03/28", 105, bookings)
 
     // expect(user.bookARoom(227, "2020/03/28", 105)).to.deep.equal(booking);
-    expect(user.bookARoom(227, "2020/03/28", 105)).to.be.an.instanceof(Booking);
+    expect(user.bookARoom(227, "2020/03/28", 105, bookings)).to.be.an.instanceof(Booking);
   });
   it('should alert the user if they are not logged in', function() {
-    user.bookARoom(227, "2020/03/28", 105)
+    user.bookARoom(227, "2020/03/28", 105, bookings)
 
-    expect(user.bookARoom(227, "2020/03/28", 105)).to.equal(`Please log in to book a room.`);
+    expect(user.bookARoom(227, "2020/03/28", 105, bookings)).to.equal(`Please log in to book a room.`);
   });
   //Handle this is domUpdates/scripts
   // it.skip('should alert the user of a successful booking', function() {

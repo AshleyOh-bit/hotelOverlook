@@ -23,13 +23,15 @@ class Booking {
     }
 
     createRandomString()
-
-    if (!bookings.some(booking => {
+    //console.log(bookings)
+    if (bookings.some(booking => {
       booking.id === newId
     })) {
-      this.id = newId;
-    } else {
+      //this.id = newId;
       createRandomString()
+    } else {
+      // createRandomString()
+      this.id = newId;
     }
   }
 

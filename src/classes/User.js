@@ -30,11 +30,23 @@ class User {
       return `Sorry, we could not find any users with that username. Please try again.`
     }
   }
-  bookARoom(userId, date, roomNumber) {
+  bookARoom(userId, date, roomNumber, bookings) {
     //this is dynamically made for the sake of manager - i.e. userId vs this.id
+    // let newBooking;
+    // if (this.isLoggedIn) {
+    //   newBooking = new Booking(userId, date, roomNumber)
+    //   return newBooking
+    // } else {
+    //   return `Please log in to book a room.`
+    // }
     let newBooking;
-    if (this.isLoggedIn) {
+    if (this.isLoggedIn && (!this.bookings)) {
       newBooking = new Booking(userId, date, roomNumber)
+      return newBooking
+    } else if (this.isLoggedIn && (this.bookings)) {
+      newBooking = new Booking(userId, date, roomNumber)
+      newBooking.generateRandomId(bookings)
+      this.bookings.future.push(newBooking)
       return newBooking
     } else {
       return `Please log in to book a room.`

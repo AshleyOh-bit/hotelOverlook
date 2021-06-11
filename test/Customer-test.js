@@ -3,7 +3,7 @@ const expect = chai.expect;
 //import User from '../src/User';
 import Customer from '../src/classes/Customer';
 import Booking from '../src/classes/Booking';
-//import { rooms, customers, bookings } from './test-data';
+import { rooms, customers, bookings } from './test-data';
 
 describe('Customer', function() {
   let customer, booking1, booking2;
@@ -24,10 +24,10 @@ describe('Customer', function() {
   //Should be an extension of the User class?
   //
   //Properties
-  it.skip('should have an id', function() {
+  it('should have an id', function() {
     expect(customer.id).to.equal(229);
   });
-  it.skip('should have a name', function() {
+  it('should have a name', function() {
     expect(customer.name).to.equal("Cranston Shival");
   });
   //THE FOLLOWING THREE TESTS MAY BE UNECESSARY
@@ -40,19 +40,26 @@ describe('Customer', function() {
   // it.skip('should store the date', function() {
   //   expect(customer.date).to.equal("2020/04/04");
   // });
-  it.skip('should be logged out by default', function() {
+  it('should be logged out by default', function() {
     expect(customer.isLoggedIn).to.equal(false);
   });
-  it.skip('should have a place to store their bookings', function() {
-    expect(customer.bookings).to.deep.equal([]);
+  it('should have a place to store their bookings', function() {
+    expect(customer.bookings).to.deep.equal({past: [], future: []});
+  });
+  it('should push a future booking into the future bookings array', function() {
+    customer.setCredentials("BrandyBoo22", "12345")
+    customer.logIn("BrandyBoo22", "12345")
+    customer.bookARoom(22, "2020/04/25", 101, bookings)
+
+    expect(customer.bookings.future.length).to.equal(1);
   });
   //Methods
   //sort bookings - find some sad paths?
-  it.skip('should sort bookings by past and upcoming', function() {
+  it('should sort bookings by past and upcoming', function() {
     customer.bookings.past.push(booking1);
     customer.bookings.past.push(booking2);
-    customer.bookARoom(229, "2020/04/25", 105);
-    customer.bookARoom(229, "2020/04/18", 105);
+    customer.bookARoom(229, "2020/04/25", 105, bookings);
+    customer.bookARoom(229, "2020/04/18", 105, bookings);
     customer.sortBookingsByDate("2020/04/04");
 
     //figure out id numbers!!!
