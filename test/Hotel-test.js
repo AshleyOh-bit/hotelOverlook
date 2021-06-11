@@ -9,7 +9,7 @@ import Room from '../src/classes/Room';
 import Booking from '../src/classes/Booking';
 import { rooms, customers, bookings } from './test-data';
 
-describe('Manager', function() {
+describe('Hotel', function() {
   let hotel, instRooms, instCustomers, instBookings, customer;
   beforeEach(() => {
     customer = new Customer(229, "Cranston Shival")
