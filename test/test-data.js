@@ -1,6 +1,6 @@
 //Rooms
 export const rooms = [
-    {
+  {
     "number": 101,
     "roomType": "suite",
     "bidet": false,

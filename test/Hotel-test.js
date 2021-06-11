@@ -1,13 +1,16 @@
 // import { expect } from 'chai';
 import chai from 'chai';
 const expect = chai.expect;
-import User from '../src/User';
+//import User from '../src/User';
 import Hotel from '../src/classes/Hotel';
-import Manager from '../src/classes/Manager';
+//import Manager from '../src/classes/Manager';
+import Customer from '../src/classes/Customer';
+import Room from '../src/classes/Room';
+import Booking from '../src/classes/Booking';
 import { rooms, customers, bookings } from './test-data';
 
 describe('Manager', function() {
-  let manager, hotel, instRooms, instCustomers, instBookings, customer;
+  let hotel, instRooms, instCustomers, instBookings, customer;
   beforeEach(() => {
     customer = new Customer(229, "Cranston Shival")
 
@@ -24,7 +27,6 @@ describe('Manager', function() {
     });
 
     hotel = new Hotel(instRooms, instCustomers, instBookings, "2020/04/01");
-    manager = new Manager(000, "Hambun Grettibean", hotel);
   });
   it.skip('should be a function', function() {
     expect(Hotel).to.be.a.function();
@@ -51,7 +53,8 @@ describe('Manager', function() {
     //filters bookings with date to return room numbers of booked rooms
     //then it takes that array and compares each element to the rooms array
     //and filters out all AVAILABLE rooms
-    expect(hotel.filterRoomsByAvailability("2020/04/25")).to.deep.equal([    {
+    expect(hotel.filterRoomsByAvailability("2020/04/25")).to.deep.equal([
+      {
         "number": 101,
         "roomType": "suite",
         "bidet": false,
@@ -188,28 +191,28 @@ describe('Manager', function() {
     customer.bookARoom(229, "2020/04/25", 101);
     hotel.filterAvailableRooms("2020/04/25")
     expect(hotel.filterAvailableRooms("2020/04/25")).to.deep.equal([  {
-        "number": 102,
-        "roomType": "single room",
-        "bidet": false,
-        "bedSize": "full",
-        "numBeds": 2,
-        "costPerNight": 325.88
-      },
-      {
-        "number": 103,
-        "roomType": "junior suite",
-        "bidet": true,
-        "bedSize": "king",
-        "numBeds": 1,
-        "costPerNight": 267.05
-      },
-      {
-        "number": 104,
-        "roomType": "residential suite",
-        "bidet": true,
-        "bedSize": "queen",
-        "numBeds": 1,
-        "costPerNight": 406.29
-      }]);
+      "number": 102,
+      "roomType": "single room",
+      "bidet": false,
+      "bedSize": "full",
+      "numBeds": 2,
+      "costPerNight": 325.88
+    },
+    {
+      "number": 103,
+      "roomType": "junior suite",
+      "bidet": true,
+      "bedSize": "king",
+      "numBeds": 1,
+      "costPerNight": 267.05
+    },
+    {
+      "number": 104,
+      "roomType": "residential suite",
+      "bidet": true,
+      "bedSize": "queen",
+      "numBeds": 1,
+      "costPerNight": 406.29
+    }]);
   });
 });

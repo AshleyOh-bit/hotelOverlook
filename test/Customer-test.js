@@ -2,10 +2,12 @@
 import chai from 'chai';
 const expect = chai.expect;
 //import User from '../src/User';
-import { rooms, customers, bookings } from './test-data';
+import Customer from '../src/Customer';
+import Booking from '../src/Booking';
+//import { rooms, customers, bookings } from './test-data';
 
 describe('Customer', function() {
-  let customer, booking1, booking2, booking3, booking4;
+  let customer, booking1, booking2;
   beforeEach(() => {
     //Instantiate all data here?
     booking1 = new Booking(229, "2020/03/28", 105)
@@ -54,23 +56,23 @@ describe('Customer', function() {
     customer.bookARoom(229, "2020/04/18", 105);
     customer.sortBookingsByDate("2020/04/04");
 
-//figure out id numbers!!!
+    //figure out id numbers!!!
     expect(customer.bookings.past).to.deep.equal([booking1, booking2]);
     expect(customer.bookings.future).to.deep.equal([
       {
-      "id": "8kjhdia80caplask13",
-      "userID": 229,
-      "date": "2020/04/18",
-      "roomNumber": 105,
-      "roomServiceCharges": []
-    },
-    {
-      "id": "8kjhdia80caplask14",
-      "userID": 229,
-      "date": "2020/04/25",
-      "roomNumber": 105,
-      "roomServiceCharges": []
-    }
+        "id": "8kjhdia80caplask13",
+        "userID": 229,
+        "date": "2020/04/18",
+        "roomNumber": 105,
+        "roomServiceCharges": []
+      },
+      {
+        "id": "8kjhdia80caplask14",
+        "userID": 229,
+        "date": "2020/04/25",
+        "roomNumber": 105,
+        "roomServiceCharges": []
+      }
     ]);
   });
 });

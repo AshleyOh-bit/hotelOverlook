@@ -3,10 +3,10 @@ import chai from 'chai';
 const expect = chai.expect;
 import User from '../src/classes/User';
 import Booking from '../src/classes/Booking';
-import { rooms, customers, bookings } from './test-data';
+//import { rooms, customers, bookings } from './test-data';
 
 describe('User', function() {
-  let user, booking1, booking2;
+  let user, booking1;
   beforeEach(() => {
     //Instantiate all data here
     // booking1 = new Booking("582hdia80caplask1", 227, "2020/03/28", 105)
@@ -119,7 +119,7 @@ describe('User', function() {
   });
   //Maybe handle this in HTML/post
   //How do we check if a room is available other than date?
-  //calls a method in Hotel as well? 
+  //calls a method in Hotel as well?
   it.skip('should alert the user if booking is unsuccessful', function() {
     user.logIn("BrandyBoo22", "12345");
     user.bookARoom(227, "2020/03/21", 105)

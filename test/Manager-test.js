@@ -1,9 +1,12 @@
 // import { expect } from 'chai';
 import chai from 'chai';
 const expect = chai.expect;
-import User from '../src/User';
+//import User from '../src/User';
 import Hotel from '../src/classes/Hotel';
 import Manager from '../src/classes/Manager';
+import Customer from '../src/classes/Customer';
+import Room from '../src/classes/Room';
+import Booking from '../src/classes/Booking';
 import { rooms, customers, bookings } from './test-data';
 
 describe('Manager', function() {
@@ -23,8 +26,8 @@ describe('Manager', function() {
       return booking = new Booking(booking.userID, booking.date, booking.roomNumber)
     });
 
-    hotel = new Hotel(instRooms, instCustomers, instBookings,"2020/04/01")
-    manager = new Manager(000, "Hambun Grettibean", hotel)
+    hotel = new Hotel(instRooms, instCustomers, instBookings, "2020/04/01")
+    manager = new Manager(101, "Hambun Grettibean", hotel)
   });
   it.skip('should be a function', function() {
     expect(Manager).to.be.a.function();
@@ -36,14 +39,14 @@ describe('Manager', function() {
   //
   //Properties
   it.skip('should have an id', function() {
-    expect(manager.id).to.equal(000);
+    expect(manager.id).to.equal(101);
   });
   it.skip('should have a name', function() {
     expect(manager.name).to.equal("Hambun Grettibean");
   });
   //THE FOLLOWING THREE TESTS MAY BE UNECESSARY
   it.skip('should have a username', function() {
-    expect(custsomer.username).to.equal("IamTheManager");
+    expect(manager.username).to.equal("IamTheManager");
   });
   it.skip('should have a password', function() {
     expect(manager.password).to.equal("00000");
@@ -54,9 +57,9 @@ describe('Manager', function() {
   it.skip('should be logged out by default', function() {
     expect(manager.isLoggedIn).to.equal(false);
   });
-//Manager-specific properties
-//search for customer
-//happy path:
+  //Manager-specific properties
+  //search for customer
+  //happy path:
   it.skip('should be able to search for a a customer', function() {
     manager.searchForCustomer(229)
     expect(manager.searchForCustomer(229)).to.deep.equal({
@@ -85,26 +88,26 @@ describe('Manager', function() {
   });
   //removes a booking
   //happy path
-    it.skip('should be able to remove a booking by booking id', function() {
-      customer.bookARoom(229, "2020/04/18", 105);
-      manager.removeBooking("8kjhdia80caplask13");
-      expect(manager.hotel.bookings.length).to.equal(10);
-    });
-    //sad path
-    it.skip('should alert manager if booking can\'t be found', function() {
-      customer.bookARoom(229, "2020/04/18", 105);
-      manager.removeBooking("8kjhdia80caplaoo3");
-      expect(manager.removeBooking("8kjhdia80capla3")).to.equal(`Sorry, Hambun Grettibean, we could not find any bookings to match your search.`);
-    });
-    //prevent this in the HTML
-    it.skip('should alert manager if input type in incorrect can\'t be found', function() {
-      customer.bookARoom(229, "2020/04/18", 105);
-      manager.removeBooking(229);
-      expect(manager.removeBooking(229)).to.equal(`Please enter a valid booking id.`);
-    });
-    it.skip('should alert manager if input type in incorrect can\'t be found', function() {
-      customer.bookARoom(229, "2020/04/18", 105);
-      manager.removeBooking("");
-      expect(manager.removeBooking("")).to.equal(`Please enter a valid booking id.`);
-    });
+  it.skip('should be able to remove a booking by booking id', function() {
+    customer.bookARoom(229, "2020/04/18", 105);
+    manager.removeBooking("8kjhdia80caplask13");
+    expect(manager.hotel.bookings.length).to.equal(10);
+  });
+  //sad path
+  it.skip('should alert manager if booking can\'t be found', function() {
+    customer.bookARoom(229, "2020/04/18", 105);
+    manager.removeBooking("8kjhdia80caplaoo3");
+    expect(manager.removeBooking("8kjhdia80capla3")).to.equal(`Sorry, Hambun Grettibean, we could not find any bookings to match your search.`);
+  });
+  //prevent this in the HTML
+  it.skip('should alert manager if input type in incorrect can\'t be found', function() {
+    customer.bookARoom(229, "2020/04/18", 105);
+    manager.removeBooking(229);
+    expect(manager.removeBooking(229)).to.equal(`Please enter a valid booking id.`);
+  });
+  it.skip('should alert manager if input type in incorrect can\'t be found', function() {
+    customer.bookARoom(229, "2020/04/18", 105);
+    manager.removeBooking("");
+    expect(manager.removeBooking("")).to.equal(`Please enter a valid booking id.`);
+  });
 });

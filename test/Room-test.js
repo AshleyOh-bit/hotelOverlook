@@ -2,7 +2,7 @@
 import chai from 'chai';
 const expect = chai.expect;
 import Room from '../src/classes/Room';
-import { rooms, customers, bookings } from './test-data';
+//import { rooms, customers, bookings } from './test-data';
 
 describe('Room', function() {
   let room;
