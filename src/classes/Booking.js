@@ -12,23 +12,16 @@ class Booking {
     let template = "8kjhdia80caplask5";
     template = template.split("")
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-      // for ( var i = 0; i < 17; i++ ) {
-      //   newId += characters.charAt(Math.floor(Math.random() *
-      //  characters.length));
-      //   }
+    //Break into another function?
     const createRandomString = () => {
       newId = "";
       const fresh = template.map(letter => {
-        //console.log("old", letter)
         return letter = characters.charAt(Math.floor(Math.random() *
        characters.length))
-       //console.log("new", letter)
       })
       newId = fresh.join("")
-      //console.log(newId)
     }
-    //newId.join()
+
     createRandomString()
 
     if (!bookings.some(booking => {
@@ -39,7 +32,6 @@ class Booking {
       createRandomString()
     }
   }
-
 
 }
 
