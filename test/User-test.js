@@ -4,9 +4,10 @@ import User from '../src/classes/User';
 import Booking from '../src/classes/Booking';
 
 describe('User', function() {
-  let user, booking1;
+  let user, booking;
   beforeEach(() => {
     user = new User(227, "Brandy Badabing")
+    booking = new Booking(227, "2020/03/28", 105)
   });
   it('should be a function', function() {
     expect(User).to.be.a("function");
@@ -105,38 +106,44 @@ describe('User', function() {
   });
   //Booking a Room
   //Happy:
-  it.skip('should be logged in to book a room', function() {
+  it('should be logged in to book a room', function() {
     user.setCredentials("BrandyBoo22", "12345")
     user.logIn("BrandyBoo22", "12345");
     user.bookARoom(227, "2020/03/28", 105)
 
     expect(user.isLoggedIn).to.equal(true);
-    expect(user.bookARoom( 227, "2020/03/28", 105)).to.deep.equal(booking1);
+    expect(user.bookARoom(227, "2020/03/28", 105)).to.deep.equal(booking);
   });
   //Can we POST an instance of a class?
-  it.skip('should instantiate a new Booking', function() {
+  it('should instantiate a new Booking', function() {
     user.setCredentials("BrandyBoo22", "12345")
     user.logIn("BrandyBoo22", "12345");
     user.bookARoom(227, "2020/03/28", 105)
 
+    // expect(user.bookARoom(227, "2020/03/28", 105)).to.deep.equal(booking);
     expect(user.bookARoom(227, "2020/03/28", 105)).to.be.an.instanceof(Booking);
   });
-  //This one may not be possible with the double return
-  it.skip('should alert the user of a successful booking', function() {
-    user.setCredentials("BrandyBoo22", "12345")
-    user.logIn("BrandyBoo22", "12345");
+  it('should alert the user if they are not logged in', function() {
     user.bookARoom(227, "2020/03/28", 105)
 
-    expect(user.bookARoom(227, "2020/03/28", 105)).to.equal(`Thank you for your purchase! We will see you on 03/28/2020 in room 105`);
+    expect(user.bookARoom(227, "2020/03/28", 105)).to.equal(`Please log in to book a room.`);
   });
+  //Handle this is domUpdates/scripts
+  // it.skip('should alert the user of a successful booking', function() {
+  //   user.setCredentials("BrandyBoo22", "12345")
+  //   user.logIn("BrandyBoo22", "12345");
+  //   user.bookARoom(227, "2020/03/28", 105)
+  //
+  //   expect(user.bookARoom(227, "2020/03/28", 105)).to.equal(`Thank you for your purchase! We will see you on 03/28/2020 in room 105`);
+  // });
   //Maybe handle this in HTML/post
   //How do we check if a room is available other than date?
   //calls a method in Hotel as well?
-  it.skip('should alert the user if booking is unsuccessful', function() {
-    user.setCredentials("BrandyBoo22", "12345")
-    user.logIn("BrandyBoo22", "12345");
-    user.bookARoom(227, "2020/03/21", 105)
-
-    expect(user.bookARoom(227, "2020/03/21", 105)).to.equal(`Sorry, we cannot book a room for you on that date. Please select another date`);
-  });
+  // it.skip('should alert the user if booking is unsuccessful', function() {
+  //   user.setCredentials("BrandyBoo22", "12345")
+  //   user.logIn("BrandyBoo22", "12345");
+  //   user.bookARoom(227, "2020/03/21", 105)
+  //
+  //   expect(user.bookARoom(227, "2020/03/21", 105)).to.equal(`Sorry, we cannot book a room for you on that date. Please select another date`);
+  // });
 });

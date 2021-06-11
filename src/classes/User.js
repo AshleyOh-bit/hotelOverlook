@@ -1,3 +1,5 @@
+import Booking from './Booking';
+
 class User {
   constructor(num, name) {
     this.id = num;
@@ -27,6 +29,17 @@ class User {
     } else if (this.username !== username) {
       return `Sorry, we could not find any users with that username. Please try again.`
     }
+  }
+  bookARoom(userId, date, roomNumber) {
+    //this is dynamically made for the sake of manager - i.e. userId vs this.id
+    let newBooking;
+    if (this.isLoggedIn) {
+      newBooking = new Booking(userId, date, roomNumber)
+      return newBooking
+    } else {
+      return `Please log in to book a room.`
+    }
+
   }
 }
 
