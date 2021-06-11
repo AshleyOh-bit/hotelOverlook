@@ -18,6 +18,16 @@ class User {
       this.password = password
     }
   }
+  logIn(username, password) {
+    //should this iterate through some sort of users array?
+    if (this.username === username && this.password === password) {
+      this.isLoggedIn = true;
+    } else if (this.password !== password) {
+      return `Sorry, we could not find any users to match that password. Please try again.`
+    } else if (this.username !== username) {
+      return `Sorry, we could not find any users with that username. Please try again.`
+    }
+  }
 }
 
 export default User;

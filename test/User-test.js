@@ -67,40 +67,46 @@ describe('User', function() {
 
   //Logging in
   //Happy:
-  it.skip('should be able to log in', function() {
+  it('should be able to log in', function() {
+    user.setCredentials("BrandyBoo22", "12345")
     user.logIn("BrandyBoo22", "12345")
 
     expect(user.isLoggedIn).to.equal(true);
   });
   //Sad:
-  it.skip('should check username credentials', function() {
+  it('should check username credentials', function() {
+    user.setCredentials("BrandyBoo22", "12345")
     user.logIn("11432", "12345")
 
     expect(user.isLoggedIn).to.equal(false);
     expect(user.logIn("11432", "12345")).to.equal(`Sorry, we could not find any users with that username. Please try again.`);
   });
-  it.skip('should check password credentials', function() {
+  it('should check password credentials', function() {
+    user.setCredentials("BrandyBoo22", "12345")
     user.logIn("BrandyBoo22", "123455")
 
     expect(user.isLoggedIn).to.equal(false);
     expect(user.logIn("BrandyBoo22", "123455")).to.equal(`Sorry, we could not find any users to match that password. Please try again.`);
   });
   //These probably can be handled in HTML with required + DOM error handling
-  it.skip('should check if username input field is empty', function() {
+  it('should check if username input field is empty', function() {
+    user.setCredentials("BrandyBoo22", "12345")
     user.logIn("", "12345")
 
     expect(user.isLoggedIn).to.equal(false);
     expect(user.logIn("", "12345")).to.equal(`Sorry, we could not find any users with that username. Please try again.`);
   });
-  it.skip('should check if password input field is empty', function() {
+  it('should check if password input field is empty', function() {
+    user.setCredentials("BrandyBoo22", "12345")
     user.logIn("BrandyBoo22", "")
 
     expect(user.isLoggedIn).to.equal(false);
-    expect(user.logIn("", "12345")).to.equal(`Sorry, we could not find any users to match that password. Please try again.`);
+    expect(user.logIn("BrandyBoo22", "")).to.equal(`Sorry, we could not find any users to match that password. Please try again.`);
   });
   //Booking a Room
   //Happy:
   it.skip('should be logged in to book a room', function() {
+    user.setCredentials("BrandyBoo22", "12345")
     user.logIn("BrandyBoo22", "12345");
     user.bookARoom(227, "2020/03/28", 105)
 
@@ -109,6 +115,7 @@ describe('User', function() {
   });
   //Can we POST an instance of a class?
   it.skip('should instantiate a new Booking', function() {
+    user.setCredentials("BrandyBoo22", "12345")
     user.logIn("BrandyBoo22", "12345");
     user.bookARoom(227, "2020/03/28", 105)
 
@@ -116,6 +123,7 @@ describe('User', function() {
   });
   //This one may not be possible with the double return
   it.skip('should alert the user of a successful booking', function() {
+    user.setCredentials("BrandyBoo22", "12345")
     user.logIn("BrandyBoo22", "12345");
     user.bookARoom(227, "2020/03/28", 105)
 
@@ -125,6 +133,7 @@ describe('User', function() {
   //How do we check if a room is available other than date?
   //calls a method in Hotel as well?
   it.skip('should alert the user if booking is unsuccessful', function() {
+    user.setCredentials("BrandyBoo22", "12345")
     user.logIn("BrandyBoo22", "12345");
     user.bookARoom(227, "2020/03/21", 105)
 
