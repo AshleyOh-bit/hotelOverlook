@@ -2,8 +2,8 @@
 import chai from 'chai';
 const expect = chai.expect;
 //import User from '../src/User';
-import Customer from '../src/Customer';
-import Booking from '../src/Booking';
+import Customer from '../src/classes/Customer';
+import Booking from '../src/classes/Booking';
 //import { rooms, customers, bookings } from './test-data';
 
 describe('Customer', function() {
