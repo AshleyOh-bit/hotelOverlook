@@ -15,15 +15,15 @@ describe('Manager', function() {
     customer = new Customer(229, "Cranston Shival")
 
     instRooms = rooms.map(room => {
-      return room = new Room(room.number, room.roomType, room.bidet, room.bedSize, room.numBeds, room.costPerNight)
+      return new Room(room.number, room.roomType, room.bidet, room.bedSize, room.numBeds, room.costPerNight)
     });
 
     instCustomers = customers.map(customer => {
-      return customer = new Customer(customer.id, customer.name)
+      return new Customer(customer.id, customer.name)
     });
 
     instBookings = bookings.map(booking => {
-      return booking = new Booking(booking.userID, booking.date, booking.roomNumber)
+      return new Booking(booking.userID, booking.date, booking.roomNumber)
     });
 
     hotel = new Hotel(instRooms, instCustomers, instBookings, "2020/04/01")

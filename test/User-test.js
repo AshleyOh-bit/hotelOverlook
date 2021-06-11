@@ -108,7 +108,7 @@ describe('User', function() {
     user.logIn("BrandyBoo22", "12345");
     user.bookARoom(227, "2020/03/28", 105)
 
-    expect(booking1).to.be.an.instanceof(Booking);
+    expect(user.bookARoom(227, "2020/03/28", 105)).to.be.an.instanceof(Booking);
   });
   //This one may not be possible with the double return
   it.skip('should alert the user of a successful booking', function() {
