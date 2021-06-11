@@ -19,22 +19,22 @@ describe('Room', function() {
     expect(room).to.be.an.instanceof(Room);
   });
   //Properties
-  it.skip('should have a number', function() {
+  it('should have a number', function() {
     expect(room.number).to.equal(122);
   });
-  it.skip('should have a room type', function() {
+  it('should have a room type', function() {
     expect(room.roomType).to.equal("suite");
   });
-  it.skip('should determine if there is a bidet', function() {
+  it('should determine if there is a bidet', function() {
     expect(room.bidet).to.equal(true);
   });
-  it.skip('should have a bed size', function() {
+  it('should have a bed size', function() {
     expect(room.bedSize).to.equal("king");
   });
-  it.skip('should have a bed size', function() {
+  it('should have a bed number', function() {
     expect(room.numBeds).to.equal(2);
   });
-  it.skip('should have a cost per night', function() {
+  it('should have a cost per night', function() {
     expect(room.costPerNight).to.equal(122.87);
   });
 });
