@@ -165,5 +165,20 @@ describe('Manager', function() {
     hotel.filterRoomsByType("2020/04/25", ["suite"]);
     expect(hotel.filterRoomsByType("2020/04/25", ["suite"])).to.equal(`Sorry, there are no suites available on that date. Please choose another room type or date.`);
   });
-
+  //Calculate booked percentage
+  //happy path below - any sad paths?
+  it.skip('should be able to calculate the percentage of rooms booked on current date', function() {
+    customer.bookARoom(229, "2020/04/25", 105);
+    customer.bookARoom(229, "2020/04/25", 101);
+    hotel.calulatePercentageBooked("2020/04/25")
+    expect(hotel.calulatePercentageBooked("2020/04/25")).to.equal("20% of rooms are booked for 2020/04/25");
+  });
+  //calculate total revenue
+  //happy path - any sad paths?
+  it.skip('should be able to calculate total revenue for current date', function() {
+    customer.bookARoom(229, "2020/04/25", 105);
+    customer.bookARoom(229, "2020/04/25", 101);
+    hotel.calulateTotalRevenue("2020/04/25")
+    expect(hotel.calulateTotalRevenue("2020/04/25")).to.equal("Total revenue today: $499.43");
+  });
 });
