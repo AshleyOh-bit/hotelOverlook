@@ -13,7 +13,7 @@ describe('Room', function() {
     room = new Room(122, "suite", true, "king", 2, 122.87)
   });
   it.skip('should be a function', function() {
-    expect(Room).to.be.a.function();
+    expect(Room).to.be.a("function");
   });
   it.skip('should be an instance of Room', function() {
     expect(room).to.be.an.instanceof(Room);

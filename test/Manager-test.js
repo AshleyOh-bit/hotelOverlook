@@ -30,7 +30,7 @@ describe('Manager', function() {
     manager = new Manager(101, "Hambun Grettibean", hotel)
   });
   it.skip('should be a function', function() {
-    expect(Manager).to.be.a.function();
+    expect(Manager).to.be.a("function");
   });
   it.skip('should be an instance of Manager', function() {
     expect(manager).to.be.an.instanceof(Manager);

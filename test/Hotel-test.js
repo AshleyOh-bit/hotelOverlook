@@ -29,7 +29,7 @@ describe('Hotel', function() {
     hotel = new Hotel(instRooms, instCustomers, instBookings, "2020/04/01");
   });
   it.skip('should be a function', function() {
-    expect(Hotel).to.be.a.function();
+    expect(Hotel).to.be.a("function");
   });
   it.skip('should be an instance of Hotel', function() {
     expect(hotel).to.be.an.instanceof(Hotel);
