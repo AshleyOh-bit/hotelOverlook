@@ -51,3 +51,34 @@ function instantiateData() {
 }
 
 //Post stuff here
+//Add proper error handling - look @ lesson
+function postData(booking) {
+  postApiData(booking)
+  .then((response) => {
+    if (!response.ok) {
+      throw Error(response.statusText);
+    } else {
+      renderSuccessfulPost(booking);
+    }
+  })
+  .catch(error => {
+    showPostMessage(booking, 'fail', error)
+  })
+}
+
+function renderSuccessfulPost(booking) {
+  showPostMessage(booking, 'success');
+  fetchApiData(booking)
+  .then((data) => {
+    fetchData();
+    instantiateData();
+    populateDOM();
+  })
+}
+
+function showPostMessage(booking, status, responseStatus) {
+  let messageSelector = {
+    //whatever the querySelector is for where we want the message to go
+  }
+  domUpdates.facilitatePostMessage(booking, status, responseStatus, messageSelector, customer)
+}
