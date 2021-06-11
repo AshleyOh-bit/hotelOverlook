@@ -181,4 +181,35 @@ describe('Manager', function() {
     hotel.calulateTotalRevenue("2020/04/25")
     expect(hotel.calulateTotalRevenue("2020/04/25")).to.equal("Total revenue today: $499.43");
   });
+  //determine available rooms
+  //happy path
+  it.skip('should be able to determine available rooms', function() {
+    customer.bookARoom(229, "2020/04/25", 105);
+    customer.bookARoom(229, "2020/04/25", 101);
+    hotel.filterAvailableRooms("2020/04/25")
+    expect(hotel.filterAvailableRooms("2020/04/25")).to.deep.equal([  {
+        "number": 102,
+        "roomType": "single room",
+        "bidet": false,
+        "bedSize": "full",
+        "numBeds": 2,
+        "costPerNight": 325.88
+      },
+      {
+        "number": 103,
+        "roomType": "junior suite",
+        "bidet": true,
+        "bedSize": "king",
+        "numBeds": 1,
+        "costPerNight": 267.05
+      },
+      {
+        "number": 104,
+        "roomType": "residential suite",
+        "bidet": true,
+        "bedSize": "queen",
+        "numBeds": 1,
+        "costPerNight": 406.29
+      }]);
+  });
 });
