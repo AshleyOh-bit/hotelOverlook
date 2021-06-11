@@ -8,10 +8,10 @@ describe('User', function() {
   beforeEach(() => {
     user = new User(227, "Brandy Badabing")
   });
-  it.skip('should be a function', function() {
+  it('should be a function', function() {
     expect(User).to.be.a("function");
   });
-  it.skip('should be an instance of User', function() {
+  it('should be an instance of User', function() {
     expect(user).to.be.an.instanceof(User);
   });
   //Properties

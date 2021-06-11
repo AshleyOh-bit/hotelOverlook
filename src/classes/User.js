@@ -1,1 +1,7 @@
-//export default User;
+class User {
+  constructor() {
+
+  }
+}
+
+export default User;
