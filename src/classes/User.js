@@ -1,6 +1,8 @@
 class User {
-  constructor() {
-
+  constructor(num, name) {
+    this.id = num;
+    this.name = name;
+    this.isLoggedIn = false;
   }
 }
 

@@ -15,13 +15,13 @@ describe('User', function() {
     expect(user).to.be.an.instanceof(User);
   });
   //Properties
-  it.skip('should have an id', function() {
+  it('should have an id', function() {
     expect(user.id).to.equal(227);
   });
-  it.skip('should have a name', function() {
+  it('should have a name', function() {
     expect(user.name).to.equal("Brandy Badabing");
   });
-  it.skip('should be logged out by default', function() {
+  it('should be logged out by default', function() {
     expect(user.isLoggedIn).to.equal(false);
   });
   ///////Methods
