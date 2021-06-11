@@ -15,10 +15,10 @@ describe('Customer', function() {
     // booking4 = new Booking(228, "2020/03/29", 102)
     customer = new Customer(229, "Cranston Shival")
   });
-  it.skip('should be a function', function() {
-    expect(Customer).to.be.a.function();
+  it('should be a function', function() {
+    expect(Customer).to.be.a("function");
   });
-  it.skip('should be an instance of Customer', function() {
+  it('should be an instance of Customer', function() {
     expect(customer).to.be.an.instanceof(Customer);
   });
   //Should be an extension of the User class?
