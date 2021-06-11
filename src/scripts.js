@@ -13,6 +13,7 @@ import './images/turing-logo.png'
 let bookingsData, customersData, roomsData, hotel, customer;
 const todayDate = "2020/04/01";
 
+///Fetch stuff here
 window.addEventListener('load', fetchData);
 
 function getData() {
@@ -48,3 +49,5 @@ function instantiateData() {
 
   hotel = new Hotel(instRooms, instCustomers, instBookings, todayDate);
 }
+
+//Post stuff here
