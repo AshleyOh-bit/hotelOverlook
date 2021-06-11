@@ -1,6 +1,7 @@
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
 import { fetchApiData } from './apiCalls';
+import domUpdates from './domUpdates';
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
@@ -12,6 +13,29 @@ import './images/turing-logo.png'
 
 let bookingsData, customersData, roomsData, hotel, customer;
 const todayDate = "2020/04/01";
+
+//Query Selectors below
+//buttons
+const homeButton = document.querySelector("#homeButton");
+const bookButton = document.querySelector("#bookButton");
+const accountButton = document.querySelector("#accountButton");
+
+//Pages
+const homeView = document.querySelector("#homeView");
+const customerView = document.querySelector("#customerView");
+const bookingView = document.querySelector("#bookingView");
+
+//Event listeners
+
+homeButton.addEventListener("click", function() {
+  switchViews(customerView, bookingView, homeView)
+});
+bookButton.addEventListener("click", function() {
+  switchViews(customerView, homeView, bookingView)
+});
+accountButton.addEventListener("click", function() {
+  switchViews(bookingView, homeView, customerView)
+});
 
 ///Fetch stuff here
 window.addEventListener('load', fetchData);
@@ -81,4 +105,12 @@ function showPostMessage(booking, status, responseStatus) {
     //whatever the querySelector is for where we want the message to go
   }
   domUpdates.facilitatePostMessage(booking, status, responseStatus, messageSelector, customer)
+}
+///////////
+
+// Helpers
+function switchViews(element1, element2, showElement) {
+  domUpdates.hide(element1);
+  domUpdates.hide(element2);
+  domUpdates.show(showElement);
 }
