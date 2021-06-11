@@ -71,7 +71,7 @@ function instantiateData() {
     return new Booking(booking.userID, booking.date, booking.roomNumber)
   });
 
-  hotel = new Hotel(instRooms, instCustomers, instBookings, todayDate);
+  hotel = new Hotel(instRooms, instBookings, instCustomers, todayDate);
 }
 
 //Post stuff here

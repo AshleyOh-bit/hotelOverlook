@@ -26,7 +26,7 @@ describe('Hotel', function() {
       return new Booking(booking.userID, booking.date, booking.roomNumber)
     });
 
-    hotel = new Hotel(instRooms, instCustomers, instBookings, "2020/04/01");
+    hotel = new Hotel(instRooms, instBookings, instCustomers, "2020/04/01");
   });
   it('should be a function', function() {
     expect(Hotel).to.be.a("function");
@@ -34,16 +34,16 @@ describe('Hotel', function() {
   it('should be an instance of Hotel', function() {
     expect(hotel).to.be.an.instanceof(Hotel);
   });
-  it.skip('should store rooms', function() {
+  it('should store rooms', function() {
     expect(hotel.rooms).to.deep.equal(instRooms);
   });
-  it.skip('should store bookings', function() {
+  it('should store bookings', function() {
     expect(hotel.bookings).to.deep.equal(instBookings);
   });
-  it.skip('should store customers', function() {
+  it('should store customers', function() {
     expect(hotel.customers).to.deep.equal(instCustomers);
   });
-  it.skip('should store the date', function() {
+  it('should store the date', function() {
     expect(hotel.todayDate).to.deep.equal("2020/04/01");
   });
   //Hotel methods
