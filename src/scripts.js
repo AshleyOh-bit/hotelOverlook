@@ -22,13 +22,13 @@ function getData() {
 function fetchData() {
   getData()
   .then((promiseArray) => {
-    console.log(promseArray)
+    //console.log(promiseArray)
     //check for the correct indexes on these
     bookingsData = promiseArray[0].bookings;
     customersData = promiseArray[1].customers;
     roomsData = promiseArray[2].rooms;
 
-    instantiateData()
+    //instantiateData()
     //populateDOM()
   });
 };
