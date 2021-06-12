@@ -23,6 +23,10 @@ const domUpdates = {
       });
     },
 
+    stringDisplay(element, data) {
+    element.innerText = data;
+  }
+
 }
 
 export default domUpdates;
