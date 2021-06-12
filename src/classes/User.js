@@ -43,10 +43,12 @@ class User {
     if (this.isLoggedIn && (!this.bookings)) {
       newBooking = new Booking(userId, date, roomNumber)
       newBooking.generateRandomId(bookings)
+      //bookings.push(newBooking)
       return newBooking
     } else if (this.isLoggedIn && (this.bookings)) {
       newBooking = new Booking(userId, date, roomNumber)
       newBooking.generateRandomId(bookings)
+      //bookings.push(newBooking)
       this.bookings.push(newBooking)
       return newBooking
     } else {
