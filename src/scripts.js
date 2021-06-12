@@ -4,7 +4,7 @@ import { fetchApiData } from './apiCalls';
 import domUpdates from './domUpdates';
 
 // An example of how you tell webpack to use a CSS (SCSS) file
-import './css/base.scss';
+import './sass/index.scss';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
