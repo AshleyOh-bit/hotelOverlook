@@ -53,12 +53,7 @@ describe('Hotel', function() {
   //Hotel methods
   it('should be able to filter rooms by availability', function() {
     customer.bookARoom(229, "2020/04/26", 105, bookings);
-    //console.log(customer.bookARoom(229, "2020/04/26", 105, bookings))
-    //console.log("hotel", hotel.bookings)
-    //hotel.filterRoomsByAvailability("2020/04/26", customer);
-    //filters bookings with date to return room numbers of booked rooms
-    //then it takes that array and compares each element to the rooms array
-    //and filters out all AVAILABLE rooms
+
     expect(hotel.filterRoomsByAvailability("2020/04/26", customer)).to.deep.equal([
       {
         "number": 101,
@@ -101,7 +96,6 @@ describe('Hotel', function() {
     customer.bookARoom(229, "2020/04/27", 102, bookings);
     customer.bookARoom(229, "2020/04/27", 101, bookings);
 
-    //hotel.filterRoomsByAvailability("2020/04/27", customer);
     expect(hotel.filterRoomsByAvailability("2020/04/27", customer)).to.equal(`Sorry, there are no rooms available for that date. Please try another date.`);
   });
   //This should happen in the HTML
@@ -111,7 +105,7 @@ describe('Hotel', function() {
   // });
   //Filter by roomType
   //happy
-  it.skip('should be able to filter rooms by type', function() {
+  it('should be able to filter rooms by type', function() {
     hotel.filterRoomsByType("suite", "2020/04/27", customer);
     expect(hotel.filterRoomsByType("suite", "2020/04/27", customer)).to.deep.equal([
       {
@@ -132,10 +126,10 @@ describe('Hotel', function() {
       }
     ]);
   });
-  it.skip('should be able to filter rooms by date and type', function() {
-    customer.bookARoom(229, "2020/04/25", 105);
-    hotel.filterRoomsByType("2020/04/25", "suite");
-    expect(hotel.filterRoomsByType("2020/04/25", "suite")).to.deep.equal([
+  it('should be able to filter rooms by date and type', function() {
+    customer.bookARoom(229, "2020/04/25", 105, bookings);
+
+    expect(hotel.filterRoomsByType("suite", "2020/04/25", customer)).to.deep.equal([
       {
         "number": 101,
         "roomType": "suite",

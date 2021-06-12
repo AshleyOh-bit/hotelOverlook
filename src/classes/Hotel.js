@@ -6,38 +6,22 @@ class Hotel {
     this.todayDate = todayDate;
   }
   filterRoomsByAvailability(date, customer) {
-    //updates these bookings with customer info
      customer.bookings.forEach(booking => {
       if (!this.bookings.includes(booking)) {
         this.bookings.push(booking)
       }
     })
-    //checks hotel bookings for matching dates and returns bookings that match
-    //just room numbers here
     const bookedRoomsNums = this.bookings.filter(booking => {
       return booking.date === date
     }).map(booking => {
       return booking.roomNumber
     })
-
-    //console.log(bookedRoomsNums)
-//checks rooms against booked rooms for room number matches
-//pushes rooms that do not have the number into their own array
-//console.log(this.rooms)
     const availableRooms = this.rooms.reduce((accumulator, currentRoom) => {
-
-        //console.log("booked", bookedRoom.roomNumber)
-        //console.log("room", currentRoom.number)
-        //console.log(bookedRoom.roomNumber !== currentRoom.number)
-        //console.log(accumulator.includes(currentRoom))
-        if (!bookedRoomsNums.includes(currentRoom.number)) {
-          //console.log("i'm pishimg")
-          accumulator.push(currentRoom)
-        }
-
+      if (!bookedRoomsNums.includes(currentRoom.number)) {
+        accumulator.push(currentRoom)
+      }
       return accumulator
     }, [])
-    //console.log(availableRooms.length)
      if (!availableRooms.length) {
        return `Sorry, there are no rooms available for that date. Please try another date.`
      } else {
@@ -47,12 +31,22 @@ class Hotel {
 
   filterRoomsByType(roomType, date, customer) {
     //console.log(this.filterRoomsByAvailability(date, customer))
-    this.filterRoomsByAvailability(date, customer)
-    const roomMatches = this.rooms.filter(room => {
+    const availableRooms = this.filterRoomsByAvailability(date, customer)
+    const roomMatchNums = this.rooms.filter(room => {
       return room.roomType === roomType
+    }).map(room => {
+      return room.number
     })
-    return roomMatches
+    //console.log(roomMatchNums)
+    //return roomMatches
+    const roomsOnDate = availableRooms.reduce((accumulator, currentRoom) => {
+      if (roomMatchNums.includes(currentRoom.number)) {
+        accumulator.push(currentRoom)
+      }
+      return accumulator
+    }, [])
     //
+    return roomsOnDate
     // const dateMatches = this.bookings.filter(currentBooking => {
     //   return currentBooking.date === date
     // })
