@@ -46,7 +46,12 @@ class Hotel {
       return accumulator
     }, [])
     //
-    return roomsOnDate
+    if (!roomsOnDate.length) {
+      return `Sorry, there are no ${roomType}s available on that date. Please choose another room type or date.`
+    } else {
+
+      return roomsOnDate
+    }
     // const dateMatches = this.bookings.filter(currentBooking => {
     //   return currentBooking.date === date
     // })

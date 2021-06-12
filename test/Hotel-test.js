@@ -164,7 +164,7 @@ describe('Hotel', function() {
   //   ]);
   // });
   //sad
-  it.skip('should be able to filter rooms by date and type', function() {
+  it('should be able to filter rooms by date and type', function() {
     customer.bookARoom(229, "2020/04/25", 105, bookings);
     customer.bookARoom(229, "2020/04/25", 101, bookings);
     hotel.filterRoomsByType("suite", "2020/04/25", customer);
