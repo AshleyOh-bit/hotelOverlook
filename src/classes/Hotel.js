@@ -19,8 +19,11 @@ class Hotel {
     //then, iterate over this.rooms and the booked rooms array to find room number matches. if the room number does not match the booked room, put it in a separate array to be returned
 
     const bookedRooms = this.bookings.filter(booking => {
+      //console.log(date)
+      console.log(booking.date === date)
       return booking.date === date
     })
+    //console.log("booking", bookedRooms)
 
     const availableRooms = this.rooms.reduce((accumulator, currentRoom) => {
       bookedRooms.forEach(bookedRoom => {
@@ -30,8 +33,13 @@ class Hotel {
       })
       return accumulator
     }, [])
-
-    return availableRooms
+    //console.log("available", availableRooms)
+    //console.log("bookings", this.bookings)
+     if (!availableRooms.length) {
+       return `Sorry, there are no rooms available for that date. Please try another date.`
+     } else {
+       return availableRooms
+     }
   }
 }
 

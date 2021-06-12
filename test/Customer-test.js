@@ -82,43 +82,14 @@ describe('Customer', function() {
 
     expect(customer.filterFutureBookings("2020/04/18").length).to.equal(2);
   });
-    //expect(customer.bookings.past).to.deep.equal([booking1, booking2]);
-    //figure out id numbers!!!
-    // expect(customer.bookings.future).to.deep.equal([
-    //   {
-    //     "id": "8kjhdia80caplask13",
-    //     "userID": 229,
-    //     "date": "2020/04/25",
-    //     "roomNumber": 105,
-    //     "roomServiceCharges": []
-    //   },
-    //   {
-    //     "id": "8kjhdia80caplask14",
-    //     "userID": 229,
-    //     "date": "2020/04/18",
-    //     "roomNumber": 105,
-    //     "roomServiceCharges": []
-    //   }
-    // ]);
-    //expect(customer.bookings.future.length).to.equal(2);
-  // it.skip('should sort bookings by past and upcoming', function() {
-  //   customer.setCredentials("BrandyBoo22", "12345")
-  //   customer.logIn("BrandyBoo22", "12345")
-  //   customer.bookARoom(229, "2020/04/25", 105, bookings);
-  //   customer.bookARoom(229, "2020/04/18", 105, bookings);
-  //   customer.sortBookingsByDate("2020/03/04");
-  //
-  //   expect(customer.bookings.past.length).to.equal(0);
-  //   expect(customer.bookings.future.length).to.equal(2);
-  // });
-  // it.skip('should sort bookings by past and upcoming', function() {
-  //   customer.setCredentials("BrandyBoo22", "12345")
-  //   customer.logIn("BrandyBoo22", "12345")
-  //   customer.bookARoom(229, "2020/04/25", 105, bookings);
-  //   customer.bookARoom(229, "2020/04/18", 105, bookings);
-  //   customer.sortBookingsByDate("2020/05/04");
-  //
-  //   expect(customer.bookings.past.length).to.equal(2);
-  //   expect(customer.bookings.future.length).to.equal(0);
-  // });
+//CalculateTotalSpent tests below
+  it('should calculate total amount spent', function() {
+    customer.setCredentials("BrandyBoo22", "12345")
+    customer.logIn("BrandyBoo22", "12345")
+    customer.bookARoom(229, "2020/04/25", 103, bookings);
+    customer.bookARoom(229, "2020/04/18", 105, bookings);
+    customer.calculateTotalSpent(rooms);
+
+    expect(customer.calculateTotalSpent(rooms)).to.equal(611.71);
+  });
 });
