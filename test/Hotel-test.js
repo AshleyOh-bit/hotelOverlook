@@ -51,17 +51,15 @@ describe('Hotel', function() {
     expect(hotel.todayDate).to.deep.equal("2020/04/01");
   });
   //Hotel methods
-  it.skip('should be able to filter rooms by availability', function() {
-    // customer.setCredentials("ratMan", "12222");
-    // customer.logIn("ratMan", "12222")
+  it('should be able to filter rooms by availability', function() {
     customer.bookARoom(229, "2020/04/26", 105, bookings);
-    console.log(customer.bookARoom(229, "2020/04/26", 105, bookings))
-    console.log("hotel", hotel.bookings)
-    hotel.filterRoomsByAvailability("2020/04/26");
+    //console.log(customer.bookARoom(229, "2020/04/26", 105, bookings))
+    //console.log("hotel", hotel.bookings)
+    hotel.filterRoomsByAvailability("2020/04/26", customer);
     //filters bookings with date to return room numbers of booked rooms
     //then it takes that array and compares each element to the rooms array
     //and filters out all AVAILABLE rooms
-    expect(hotel.filterRoomsByAvailability("2020/04/26")).to.deep.equal([
+    expect(hotel.filterRoomsByAvailability("2020/04/26", customer)).to.deep.equal([
       {
         "number": 101,
         "roomType": "suite",
