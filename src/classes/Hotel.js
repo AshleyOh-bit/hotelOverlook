@@ -6,43 +6,35 @@ class Hotel {
     this.todayDate = todayDate;
   }
   filterRoomsByAvailability(date, customer) {
-    //filters bookings with date to return room numbers of booked rooms
-    //then it takes that array and compares each element to the rooms array
-    //and filters out all AVAILABLE rooms
-
-    //goal: filter return only rooms that are not booked in the form of an array of room objects
-
-    //input: the date to check for availability
-    //output: an array of objects of the available rooms
-
-    //process: iterate over this.bookings to find any bookings that date matches the date filtered in, save into an array
-    //then, iterate over this.rooms and the booked rooms array to find room number matches. if the room number does not match the booked room, put it in a separate array to be returned
-    // const customerDates = customer.bookings.filter(booking => {
-    //   return booking.date === date
-    // })
-    //console.log(customerDates)
-    //console.log(customer)
-    const updates = customer.bookings.forEach(booking => {
+    //updates these bookings with customer info
+     customer.bookings.forEach(booking => {
       if (!this.bookings.includes(booking)) {
         this.bookings.push(booking)
       }
     })
-    const bookedRooms = this.bookings.filter(booking => {
+    //checks hotel bookings for matching dates and returns bookings that match
+    //just room numbers here
+    const bookedRoomsNums = this.bookings.filter(booking => {
       return booking.date === date
+    }).map(booking => {
+      return booking.roomNumber
     })
-    //console.log(bookedRooms)
 
+    //console.log(bookedRoomsNums)
+//checks rooms against booked rooms for room number matches
+//pushes rooms that do not have the number into their own array
+//console.log(this.rooms)
     const availableRooms = this.rooms.reduce((accumulator, currentRoom) => {
-      bookedRooms.forEach(bookedRoom => {
+
         //console.log("booked", bookedRoom.roomNumber)
         //console.log("room", currentRoom.number)
         //console.log(bookedRoom.roomNumber !== currentRoom.number)
         //console.log(accumulator.includes(currentRoom))
-        if ((bookedRoom.roomNumber !== currentRoom.number) && (!accumulator.includes(currentRoom))) {
-          //console.log(accumulator)
+        if (!bookedRoomsNums.includes(currentRoom.number)) {
+          //console.log("i'm pishimg")
           accumulator.push(currentRoom)
         }
-      })
+
       return accumulator
     }, [])
     //console.log(availableRooms.length)
