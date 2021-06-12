@@ -3,6 +3,12 @@
 import { fetchApiData } from './apiCalls';
 import domUpdates from './domUpdates';
 
+//Import classes:
+import Hotel from './classes/Hotel';
+import Customer from './classes/Customer';
+import Room from './classes/Room';
+import Booking from './classes/Booking';
+
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './sass/index.scss';
 
@@ -53,12 +59,13 @@ function fetchData() {
     customersData = promiseArray[1].customers;
     roomsData = promiseArray[2].rooms;
 
-    //instantiateData()
+    instantiateData()
     //populateDOM()
   });
 };
 
 function instantiateData() {
+  let instRooms, instCustomers, instBookings
   instRooms = roomsData.map(room => {
     return new Room(room.number, room.roomType, room.bidet, room.bedSize, room.numBeds, room.costPerNight)
   });
@@ -70,9 +77,9 @@ function instantiateData() {
   // instBookings = bookingsData.map(booking => {
   //   return new Booking(booking.userID, booking.date, booking.roomNumber)
   // });
-  instBookings = bookings.map(booking => {
+  instBookings = bookingsData.map(booking => {
   booking = new Booking(booking.userID, booking.date, booking.roomNumber)
-  booking.generateRandomId(bookings)
+  booking.generateRandomId(bookingsData)
   return booking
   });
 
