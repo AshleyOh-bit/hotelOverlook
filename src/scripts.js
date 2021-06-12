@@ -136,7 +136,7 @@ function createCustomer() {
   customer = new Customer(69, "Footface DeGregorio")
   customer.bookings.push(hotel.bookings[0])
   customer.bookings.push(hotel.bookings[1])
-  console.log(customer.bookings)
+  //console.log(customer.bookings)
   domUpdates.populateBookingArray(customer.filterPastBookings(todayDate), pastBookings)
   domUpdates.populateBookingArray(customer.filterFutureBookings(todayDate), futureBookings)
   domUpdates.stringDisplay(totalSpent, customer.calculateTotalSpent(hotel.rooms))
