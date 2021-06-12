@@ -21,6 +21,7 @@ class Hotel {
     //   return booking.date === date
     // })
     //console.log(customerDates)
+    //console.log(customer)
     const updates = customer.bookings.forEach(booking => {
       if (!this.bookings.includes(booking)) {
         this.bookings.push(booking)
@@ -29,20 +30,44 @@ class Hotel {
     const bookedRooms = this.bookings.filter(booking => {
       return booking.date === date
     })
+    //console.log(bookedRooms)
 
     const availableRooms = this.rooms.reduce((accumulator, currentRoom) => {
       bookedRooms.forEach(bookedRoom => {
-        if (bookedRoom.roomNumber !== currentRoom.number && (!accumulator.includes(currentRoom))) {
+        //console.log("booked", bookedRoom.roomNumber)
+        //console.log("room", currentRoom.number)
+        //console.log(bookedRoom.roomNumber !== currentRoom.number)
+        //console.log(accumulator.includes(currentRoom))
+        if ((bookedRoom.roomNumber !== currentRoom.number) && (!accumulator.includes(currentRoom))) {
+          //console.log(accumulator)
           accumulator.push(currentRoom)
         }
       })
       return accumulator
     }, [])
+    //console.log(availableRooms.length)
      if (!availableRooms.length) {
        return `Sorry, there are no rooms available for that date. Please try another date.`
      } else {
        return availableRooms
      }
+  }
+
+  filterRoomsByType(roomType, date, customer) {
+    //console.log(this.filterRoomsByAvailability(date, customer))
+    this.filterRoomsByAvailability(date, customer)
+    const roomMatches = this.rooms.filter(room => {
+      return room.roomType === roomType
+    })
+    return roomMatches
+    //
+    // const dateMatches = this.bookings.filter(currentBooking => {
+    //   return currentBooking.date === date
+    // })
+    //
+    // const dateRoomMatches = dateMatches.
+
+
   }
 }
 

@@ -94,26 +94,26 @@ describe('Hotel', function() {
       }
     ]);
   });
-  it.skip('should alert the customer if there are no rooms available', function() {
-    customer.bookARoom(229, "2020/04/27", 105);
-    customer.bookARoom(229, "2020/04/27", 104);
-    customer.bookARoom(229, "2020/04/27", 103);
-    customer.bookARoom(229, "2020/04/27", 102);
-    customer.bookARoom(229, "2020/04/27", 101);
+  it('should alert the customer if there are no rooms available', function() {
+    customer.bookARoom(229, "2020/04/27", 105, bookings);
+    customer.bookARoom(229, "2020/04/27", 104, bookings);
+    customer.bookARoom(229, "2020/04/27", 103, bookings);
+    customer.bookARoom(229, "2020/04/27", 102, bookings);
+    customer.bookARoom(229, "2020/04/27", 101, bookings);
 
-    hotel.filterRoomsByAvailability("2020/04/27");
-    expect(hotel.filterRoomsByAvailability("2020/04/27")).to.equal(`Sorry, there are no rooms available for that date. Please try another date.`);
+    hotel.filterRoomsByAvailability("2020/04/27", customer);
+    expect(hotel.filterRoomsByAvailability("2020/04/27", customer)).to.equal(`Sorry, there are no rooms available for that date. Please try another date.`);
   });
-  //This may happen in the HTML
-  it.skip('should alert the customer if their input is invalid', function() {
-    hotel.filterRoomsByAvailability("2018/04/25");
-    expect(hotel.filterRoomsByAvailability("2018/04/25")).to.equal(`Please choose a valid date.`);
-  });
+  //This should happen in the HTML
+  // it.skip('should alert the customer if their input is invalid', function() {
+  //   hotel.filterRoomsByAvailability("2018/04/25");
+  //   expect(hotel.filterRoomsByAvailability("2018/04/25")).to.equal(`Please choose a valid date.`);
+  // });
   //Filter by roomType
   //happy
-  it.skip('should be able to filter rooms by type', function() {
-    hotel.filterRoomsByType(["suite"]);
-    expect(hotel.filterRoomsByType(["suite"])).to.deep.equal([
+  it('should be able to filter rooms by type', function() {
+    hotel.filterRoomsByType("suite", "2020/04/27", customer);
+    expect(hotel.filterRoomsByType("suite", "2020/04/27", customer)).to.deep.equal([
       {
         "number": 101,
         "roomType": "suite",
@@ -134,8 +134,8 @@ describe('Hotel', function() {
   });
   it.skip('should be able to filter rooms by date and type', function() {
     customer.bookARoom(229, "2020/04/25", 105);
-    hotel.filterRoomsByType("2020/04/25", ["suite"]);
-    expect(hotel.filterRoomsByType("2020/04/25", ["suite"])).to.deep.equal([
+    hotel.filterRoomsByType("2020/04/25", "suite");
+    expect(hotel.filterRoomsByType("2020/04/25", "suite")).to.deep.equal([
       {
         "number": 101,
         "roomType": "suite",
@@ -146,56 +146,57 @@ describe('Hotel', function() {
       }
     ]);
   });
-  it.skip('should be able to filter rooms by date and multiple types', function() {
-    customer.bookARoom(229, "2020/04/25", 105);
-    hotel.filterRoomsByType("2020/04/25", ["suite", "single room"]);
-    expect(hotel.filterRoomsByType("2020/04/25", ["suite", "single room"])).to.deep.equal([
-      {
-        "number": 101,
-        "roomType": "suite",
-        "bidet": false,
-        "bedSize": "queen",
-        "numBeds": 1,
-        "costPerNight": 154.77
-      },
-      {
-        "number": 102,
-        "roomType": "single room",
-        "bidet": false,
-        "bedSize": "full",
-        "numBeds": 2,
-        "costPerNight": 325.88
-      }
-    ]);
-  });
+  //Gonna do a dropdown menu instead
+  // it.skip('should be able to filter rooms by date and multiple types', function() {
+  //   customer.bookARoom(229, "2020/04/25", 105);
+  //   hotel.filterRoomsByType("2020/04/25", ["suite", "single room"]);
+  //   expect(hotel.filterRoomsByType("2020/04/25", ["suite", "single room"])).to.deep.equal([
+  //     {
+  //       "number": 101,
+  //       "roomType": "suite",
+  //       "bidet": false,
+  //       "bedSize": "queen",
+  //       "numBeds": 1,
+  //       "costPerNight": 154.77
+  //     },
+  //     {
+  //       "number": 102,
+  //       "roomType": "single room",
+  //       "bidet": false,
+  //       "bedSize": "full",
+  //       "numBeds": 2,
+  //       "costPerNight": 325.88
+  //     }
+  //   ]);
+  // });
   //sad
-  it.skip('should be able to filter rooms by date and type', function() {
-    customer.bookARoom(229, "2020/04/25", 105);
-    customer.bookARoom(229, "2020/04/25", 101);
-    hotel.filterRoomsByType("2020/04/25", ["suite"]);
-    expect(hotel.filterRoomsByType("2020/04/25", ["suite"])).to.equal(`Sorry, there are no suites available on that date. Please choose another room type or date.`);
+  it('should be able to filter rooms by date and type', function() {
+    customer.bookARoom(229, "2020/04/25", 105, bookings);
+    customer.bookARoom(229, "2020/04/25", 101, bookings);
+    hotel.filterRoomsByType("suite", "2020/04/25", customer);
+    expect(hotel.filterRoomsByType("suite", "2020/04/25", customer)).to.equal(`Sorry, there are no suites available on that date. Please choose another room type or date.`);
   });
   //Calculate booked percentage
   //happy path below - any sad paths?
   it.skip('should be able to calculate the percentage of rooms booked on current date', function() {
-    customer.bookARoom(229, "2020/04/25", 105);
-    customer.bookARoom(229, "2020/04/25", 101);
+    customer.bookARoom(229, "2020/04/25", 105, bookings);
+    customer.bookARoom(229, "2020/04/25", 101, bookings);
     hotel.calulatePercentageBooked("2020/04/25")
     expect(hotel.calulatePercentageBooked("2020/04/25")).to.equal("20% of rooms are booked for 2020/04/25");
   });
   //calculate total revenue
   //happy path - any sad paths?
   it.skip('should be able to calculate total revenue for current date', function() {
-    customer.bookARoom(229, "2020/04/25", 105);
-    customer.bookARoom(229, "2020/04/25", 101);
+    customer.bookARoom(229, "2020/04/25", 105, bookings);
+    customer.bookARoom(229, "2020/04/25", 101, bookings);
     hotel.calulateTotalRevenue("2020/04/25")
     expect(hotel.calulateTotalRevenue("2020/04/25")).to.equal("Total revenue today: $499.43");
   });
   //determine available rooms
   //happy path
   it.skip('should be able to determine available rooms', function() {
-    customer.bookARoom(229, "2020/04/25", 105);
-    customer.bookARoom(229, "2020/04/25", 101);
+    customer.bookARoom(229, "2020/04/25", 105, bookings);
+    customer.bookARoom(229, "2020/04/25", 101, bookings);
     hotel.filterAvailableRooms("2020/04/25")
     expect(hotel.filterAvailableRooms("2020/04/25")).to.deep.equal([  {
       "number": 102,
