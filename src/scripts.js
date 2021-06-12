@@ -20,6 +20,7 @@ import './images/turing-logo.png'
 let bookingsData, customersData, roomsData, hotel, customer;
 const todayDate = "2020/04/01";
 
+
 //Query Selectors below
 //buttons
 const homeButton = document.querySelector("#homeButton");
@@ -60,6 +61,7 @@ function fetchData() {
     roomsData = promiseArray[2].rooms;
 
     instantiateData()
+
     //populateDOM()
   });
 };
@@ -81,11 +83,12 @@ function instantiateData() {
   booking = new Booking(booking.userID, booking.date, booking.roomNumber)
   booking.generateRandomId(bookingsData)
   return booking
+
   });
-
-  hotel = new Hotel(instRooms, instBookings, instCustomers, todayDate);
+  //console.log(bookingsData[0])
+  return hotel = new Hotel(instRooms, instBookings, instCustomers, todayDate);
 }
-
+console.log(hotel)
 //Post stuff here
 //Add proper error handling - look @ lesson
 function postData(booking) {
@@ -108,7 +111,7 @@ function renderSuccessfulPost(booking) {
   .then((data) => {
     fetchData();
     instantiateData();
-    populateDOM();
+    //populateDOM();
   })
 }
 
@@ -119,6 +122,12 @@ function showPostMessage(booking, status, responseStatus) {
   domUpdates.facilitatePostMessage(booking, status, responseStatus, messageSelector, customer)
 }
 ///////////
+
+///Practicing populating user data
+customer = new Customer(69, "Footface DeGregorio")
+// console.log(hotel)
+//console.log(customer.bookings.push(bookingsData[0]))
+////
 
 // Helpers
 function switchViews(element1, element2, showElement) {
