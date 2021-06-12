@@ -32,6 +32,11 @@ const homeView = document.querySelector("#homeView");
 const customerView = document.querySelector("#customerView");
 const bookingView = document.querySelector("#bookingView");
 
+//Bookings views
+const futureBookings = document.querySelector("#upcomingBookings");
+const pastBookings = document.querySelector("#pastBookings");
+const totalSpent = document.querySelector("#totalSpent");
+
 //Event listeners
 
 homeButton.addEventListener("click", function() {
@@ -61,13 +66,14 @@ function fetchData() {
     roomsData = promiseArray[2].rooms;
 
     instantiateData()
-
+    createCustomer()
     //populateDOM()
   });
 };
 
 function instantiateData() {
-  let instRooms, instCustomers, instBookings
+  let instRooms, instCustomers, instBookings;
+
   instRooms = roomsData.map(room => {
     return new Room(room.number, room.roomType, room.bidet, room.bedSize, room.numBeds, room.costPerNight)
   });
@@ -86,9 +92,11 @@ function instantiateData() {
 
   });
   //console.log(bookingsData[0])
-  return hotel = new Hotel(instRooms, instBookings, instCustomers, todayDate);
+  hotel = new Hotel(instRooms, instBookings, instCustomers, todayDate);
+  //console.log(hotel)
+  return
 }
-console.log(hotel)
+//console.log(hotel)
 //Post stuff here
 //Add proper error handling - look @ lesson
 function postData(booking) {
@@ -124,7 +132,15 @@ function showPostMessage(booking, status, responseStatus) {
 ///////////
 
 ///Practicing populating user data
-customer = new Customer(69, "Footface DeGregorio")
+function createCustomer() {
+  customer = new Customer(69, "Footface DeGregorio")
+  customer.bookings.push(hotel.bookings[0])
+  customer.bookings.push(hotel.bookings[1])
+  console.log(customer.bookings)
+  domUpdates.populateBookingArray(customer.filterPastBookings(todayDate), pastBookings)
+  domUpdates.populateBookingArray(customer.filterFutureBookings(todayDate), futureBookings)
+  domUpdates.stringDisplay(totalSpent, customer.calculateTotalSpent(hotel.rooms))
+}
 // console.log(hotel)
 //console.log(customer.bookings.push(bookingsData[0]))
 ////

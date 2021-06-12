@@ -7,7 +7,7 @@ const domUpdates = {
     element.classList.remove("hidden")
   },
 
-  populateHTMLArray(array, location) {
+  populateRoomArray(array, location) {
       array.forEach(element => {
         location.innerHTML +=
         `<article class="booking-card">
@@ -22,6 +22,19 @@ const domUpdates = {
         </article>`
       });
     },
+
+    populateBookingArray(array, location) {
+        array.forEach(element => {
+          location.innerHTML +=
+          `<article class="booking-card">
+            <article class="room-details">
+              <h3>Your ID: ${element.userID}</h3>
+              <p>Date Booked: ${element.date}</p>
+              <p>Room Number: ${element.roomNumber}</p>
+            </article>
+          </article>`
+        });
+      },
 
     stringDisplay(element, data) {
     element.innerText = data;
