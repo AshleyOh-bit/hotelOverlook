@@ -58,7 +58,7 @@
       <section class="date-selection" id="dateSelection">
         <form>
           <!-- <p class="date-choice">Choose Your Date</p> -->
-        <label> Choose Your Date <input type="date" class="drop-down-calendar" id="dateStart" name="book-start" value="" min="2021/06/16"> </label>
+        <label> Choose Your Date <input type="date" class="drop-down-calendar" id="dateStart" name="book-start" value="" min="2021-06-16" max="2021-12-31" required ></label>
         <!-- <input type="date" class="drop-down-calendar" id="dateEnd" name="book-end" value="" min="2020-01-01"> -->
           <!-- <p class="room-type-choice">Room Type Choice</p> -->
           <label>Room Type Choice<select>
@@ -68,6 +68,7 @@
             <option value="junior suite">Junior Suite</option>
             <option value="residential suite">Residential Suite</option>
           </select></label>
+          <input id="checkAvailability" type="submit" value="Check Availability"></input>
         </form>
       </section>
       <section class="room-view" id="roomView">

@@ -37,6 +37,10 @@ const futureBookings = document.querySelector("#upcomingBookings");
 const pastBookings = document.querySelector("#pastBookings");
 const totalSpent = document.querySelector("#totalSpent");
 
+//Form elements
+const checkAvailability = document.querySelector("#checkAvailability");
+
+
 //Event listeners
 
 homeButton.addEventListener("click", function() {
@@ -48,6 +52,10 @@ bookButton.addEventListener("click", function() {
 accountButton.addEventListener("click", function() {
   switchViews(bookingView, homeView, customerView)
 });
+
+checkAvailability.addEventListener("click", function() {
+  event.preventDefault();
+})
 
 ///Fetch stuff here
 window.addEventListener('load', fetchData);
