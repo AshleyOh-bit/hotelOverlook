@@ -9,7 +9,7 @@ const domUpdates = {
 
   populateRoomArray(array, location) {
     //console.log("trying")
-    console.log(array)
+    //console.log(array)
     location.innerHTML = "";
       array.forEach(element => {
         location.innerHTML +=
