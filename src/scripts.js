@@ -33,21 +33,21 @@ const customerView = document.querySelector("#customerView");
 const bookingView = document.querySelector("#bookingView");
 
 //Customers views
-//const futureBookings = document.querySelector("#upcomingBookings");
-//const pastBookings = document.querySelector("#pastBookings");
 const futureBookings = document.querySelector("#upcomingView")
 const pastBookings = document.querySelector("#pastView")
 const totalSpent = document.querySelector("#totalSpent");
 
 //Bookings Views
 const roomView = document.querySelector("#roomView");
+const selectedRoom = document.querySelector("#selectedRoom");
 
 //Form elements
 const checkAvailability = document.querySelector("#checkAvailability");
 const chosenDate = document.querySelector("#dateStart");
 const chosenType = document.querySelector("select");
 
-const selectedRoom = document.querySelector("#selectedRoom");
+//Errors
+const error = document.querySelector("#error");
 
 //Event listeners
 
@@ -74,7 +74,9 @@ roomView.addEventListener("click", function(event) {
   showSelectedRoom(event, hotel)
 })
 
-
+selectedRoom.addEventListener("click", function(event) {
+  bookRoom(event)
+})
 
 ///Fetch stuff here
 window.addEventListener('load', fetchData);
@@ -205,9 +207,13 @@ function populateBooked() {
 }
 
 function showAvailableRooms(date, customer, type) {
-  if (type) {
+  if (!date) {
+    domUpdates.show(error)
+  } else if (type) {
+    domUpdates.hide(error)
     domUpdates.populateRoomArray(hotel.filterRoomsByType(type, date, customer), roomView)
   } else {
+    domUpdates.hide(error)
     domUpdates.populateRoomArray(hotel.filterRoomsByAvailability(date, customer), roomView)
   }
 }
@@ -215,18 +221,17 @@ function showAvailableRooms(date, customer, type) {
 function showSelectedRoom(event, hotel) {
   domUpdates.hide(roomView)
   domUpdates.show(selectedRoom)
-  //console.log(event.target.classList)
   let target = event.target.closest("article")
   let parsedID = Number.parseInt(target.id)
-  console.log(parsedID)
-  //console.log(target)
   const found = hotel.rooms.find(room => {
-    //console.log(target.id)
-    //console.log(room.number)
-    //console.log(room.number === target.id)
-    //console.log(room.number === event.target.id)
     return room.number === parsedID
   })
-  //console.log(found)
   domUpdates.displaySelectedRoom(selectedRoom, found)
 }
+
+// function bookRoom(event) {
+//   let target = event.target.closest("button")
+//   if (target) {
+//
+//   }
+// }
