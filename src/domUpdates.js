@@ -13,7 +13,7 @@ const domUpdates = {
     location.innerHTML = "";
       array.forEach(element => {
         location.innerHTML +=
-        `<article class="booking-card" tabindex=0>
+        `<article class="booking-card" tabindex=0 id="${element.number}">
           <article class="room-details">
             <h3>RoomType: ${element.roomType}</h3>
             <p>Room number: ${element.number}</p>

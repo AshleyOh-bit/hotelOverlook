@@ -42,8 +42,10 @@ const roomView = document.querySelector("#roomView");
 
 //Form elements
 const checkAvailability = document.querySelector("#checkAvailability");
-const chosenDate = document.querySelector("#dateStart")
-const chosenType = document.querySelector("select")
+const chosenDate = document.querySelector("#dateStart");
+const chosenType = document.querySelector("select");
+
+const selectedRoom = document.querySelector("#selectedRoom");
 
 //Event listeners
 
@@ -185,4 +187,13 @@ function showAvailableRooms(date, customer, type) {
   } else {
     domUpdates.populateRoomArray(hotel.filterRoomsByAvailability(date, customer), roomView)
   }
+}
+
+function showSelectedRoom(event) {
+  domUpdates.hide(roomView)
+  domUpdates.show(selectedRoom)
+  const found = hotel.rooms.find(room => {
+    return room.number === event.target.id
+  })
+  // domUpdates.populateRoomArray([found], selectedRoom)
 }
