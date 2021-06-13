@@ -32,10 +32,13 @@ const homeView = document.querySelector("#homeView");
 const customerView = document.querySelector("#customerView");
 const bookingView = document.querySelector("#bookingView");
 
-//Bookings views
+//Customers views
 const futureBookings = document.querySelector("#upcomingBookings");
 const pastBookings = document.querySelector("#pastBookings");
 const totalSpent = document.querySelector("#totalSpent");
+
+//Bookings Views
+const roomView = document.querySelector("#roomView");
 
 //Form elements
 const checkAvailability = document.querySelector("#checkAvailability");
@@ -48,6 +51,7 @@ homeButton.addEventListener("click", function() {
 });
 bookButton.addEventListener("click", function() {
   switchViews(customerView, homeView, bookingView)
+  fetchData()
 });
 accountButton.addEventListener("click", function() {
   switchViews(bookingView, homeView, customerView)
@@ -102,6 +106,7 @@ function instantiateData() {
   //console.log(bookingsData[0])
   hotel = new Hotel(instRooms, instBookings, instCustomers, todayDate);
   //console.log(hotel)
+  populateAllRooms();
   return
 }
 //console.log(hotel)
@@ -127,7 +132,6 @@ function renderSuccessfulPost(booking) {
   .then((data) => {
     fetchData();
     instantiateData();
-    //populateDOM();
   })
 }
 
@@ -158,4 +162,8 @@ function switchViews(element1, element2, showElement) {
   domUpdates.hide(element1);
   domUpdates.hide(element2);
   domUpdates.show(showElement);
+}
+
+function populateAllRooms() {
+  domUpdates.populateRoomArray(hotel.rooms, roomView)
 }
