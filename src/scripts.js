@@ -55,11 +55,10 @@ accountButton.addEventListener("click", function() {
   switchViews(bookingView, homeView, customerView)
 });
 
-checkAvailability.addEventListener("click", function() {
-  event.preventDefault();
+checkAvailability.addEventListener("click", function(event) {
+  preventDefault(event);
   fetchData();
   showAvailableRooms(chosenDate.value, customer, chosenType.value)
-  console.log(chosenType.value)
 })
 
 ///Fetch stuff here
@@ -107,7 +106,7 @@ function instantiateData() {
   //console.log(bookingsData[0])
   hotel = new Hotel(instRooms, instBookings, instCustomers, todayDate);
   //console.log(hotel)
-  populateAllRooms();
+  //populateAllRooms();
   createCustomer();
   return
 }
@@ -160,6 +159,10 @@ function createCustomer() {
 ////
 
 // Helpers
+function preventDefault(event) {
+  event.preventDefault()
+}
+
 function switchViews(element1, element2, showElement) {
   domUpdates.hide(element1);
   domUpdates.hide(element2);
@@ -173,6 +176,7 @@ function populateAllRooms() {
 function populateBooked() {
   switchViews(customerView, homeView, bookingView)
   fetchData()
+  populateAllRooms()
 }
 
 function showAvailableRooms(date, customer, type) {

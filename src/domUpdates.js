@@ -8,6 +8,9 @@ const domUpdates = {
   },
 
   populateRoomArray(array, location) {
+    //console.log("trying")
+    console.log(array)
+    location.innerHTML = "";
       array.forEach(element => {
         location.innerHTML +=
         `<article class="booking-card" tabindex=0>
@@ -24,6 +27,7 @@ const domUpdates = {
     },
 
     populateBookingArray(array, location) {
+      location.innerHTML = "";
         array.forEach(element => {
           location.innerHTML +=
           `<article class="booking-card" tabindex=0>
