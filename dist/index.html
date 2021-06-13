@@ -24,12 +24,12 @@
     <section class="home-view hidden" id="homeView">
       <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
     </section>
-    <h3>Your bookings:</h3>
     <section class="customer-view" id="customerView">
+      <h3>Your bookings:</h3>
       <section class="upcoming" id="upcomingBookings">
         <h4>Upcoming Visits:</h4>
         <div class="upcoming-view view" id="upcomingView">
-          <article class="booking-card">
+          <!-- <article class="booking-card">
             <article class="room-details">
               <h3>RoomType: </h3>
               <p>Room number:</p>
@@ -38,7 +38,7 @@
               <p>Number of Beds: </p>
               <p>Price Per Night: </p>
             </article>
-          </article>
+          </article> -->
         </div>
       </section>
       <section class="past" id="pastBookings">
@@ -48,7 +48,7 @@
           </article>
         </div>
       </section>
-      <section class="total-spent" id="totalSpent">
+      <section>
         <h4>Your total spent to date:</h4>
         <h4 class="total-spent" id="totalSpent">A big number</h4>
       </section>
@@ -56,8 +56,19 @@
     <section class="booking-view hidden" id="bookingView">
       <h3>Book your stay</h3>
       <section class="date-selection" id="dateSelection">
-        <input type="date" class="drop-down-calendar" id="dateStart" name="book-start" value="" min="2020-01-01">
-        <input type="date" class="drop-down-calendar" id="dateEnd" name="book-end" value="" min="2020-01-01">
+        <form>
+          <!-- <p class="date-choice">Choose Your Date</p> -->
+        <label> Choose Your Date <input type="date" class="drop-down-calendar" id="dateStart" name="book-start" value="" min="2021/06/16"> </label>
+        <!-- <input type="date" class="drop-down-calendar" id="dateEnd" name="book-end" value="" min="2020-01-01"> -->
+          <!-- <p class="room-type-choice">Room Type Choice</p> -->
+          <label>Room Type Choice<select>
+            <option></option>
+            <option value="suite">Suite</option>
+            <option value="single room">Single Room</option>
+            <option value="junior suite">Junior Suite</option>
+            <option value="residential suite">Residential Suite</option>
+          </select></label>
+        </form>
       </section>
       <section class="room-view" id="roomView">
         <article class="room-card">
