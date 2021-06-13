@@ -18,6 +18,14 @@ main {
   height: 10%;
 }
 
+.room-view {
+  margin-top: 3%;
+  display: grid;
+  grid-gap: 20px;
+  // grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, 300px);
+}
+
 .booking-card {
   align-items: center;
   background-color: white;
@@ -32,12 +40,28 @@ main {
   margin-right: auto;
   transition: transform 450ms;
   will-change: transform;
-  width: 20%;
+  // width: 20%;
 }
 
 .room-details {
 	margin: 1.25em;
   width: 90%;
+}
+
+.selected-room-card {
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 3%;
+  margin-top: 3%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  height: 50%;
+  padding: 2%;
 }
 
 .hidden {

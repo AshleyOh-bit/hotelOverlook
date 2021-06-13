@@ -32,22 +32,51 @@ const homeView = document.querySelector("#homeView");
 const customerView = document.querySelector("#customerView");
 const bookingView = document.querySelector("#bookingView");
 
-//Bookings views
-const futureBookings = document.querySelector("#upcomingBookings");
-const pastBookings = document.querySelector("#pastBookings");
+//Customers views
+const futureBookings = document.querySelector("#upcomingView")
+const pastBookings = document.querySelector("#pastView")
 const totalSpent = document.querySelector("#totalSpent");
+
+//Bookings Views
+const roomView = document.querySelector("#roomView");
+const selectedRoom = document.querySelector("#selectedRoom");
+
+//Form elements
+const checkAvailability = document.querySelector("#checkAvailability");
+const chosenDate = document.querySelector("#dateStart");
+const chosenType = document.querySelector("select");
+
+//Errors
+const error = document.querySelector("#error");
 
 //Event listeners
 
 homeButton.addEventListener("click", function() {
   switchViews(customerView, bookingView, homeView)
+  domUpdates.hide(selectedRoom)
 });
-bookButton.addEventListener("click", function() {
-  switchViews(customerView, homeView, bookingView)
-});
+bookButton.addEventListener("click", populateBooked);
 accountButton.addEventListener("click", function() {
   switchViews(bookingView, homeView, customerView)
+  domUpdates.hide(selectedRoom)
 });
+
+checkAvailability.addEventListener("click", function(event) {
+  preventDefault(event);
+  fetchData();
+  domUpdates.hide(selectedRoom)
+  domUpdates.show(roomView)
+  showAvailableRooms(chosenDate.value, customer, chosenType.value)
+})
+
+roomView.addEventListener("click", function(event) {
+  fetchData()
+  showSelectedRoom(event, hotel)
+})
+
+selectedRoom.addEventListener("click", function(event) {
+  bookRoom(event)
+})
 
 ///Fetch stuff here
 window.addEventListener('load', fetchData);
@@ -66,7 +95,7 @@ function fetchData() {
     roomsData = promiseArray[2].rooms;
 
     instantiateData()
-    createCustomer()
+    //createCustomer()
     //populateDOM()
   });
 };
@@ -94,9 +123,13 @@ function instantiateData() {
   //console.log(bookingsData[0])
   hotel = new Hotel(instRooms, instBookings, instCustomers, todayDate);
   //console.log(hotel)
+  //populateAllRooms();
+  createCustomer();
   return
 }
-//console.log(hotel)
+
+
+
 //Post stuff here
 //Add proper error handling - look @ lesson
 function postData(booking) {
@@ -119,7 +152,6 @@ function renderSuccessfulPost(booking) {
   .then((data) => {
     fetchData();
     instantiateData();
-    //populateDOM();
   })
 }
 
@@ -146,8 +178,60 @@ function createCustomer() {
 ////
 
 // Helpers
+function preventDefault(event) {
+  event.preventDefault()
+}
+
 function switchViews(element1, element2, showElement) {
   domUpdates.hide(element1);
   domUpdates.hide(element2);
   domUpdates.show(showElement);
 }
+
+function populateDom() {
+  populateAllRooms()
+  populateBooked()
+}
+
+function populateAllRooms() {
+  //console.log(hotel.rooms)
+  domUpdates.populateRoomArray(hotel.rooms, roomView)
+}
+
+function populateBooked() {
+  switchViews(customerView, homeView, bookingView)
+  domUpdates.show(roomView)
+  domUpdates.hide(selectedRoom)
+  fetchData()
+  populateAllRooms()
+}
+
+function showAvailableRooms(date, customer, type) {
+  if (!date) {
+    domUpdates.show(error)
+  } else if (type) {
+    domUpdates.hide(error)
+    domUpdates.populateRoomArray(hotel.filterRoomsByType(type, date, customer), roomView)
+  } else {
+    domUpdates.hide(error)
+    domUpdates.populateRoomArray(hotel.filterRoomsByAvailability(date, customer), roomView)
+  }
+}
+
+function showSelectedRoom(event, hotel) {
+  domUpdates.hide(roomView)
+  domUpdates.show(selectedRoom)
+  let target = event.target.closest("article")
+  let parsedID = Number.parseInt(target.id)
+  const found = hotel.rooms.find(room => {
+    return room.number === parsedID
+  })
+  domUpdates.displaySelectedRoom(selectedRoom, found)
+}
+
+// function bookRoom(event) {
+//   let target = event.target.closest("button")
+//   if (target) {
+//
+//   }
+// }

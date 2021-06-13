@@ -22,7 +22,18 @@
   </header>
   <main>
     <section class="home-view hidden" id="homeView">
-      <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
+      <!-- <article class="selected-room-card">
+        <h2> You have selected: </h2>
+        <article class="room-details">
+          <h3>RoomType: </h3>
+          <p>Room number:</p>
+          <p>Bidet? </p>
+          <p>Bed Size: </p>
+          <p>Number of Beds: </p>
+          <p>Price Per Night: </p>
+        </article>
+        <button>Book now!</button>
+      </article> -->
     </section>
     <section class="customer-view" id="customerView">
       <h3>Your bookings:</h3>
@@ -58,7 +69,8 @@
       <section class="date-selection" id="dateSelection">
         <form>
           <!-- <p class="date-choice">Choose Your Date</p> -->
-        <label> Choose Your Date <input type="date" class="drop-down-calendar" id="dateStart" name="book-start" value="" min="2021/06/16"> </label>
+        <label> Choose Your Date <input type="date" class="drop-down-calendar" id="dateStart" name="book-start" value="" min="2021-06-16" max="2021-12-31" required ></label>
+        <h3 class="error hidden" id="error"> Please choose a date </h3>
         <!-- <input type="date" class="drop-down-calendar" id="dateEnd" name="book-end" value="" min="2020-01-01"> -->
           <!-- <p class="room-type-choice">Room Type Choice</p> -->
           <label>Room Type Choice<select>
@@ -68,19 +80,32 @@
             <option value="junior suite">Junior Suite</option>
             <option value="residential suite">Residential Suite</option>
           </select></label>
+          <input id="checkAvailability" type="submit" value="Check Availability"></input>
         </form>
       </section>
       <section class="room-view" id="roomView">
-        <article class="room-card">
-        </article>
       </section>
     </section>
+    <section class="selected-room" id="selectedRoom">
+      <article class="selected-room-card">
+        <!-- <h2> You have selected: </h2> -->
+        <!-- <article class="room-details">
+          <h3>RoomType: </h3>
+          <p>Room number:</p>
+          <p>Bidet? </p>
+          <p>Bed Size: </p>
+          <p>Number of Beds: </p>
+          <p>Price Per Night: </p>
+        </article>
+        <button>Book now!</button>
+      </article> -->
+    </section>
   </main>
-  <footer>
+  <!-- <footer>
     <h5>666 West Bachmann Drive, Castle Rock, ME</h5>
     <h5>666-214-7000</h5>
     <h5>theHotelOverlook@cujo.com</h5>
-  </footer>
+  </footer> -->
 
   <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
