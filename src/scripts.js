@@ -42,23 +42,24 @@ const roomView = document.querySelector("#roomView");
 
 //Form elements
 const checkAvailability = document.querySelector("#checkAvailability");
-
+const chosenDate = document.querySelector("#dateStart")
+const chosenType = document.querySelector("select")
 
 //Event listeners
 
 homeButton.addEventListener("click", function() {
   switchViews(customerView, bookingView, homeView)
 });
-bookButton.addEventListener("click", function() {
-  switchViews(customerView, homeView, bookingView)
-  fetchData()
-});
+bookButton.addEventListener("click", populateBooked);
 accountButton.addEventListener("click", function() {
   switchViews(bookingView, homeView, customerView)
 });
 
 checkAvailability.addEventListener("click", function() {
   event.preventDefault();
+  fetchData();
+  showAvailableRooms(chosenDate.value, customer, chosenType.value)
+  console.log(chosenType.value)
 })
 
 ///Fetch stuff here
@@ -78,7 +79,7 @@ function fetchData() {
     roomsData = promiseArray[2].rooms;
 
     instantiateData()
-    createCustomer()
+    //createCustomer()
     //populateDOM()
   });
 };
@@ -107,6 +108,7 @@ function instantiateData() {
   hotel = new Hotel(instRooms, instBookings, instCustomers, todayDate);
   //console.log(hotel)
   populateAllRooms();
+  createCustomer();
   return
 }
 //console.log(hotel)
@@ -166,4 +168,17 @@ function switchViews(element1, element2, showElement) {
 
 function populateAllRooms() {
   domUpdates.populateRoomArray(hotel.rooms, roomView)
+}
+
+function populateBooked() {
+  switchViews(customerView, homeView, bookingView)
+  fetchData()
+}
+
+function showAvailableRooms(date, customer, type) {
+  if (type) {
+    domUpdates.populateRoomArray(hotel.filterRoomsByType(type, date, customer), roomView)
+  } else {
+    domUpdates.populateRoomArray(hotel.filterRoomsByAvailability(date, customer), roomView)
+  }
 }
