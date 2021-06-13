@@ -46,9 +46,9 @@ const domUpdates = {
 
   displaySelectedRoom(element, data, date) {
     element.innerHTML =
-    `<article class="selected-room-card">
+    `<article class="selected-room-card ${data.number} ${date}">
       <h2> You have selected: </h2>
-      <article class="room-details ${data.number} ${date}">
+      <article class="room-details">
         <h3>RoomType: ${data.roomType}</h3>
         <p>Room number: ${data.number}</p>
         <p>Bidet? ${data.bidet}</p>

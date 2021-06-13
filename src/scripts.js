@@ -82,7 +82,7 @@ customer, chosenType.value, hotel));
 
 roomView.addEventListener("click", (event) => showSelectedRoom(event, hotel))
 
-selectedRoom.addEventListener("click", (event) => bookRoom(event))
+selectedRoom.addEventListener("click", (event) => bookRoom(event, hotel))
 
 ///Fetch stuff here
 window.addEventListener('load', fetchData);
@@ -258,12 +258,14 @@ function showSelectedRoom(event, hotel) {
 
 function bookRoom(event, hotel) {
   preventDefault(event)
-  //console.log(event)
+
   let target = event.target.closest("button")
+  let article = event.target.closest("article")
   if (target) {
     const found = hotel.rooms.find(room => {
-      return event.target.classList.contains(room.number)
+      return article.classList.contains(room.number)
     })
+    console.log(found)
     //book  a room for the customer class
     //need userId, date, roomNumber, and bookings to run bookARoom
     //and call post function to post data
