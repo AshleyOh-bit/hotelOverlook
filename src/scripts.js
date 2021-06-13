@@ -51,32 +51,38 @@ const error = document.querySelector("#error");
 
 //Event listeners
 
-homeButton.addEventListener("click", function() {
+homeButton.addEventListener("click", () => {
   switchViews(customerView, bookingView, homeView)
   domUpdates.hide(selectedRoom)
 });
-bookButton.addEventListener("click", populateBooked);
-accountButton.addEventListener("click", function() {
+
+bookButton.addEventListener("click", () => populateBooked(hotel));
+
+accountButton.addEventListener("click", () => {
   switchViews(bookingView, homeView, customerView)
   domUpdates.hide(selectedRoom)
 });
 
-checkAvailability.addEventListener("click", function(event) {
-  preventDefault(event);
-  fetchData();
-  domUpdates.hide(selectedRoom)
-  domUpdates.show(roomView)
-  showAvailableRooms(chosenDate.value, customer, chosenType.value)
-})
+// checkAvailability.addEventListener("click", function(event) {
+//   preventDefault(event);
+//   //fetchData();
+//   domUpdates.hide(selectedRoom)
+//   domUpdates.show(roomView)
+//
+//   showAvailableRooms(chosenDate.value, customer, chosenType.value, hotel)
+// })
 
-roomView.addEventListener("click", function(event) {
-  fetchData()
-  showSelectedRoom(event, hotel)
-})
+checkAvailability.addEventListener('click', () => showAvailableRooms(chosenDate.value,
+customer, chosenType.value, hotel));
+  // preventDefault(event);
+  // domUpdates.hide(selectedRoom)
+  // domUpdates.show(roomView)
+  // showAvailableRooms(date, customer, type, hotel))
 
-selectedRoom.addEventListener("click", function(event) {
-  bookRoom(event)
-})
+
+roomView.addEventListener("click", (event) => showSelectedRoom(event, hotel))
+
+selectedRoom.addEventListener("click", (event) => bookRoom(event))
 
 ///Fetch stuff here
 window.addEventListener('load', fetchData);
@@ -94,13 +100,13 @@ function fetchData() {
     customersData = promiseArray[1].customers;
     roomsData = promiseArray[2].rooms;
 
-    instantiateData()
+    instantiateData(bookingsData, customersData, roomsData)
     //createCustomer()
     //populateDOM()
   });
 };
 
-function instantiateData() {
+function instantiateData(bookings, customer, rooms) {
   let instRooms, instCustomers, instBookings;
 
   instRooms = roomsData.map(room => {
@@ -125,10 +131,12 @@ function instantiateData() {
   //console.log(hotel)
   //populateAllRooms();
   createCustomer();
-  return
+  //call populate dom here
+  populateDom(hotel)
+  //return
 }
 
-
+//console.log(hotel)
 
 //Post stuff here
 //Add proper error handling - look @ lesson
@@ -188,27 +196,45 @@ function switchViews(element1, element2, showElement) {
   domUpdates.show(showElement);
 }
 
-function populateDom() {
-  populateAllRooms()
-  populateBooked()
+function populateDom(hotel) {
+  //beef up populate DOM with all page views
+  //pass in fetch datas through the appropriate functions here
+  //console.log(hotel)
+  console.log("test1", hotel)
+  populateAllRooms(hotel)
+  populateBooked(hotel)
 }
 
-function populateAllRooms() {
-  //console.log(hotel.rooms)
+function populateAllRooms(hotel) {
+
+
   domUpdates.populateRoomArray(hotel.rooms, roomView)
 }
 
-function populateBooked() {
+function populateBooked(hotel) {
+  console.log("checkHotel", hotel)
   switchViews(customerView, homeView, bookingView)
   domUpdates.show(roomView)
   domUpdates.hide(selectedRoom)
-  fetchData()
-  populateAllRooms()
+  //fetchData()
+  populateAllRooms(hotel)
 }
 
-function showAvailableRooms(date, customer, type) {
+function showAvailableRooms(date, customer, type, hotel) {
+  preventDefault(event);
+  domUpdates.hide(selectedRoom)
+  domUpdates.show(roomView)
+  // date = chosenDate.value || ""
+  // type = chosenType.value || ""
   if (!date) {
     domUpdates.show(error)
+    //how do i remove an event listener to keep the user from selecting a room if there is no date specified
+    //roomView.removeEventListener("click", function(event) {
+      //add a function @ same scope of event listeners and try to call it here instead of adding
+      //an extra event listener
+      //fetchData()
+      //showSelectedRoom(event, hotel)
+    //})
   } else if (type) {
     domUpdates.hide(error)
     domUpdates.populateRoomArray(hotel.filterRoomsByType(type, date, customer), roomView)
@@ -226,12 +252,21 @@ function showSelectedRoom(event, hotel) {
   const found = hotel.rooms.find(room => {
     return room.number === parsedID
   })
-  domUpdates.displaySelectedRoom(selectedRoom, found)
+
+  domUpdates.displaySelectedRoom(selectedRoom, found, chosenDate.value)
 }
 
-// function bookRoom(event) {
-//   let target = event.target.closest("button")
-//   if (target) {
-//
-//   }
-// }
+function bookRoom(event, hotel) {
+  preventDefault(event)
+  //console.log(event)
+  let target = event.target.closest("button")
+  if (target) {
+    const found = hotel.rooms.find(room => {
+      return event.target.classList.contains(room.number)
+    })
+    //book  a room for the customer class
+    //need userId, date, roomNumber, and bookings to run bookARoom
+    //and call post function to post data
+    //don't forget to fetch again!
+  }
+}
