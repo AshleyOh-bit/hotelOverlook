@@ -14,7 +14,7 @@ const domUpdates = {
       array.forEach(element => {
         location.innerHTML +=
         `<article class="booking-card" id="${element.number}" tabindex=0>
-          <article class="room-details">
+          <article class="room-details" id="${element.number}">
             <h3>RoomType: ${element.roomType}</h3>
             <p>Room number: ${element.number}</p>
             <p>Bidet? ${element.bidet}</p>

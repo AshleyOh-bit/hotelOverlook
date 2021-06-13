@@ -69,7 +69,7 @@ checkAvailability.addEventListener("click", function(event) {
   showAvailableRooms(chosenDate.value, customer, chosenType.value)
 })
 
-roomView.addEventListener("click", function() {
+roomView.addEventListener("click", function(event) {
   fetchData()
   showSelectedRoom(event, hotel)
 })
@@ -216,11 +216,17 @@ function showSelectedRoom(event, hotel) {
   domUpdates.hide(roomView)
   domUpdates.show(selectedRoom)
   //console.log(event.target.classList)
+  let target = event.target.closest("article")
+  let parsedID = Number.parseInt(target.id)
+  console.log(parsedID)
+  //console.log(target)
   const found = hotel.rooms.find(room => {
-    //console.log(room)
+    //console.log(target.id)
+    //console.log(room.number)
+    //console.log(room.number === target.id)
     //console.log(room.number === event.target.id)
-    return room.number === event.target.id
+    return room.number === parsedID
   })
-  //console.log(hotel)
+  //console.log(found)
   domUpdates.displaySelectedRoom(selectedRoom, found)
 }
