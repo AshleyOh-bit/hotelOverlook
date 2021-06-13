@@ -13,7 +13,7 @@ const domUpdates = {
     location.innerHTML = "";
       array.forEach(element => {
         location.innerHTML +=
-        `<article class="booking-card" tabindex=0 id="${element.number}">
+        `<article class="booking-card" id="${element.number}" tabindex=0>
           <article class="room-details">
             <h3>RoomType: ${element.roomType}</h3>
             <p>Room number: ${element.number}</p>
@@ -24,9 +24,9 @@ const domUpdates = {
           </article>
         </article>`
       });
-    },
+  },
 
-    populateBookingArray(array, location) {
+  populateBookingArray(array, location) {
       location.innerHTML = "";
         array.forEach(element => {
           location.innerHTML +=
@@ -38,11 +38,31 @@ const domUpdates = {
             </article>
           </article>`
         });
-      },
+    },
 
-    stringDisplay(element, data) {
+  stringDisplay(element, data) {
     element.innerText = data;
+  },
+
+  displaySelectedRoom(element, data) {
+    element.innerHTML =
+    `
+    <article class="selected-room-card">
+      <h2> You have selected: </h2>
+      <article class="room-details">
+        <h3>RoomType: ${data.roomType}</h3>
+        <p>Room number: ${data.number}</p>
+        <p>Bidet? ${data.bidet}</p>
+        <p>Bed Size: ${data.bedSize}</p>
+        <p>Number of Beds: ${data.numBeds}</p>
+        <p>Price Per Night: ${data.costPerNight}</p>
+      </article>
+      <button>Book now!</button>
+    </article>
+  </section>
+    `
   }
+
 
 }
 

@@ -33,8 +33,10 @@ const customerView = document.querySelector("#customerView");
 const bookingView = document.querySelector("#bookingView");
 
 //Customers views
-const futureBookings = document.querySelector("#upcomingBookings");
-const pastBookings = document.querySelector("#pastBookings");
+//const futureBookings = document.querySelector("#upcomingBookings");
+//const pastBookings = document.querySelector("#pastBookings");
+const futureBookings = document.querySelector("#upcomingView")
+const pastBookings = document.querySelector("#pastView")
 const totalSpent = document.querySelector("#totalSpent");
 
 //Bookings Views
@@ -51,17 +53,28 @@ const selectedRoom = document.querySelector("#selectedRoom");
 
 homeButton.addEventListener("click", function() {
   switchViews(customerView, bookingView, homeView)
+  domUpdates.hide(selectedRoom)
 });
 bookButton.addEventListener("click", populateBooked);
 accountButton.addEventListener("click", function() {
   switchViews(bookingView, homeView, customerView)
+  domUpdates.hide(selectedRoom)
 });
 
 checkAvailability.addEventListener("click", function(event) {
   preventDefault(event);
   fetchData();
+  domUpdates.hide(selectedRoom)
+  domUpdates.show(roomView)
   showAvailableRooms(chosenDate.value, customer, chosenType.value)
 })
+
+roomView.addEventListener("click", function() {
+  fetchData()
+  showSelectedRoom(event, hotel)
+})
+
+
 
 ///Fetch stuff here
 window.addEventListener('load', fetchData);
@@ -112,7 +125,9 @@ function instantiateData() {
   createCustomer();
   return
 }
-//console.log(hotel)
+
+
+
 //Post stuff here
 //Add proper error handling - look @ lesson
 function postData(booking) {
@@ -171,12 +186,20 @@ function switchViews(element1, element2, showElement) {
   domUpdates.show(showElement);
 }
 
+function populateDom() {
+  populateAllRooms()
+  populateBooked()
+}
+
 function populateAllRooms() {
+  //console.log(hotel.rooms)
   domUpdates.populateRoomArray(hotel.rooms, roomView)
 }
 
 function populateBooked() {
   switchViews(customerView, homeView, bookingView)
+  domUpdates.show(roomView)
+  domUpdates.hide(selectedRoom)
   fetchData()
   populateAllRooms()
 }
@@ -189,11 +212,15 @@ function showAvailableRooms(date, customer, type) {
   }
 }
 
-function showSelectedRoom(event) {
+function showSelectedRoom(event, hotel) {
   domUpdates.hide(roomView)
   domUpdates.show(selectedRoom)
+  //console.log(event.target.classList)
   const found = hotel.rooms.find(room => {
+    //console.log(room)
+    //console.log(room.number === event.target.id)
     return room.number === event.target.id
   })
-  // domUpdates.populateRoomArray([found], selectedRoom)
+  //console.log(hotel)
+  domUpdates.displaySelectedRoom(selectedRoom, found)
 }
