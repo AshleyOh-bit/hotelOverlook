@@ -205,6 +205,9 @@ function populateBooked(hotel) {
 
 function showAvailableRooms(date, customer, type, hotel) {
   preventDefault(event);
+  console.log(hotel.bookings)
+  let parsedDate = date.split("-").join("/");
+  console.log(parsedDate)
   domUpdates.hide(selectedRoom)
   domUpdates.show(roomView)
   // date = chosenDate.value || ""
@@ -220,10 +223,11 @@ function showAvailableRooms(date, customer, type, hotel) {
     //})
   } else if (type) {
     domUpdates.hide(error)
-    domUpdates.populateRoomArray(hotel.filterRoomsByType(type, date, customer), roomView)
+    domUpdates.populateRoomArray(hotel.filterRoomsByType(type, parsedDate, customer), roomView)
   } else {
     domUpdates.hide(error)
-    domUpdates.populateRoomArray(hotel.filterRoomsByAvailability(date, customer), roomView)
+    //console.log(hotel.bookings)
+    domUpdates.populateRoomArray(hotel.filterRoomsByAvailability(parsedDate, customer), roomView)
   }
 }
 
