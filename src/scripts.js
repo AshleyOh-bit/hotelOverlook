@@ -63,26 +63,12 @@ accountButton.addEventListener("click", () => {
   domUpdates.hide(selectedRoom)
 });
 
-// checkAvailability.addEventListener("click", function(event) {
-//   preventDefault(event);
-//   //fetchData();
-//   domUpdates.hide(selectedRoom)
-//   domUpdates.show(roomView)
-//
-//   showAvailableRooms(chosenDate.value, customer, chosenType.value, hotel)
-// })
-
 checkAvailability.addEventListener('click', () => showAvailableRooms(chosenDate.value,
 customer, chosenType.value, hotel));
-  // preventDefault(event);
-  // domUpdates.hide(selectedRoom)
-  // domUpdates.show(roomView)
-  // showAvailableRooms(date, customer, type, hotel))
-
 
 roomView.addEventListener("click", (event) => showSelectedRoom(event, hotel))
 
-selectedRoom.addEventListener("click", (event) => bookRoom(event, hotel))
+selectedRoom.addEventListener("click", (event) => bookRoom(event, hotel, customer))
 
 ///Fetch stuff here
 window.addEventListener('load', fetchData);
@@ -256,19 +242,39 @@ function showSelectedRoom(event, hotel) {
   domUpdates.displaySelectedRoom(selectedRoom, found, chosenDate.value)
 }
 
-function bookRoom(event, hotel) {
+function bookRoom(event, hotel, customer) {
   preventDefault(event)
-
+  // let date = document.querySelector()
   let target = event.target.closest("button")
   let article = event.target.closest("article")
+  let identifiers = article.className.split(" ")
+  let foundNum, foundDate;
   if (target) {
-    const found = hotel.rooms.find(room => {
+    foundNum = hotel.rooms.find(room => {
       return article.classList.contains(room.number)
     })
-    console.log(found)
+
+    foundDate = identifiers.find(identifier => {
+      return identifier.includes("2021")
+    })
+    console.log(foundDate)
+
+    // foundDate = classes.find(class => {
+    //   console.log(class)
+    //   return class.includes("2021")
+    // })
+    // if (article.classList.contains("2021")) {
+    //   foundDate = article.classList.find(class => {
+    //
+    //   })
+
+    }
+//console.log(classes.split(" "))
+    //console.log(foundNum)
+    //customer.bookARoom(customer.id, )
     //book  a room for the customer class
     //need userId, date, roomNumber, and bookings to run bookARoom
     //and call post function to post data
     //don't forget to fetch again!
-  }
+  //}
 }
