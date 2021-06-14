@@ -128,11 +128,12 @@ function instantiateData(bookings, customer, rooms) {
 //Add proper error handling - look @ lesson
 function postData(userId, date, roomNumber) {
   postApiData(userId, date, roomNumber)
+  //console.log(bookings)
   .then((response) => {
     if (!response.ok) {
       throw Error(response.statusText);
     } else {
-      renderSuccessfulPost(booking);
+      renderSuccessfulPost("bookings");
     }
   })
   .catch(error => {
@@ -142,14 +143,20 @@ function postData(userId, date, roomNumber) {
 
 function renderSuccessfulPost(bookings) {
   showPostMessage(customer, 'success');
-  fetchApiData(bookings)
+  fetchApiData("bookings")
   .then((data) => {
-    fetchData();
-    instantiateData();
+    bookingsData = data.bookings;
+    setTimeout(() => {
+      fetchData()
+    }, 4000)
+    //fetchData();
+    //instantiateData();
   })
 }
 
 function showPostMessage(customer, status, responseStatus) {
+  domUpdates.hide(selectedRoom)
+  domUpdates.show(roomView)
   domUpdates.facilitatePostMessage(status, responseStatus, roomView, customer)
 }
 ///////////
@@ -194,6 +201,7 @@ function populateDom(hotel) {
   //pass in fetch datas through the appropriate functions here
   //console.log(hotel)
   //console.log("test1", hotel)
+  console.log("populateDom")
   populateAllRooms(hotel)
   populateBooked(hotel)
 }
@@ -203,12 +211,16 @@ function populateAllRooms(hotel) {
 }
 
 function populateBooked(hotel) {
-  //console.log("checkHotel", hotel)
+//Old:
   switchViews(customerView, homeView, bookingView)
   domUpdates.show(roomView)
   domUpdates.hide(selectedRoom)
-  //fetchData()
   populateAllRooms(hotel)
+  //new:
+  // switchViews(homeView, bookingView, customerView)
+  // //domUpdates.show(roomView)
+  // domUpdates.hide(selectedRoom)
+  // populateAllRooms(hotel)
 }
 
 function showAvailableRooms(date, customer, type, hotel) {
@@ -273,6 +285,4 @@ function bookRoom(event, hotel, customer, bookingsData) {
     customer.bookARoom(customer.id, parsedDate, foundRoom.number, bookingsData)
     postData(customer.id, parsedDate, foundRoom.number)
     }
-    console.log(customer.bookings)
-
 }
