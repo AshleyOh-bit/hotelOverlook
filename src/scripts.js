@@ -54,6 +54,7 @@ const error = document.querySelector("#error");
 homeButton.addEventListener("click", () => {
   switchViews(customerView, bookingView, homeView)
   domUpdates.hide(selectedRoom)
+  console.log(bookingsData)
 });
 
 bookButton.addEventListener("click", () => populateBooked(hotel));
@@ -156,7 +157,7 @@ function showPostMessage(customer, status, responseStatus) {
 
 ///Practicing populating user data
 function createCustomer() {
-  customer = new Customer(69, "Footface DeGregorio")
+  customer = new Customer(50, "Eldridge Muller")
   customer.isLoggedIn = true;
   customer.bookings.push(hotel.bookings[0])
   customer.bookings.push(hotel.bookings[1])
@@ -244,9 +245,9 @@ function bookRoom(event, hotel, customer, bookingsData) {
   let target = event.target.closest("button")
   let article = event.target.closest("article")
   let identifiers = article.className.split(" ")
-  let foundNum, foundDate, parsedDate;
+  let foundRoom, foundDate, parsedDate;
   if (target) {
-    foundNum = hotel.rooms.find(room => {
+    foundRoom = hotel.rooms.find(room => {
       return article.classList.contains(room.number)
     })
 
@@ -255,8 +256,8 @@ function bookRoom(event, hotel, customer, bookingsData) {
     })
     parsedDate = foundDate.split("-").join("/");
 
-    customer.bookARoom(customer.id, parsedDate, foundNum, bookingsData)
-    postData(customer.id, parsedDate, foundNum)
+    customer.bookARoom(customer.id, parsedDate, foundRoom.number, bookingsData)
+    postData(customer.id, parsedDate, foundRoom.number)
     }
 
 }

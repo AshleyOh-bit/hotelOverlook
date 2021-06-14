@@ -1,6 +1,7 @@
 export const fetchApiData = (type) => {
   return fetch(`http://localhost:3001/api/v1/${type}`)
     .then(response => response.json())
+    //display an error message here
     .catch(err => console.log("API error"))
 };
 
