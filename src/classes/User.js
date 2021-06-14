@@ -7,6 +7,7 @@ class User {
     this.isLoggedIn = false;
     this.username = null;
     this.password = null;
+    //set default password here to check against upon login
   }
   setCredentials(username, password) {
     if ((!username && !password) || (username.includes(" ") && password.includes(" "))) {
@@ -21,7 +22,11 @@ class User {
     }
   }
   logIn(username, password) {
+    //add a parameter to take in customer info to compare against in here
     //should this iterate through some sort of users array?
+    //find a matching user in the data to verify the login info as well
+    //find where id / name matches
+    //then test to see if the password passes
     if (this.username === username && this.password === password) {
       this.isLoggedIn = true;
     } else if (this.password !== password) {
