@@ -54,14 +54,13 @@ const error = document.querySelector("#error");
 homeButton.addEventListener("click", () => {
   switchViews(customerView, bookingView, homeView)
   domUpdates.hide(selectedRoom)
-  console.log(bookingsData)
+  //console.log(bookingsData)
 });
 
 bookButton.addEventListener("click", () => populateBooked(hotel));
 
 accountButton.addEventListener("click", () => {
-  switchViews(bookingView, homeView, customerView)
-  domUpdates.hide(selectedRoom)
+  showAccount(customer, hotel)
 });
 
 checkAvailability.addEventListener('click', () => showAvailableRooms(chosenDate.value,
@@ -157,7 +156,7 @@ function showPostMessage(customer, status, responseStatus) {
 
 ///Practicing populating user data
 function createCustomer() {
-  customer = new Customer(50, "Eldridge Muller")
+  customer = new Customer(49, "Eldridge Muller")
   customer.isLoggedIn = true;
   customer.bookings.push(hotel.bookings[0])
   customer.bookings.push(hotel.bookings[1])
@@ -173,6 +172,15 @@ function createCustomer() {
 // Helpers
 function preventDefault(event) {
   event.preventDefault()
+}
+
+function showAccount(customer, hotel) {
+  console.log(customer.bookings)
+  switchViews(bookingView, homeView, customerView)
+  domUpdates.hide(selectedRoom)
+  domUpdates.populateBookingArray(customer.filterPastBookings(todayDate), pastBookings)
+  domUpdates.populateBookingArray(customer.filterFutureBookings(todayDate), futureBookings)
+  domUpdates.stringDisplay(totalSpent, customer.calculateTotalSpent(hotel.rooms))
 }
 
 function switchViews(element1, element2, showElement) {
@@ -205,9 +213,9 @@ function populateBooked(hotel) {
 
 function showAvailableRooms(date, customer, type, hotel) {
   preventDefault(event);
-  console.log(hotel.bookings)
+  //console.log(hotel.bookings)
   let parsedDate = date.split("-").join("/");
-  console.log(parsedDate)
+  //console.log(parsedDate)
   domUpdates.hide(selectedRoom)
   domUpdates.show(roomView)
   // date = chosenDate.value || ""
@@ -223,6 +231,7 @@ function showAvailableRooms(date, customer, type, hotel) {
     //})
   } else if (type) {
     domUpdates.hide(error)
+    console.log(hotel.filterRoomsByType(type, parsedDate, customer))
     domUpdates.populateRoomArray(hotel.filterRoomsByType(type, parsedDate, customer), roomView)
   } else {
     domUpdates.hide(error)
@@ -263,5 +272,6 @@ function bookRoom(event, hotel, customer, bookingsData) {
     customer.bookARoom(customer.id, parsedDate, foundRoom.number, bookingsData)
     postData(customer.id, parsedDate, foundRoom.number)
     }
+    console.log(customer.bookings)
 
 }

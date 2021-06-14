@@ -8,22 +8,27 @@ const domUpdates = {
   },
 
   populateRoomArray(array, location) {
-    //console.log("trying")
-    //console.log(array)
-    location.innerHTML = "";
+    console.log(array)
+    if (typeof array ===
+    "string") {
+      this.stringDisplay(location, array)
+    } else {
+
+      location.innerHTML = "";
       array.forEach(element => {
         location.innerHTML +=
         `<article class="booking-card" id="${element.number}" tabindex=0>
-          <article class="room-details" id="${element.number}">
-            <h3>RoomType: ${element.roomType}</h3>
-            <p>Room number: ${element.number}</p>
-            <p>Bidet? ${element.bidet}</p>
-            <p>Bed Size: ${element.bedSize}</p>
-            <p>Number of Beds: ${element.numBeds}</p>
-            <p>Price Per Night: ${element.costPerNight}</p>
-          </article>
+        <article class="room-details" id="${element.number}">
+        <h3>RoomType: ${element.roomType}</h3>
+        <p>Room number: ${element.number}</p>
+        <p>Bidet? ${element.bidet}</p>
+        <p>Bed Size: ${element.bedSize}</p>
+        <p>Number of Beds: ${element.numBeds}</p>
+        <p>Price Per Night: ${element.costPerNight}</p>
+        </article>
         </article>`
       });
+    }
   },
 
   populateBookingArray(array, location) {
