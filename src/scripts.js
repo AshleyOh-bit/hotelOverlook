@@ -68,7 +68,7 @@ customer, chosenType.value, hotel));
 
 roomView.addEventListener("click", (event) => showSelectedRoom(event, hotel))
 
-selectedRoom.addEventListener("click", (event) => bookRoom(event, hotel, customer))
+selectedRoom.addEventListener("click", (event) => bookRoom(event, hotel, customer, bookingsData))
 
 ///Fetch stuff here
 window.addEventListener('load', fetchData);
@@ -160,6 +160,7 @@ function showPostMessage(booking, status, responseStatus) {
 ///Practicing populating user data
 function createCustomer() {
   customer = new Customer(69, "Footface DeGregorio")
+  customer.isLoggedIn = true;
   customer.bookings.push(hotel.bookings[0])
   customer.bookings.push(hotel.bookings[1])
   //console.log(customer.bookings)
@@ -242,7 +243,7 @@ function showSelectedRoom(event, hotel) {
   domUpdates.displaySelectedRoom(selectedRoom, found, chosenDate.value)
 }
 
-function bookRoom(event, hotel, customer) {
+function bookRoom(event, hotel, customer, bookingsData) {
   preventDefault(event)
   // let date = document.querySelector()
   let target = event.target.closest("button")
@@ -259,6 +260,7 @@ function bookRoom(event, hotel, customer) {
     })
     parsedDate = foundDate.split("-").join("/");
 
+    customer.bookARoom(customer.id, parsedDate, foundNum, bookingsData)
     
     }
 
