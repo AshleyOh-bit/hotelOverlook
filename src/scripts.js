@@ -164,11 +164,12 @@ function showPostMessage(customer, status, responseStatus) {
 function showErrMesssage(err) {
   let message;
   if (err.message === "Failed to fetch") {
+
     message = "Something went wrong. Please check your internet connection"
   } else {
     message = err.message
   }
-  domUpdates.stringDisplay(roomView, message)
+  domUpdates.stringDisplay(customerView, message)
 };
 ///////////
 
