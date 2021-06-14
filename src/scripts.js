@@ -89,7 +89,8 @@ function fetchData() {
     instantiateData(bookingsData, customersData, roomsData)
     //createCustomer()
     //populateDOM()
-  });
+  })
+  .catch((err) => showErrMesssage(err))
 };
 
 function instantiateData(bookings, customer, rooms) {
@@ -159,6 +160,16 @@ function showPostMessage(customer, status, responseStatus) {
   domUpdates.show(roomView)
   domUpdates.facilitatePostMessage(status, responseStatus, roomView, customer)
 }
+
+function showErrMesssage(err) {
+  let message;
+  if (err.message === "Failed to fetch") {
+    message = "Something went wrong. Please check your internet connection"
+  } else {
+    message = err.message
+  }
+  domUpdates.stringDisplay(roomView, message)
+};
 ///////////
 
 ///Practicing populating user data
@@ -201,7 +212,7 @@ function populateDom(hotel) {
   //pass in fetch datas through the appropriate functions here
   //console.log(hotel)
   //console.log("test1", hotel)
-  console.log("populateDom")
+  //console.log("populateDom")
   populateAllRooms(hotel)
   populateBooked(hotel)
 }
