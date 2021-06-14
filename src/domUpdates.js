@@ -7,14 +7,14 @@ const domUpdates = {
     element.classList.remove("hidden")
   },
 
-  populateRoomArray(array, location) {
-    if (typeof array ===
+  populateRoomArray(data, location) {
+    if (typeof data ===
     "string") {
-      this.stringDisplay(location, array)
+      this.stringDisplay(location, data)
     } else {
 
       location.innerHTML = "";
-      array.forEach(element => {
+      data.forEach(element => {
         location.innerHTML +=
         `<article class="booking-card" id="${element.number}" tabindex=0>
           <article class="room-details" id="${element.number}">
