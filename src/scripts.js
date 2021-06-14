@@ -66,7 +66,7 @@ accountButton.addEventListener("click", () => {
 checkAvailability.addEventListener('click', () => showAvailableRooms(chosenDate.value,
 customer, chosenType.value, hotel));
 
-roomView.addEventListener("click", (event) => showSelectedRoom(event, hotel))
+// roomView.addEventListener("click", (event) => showSelectedRoom(event, hotel))
 
 selectedRoom.addEventListener("click", (event) => bookRoom(event, hotel, customer, bookingsData))
 
@@ -175,7 +175,7 @@ function preventDefault(event) {
 }
 
 function showAccount(customer, hotel) {
-  console.log(customer.bookings)
+  //console.log(customer.bookings)
   switchViews(bookingView, homeView, customerView)
   domUpdates.hide(selectedRoom)
   domUpdates.populateBookingArray(customer.filterPastBookings(todayDate), pastBookings)
@@ -231,10 +231,11 @@ function showAvailableRooms(date, customer, type, hotel) {
     //})
   } else if (type) {
     domUpdates.hide(error)
-    console.log(hotel.filterRoomsByType(type, parsedDate, customer))
+    roomView.addEventListener("click", (event) => showSelectedRoom(event, hotel))
     domUpdates.populateRoomArray(hotel.filterRoomsByType(type, parsedDate, customer), roomView)
   } else {
     domUpdates.hide(error)
+    roomView.addEventListener("click", (event) => showSelectedRoom(event, hotel))
     //console.log(hotel.bookings)
     domUpdates.populateRoomArray(hotel.filterRoomsByAvailability(parsedDate, customer), roomView)
   }
