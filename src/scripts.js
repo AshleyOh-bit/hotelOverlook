@@ -248,7 +248,7 @@ function bookRoom(event, hotel, customer) {
   let target = event.target.closest("button")
   let article = event.target.closest("article")
   let identifiers = article.className.split(" ")
-  let foundNum, foundDate;
+  let foundNum, foundDate, parsedDate;
   if (target) {
     foundNum = hotel.rooms.find(room => {
       return article.classList.contains(room.number)
@@ -257,24 +257,9 @@ function bookRoom(event, hotel, customer) {
     foundDate = identifiers.find(identifier => {
       return identifier.includes("2021")
     })
-    console.log(foundDate)
+    parsedDate = foundDate.split("-").join("/");
 
-    // foundDate = classes.find(class => {
-    //   console.log(class)
-    //   return class.includes("2021")
-    // })
-    // if (article.classList.contains("2021")) {
-    //   foundDate = article.classList.find(class => {
-    //
-    //   })
-
+    
     }
-//console.log(classes.split(" "))
-    //console.log(foundNum)
-    //customer.bookARoom(customer.id, )
-    //book  a room for the customer class
-    //need userId, date, roomNumber, and bookings to run bookARoom
-    //and call post function to post data
-    //don't forget to fetch again!
-  //}
+
 }
