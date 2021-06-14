@@ -4,10 +4,15 @@ export const fetchApiData = (type) => {
     .catch(err => console.log("API error"))
 };
 
-export const postApiData = (booking) => {
-  return fetch(`http://localhost:3001/api/v1/${booking}`, {
+export const postApiData = (userId, date, roomNumber) => {
+  let body = {
+    "userID": userId,
+    "date": date,
+    "roomNumber": roomNumber
+  }
+  return fetch(`http://localhost:3001/api/v1/bookings`, {
     method: 'POST',
-    body: JSON.stringify(booking),
+    body: JSON.stringify(body),
     headers: {
       'Content-type': 'application/json'
     }

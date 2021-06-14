@@ -1,6 +1,6 @@
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
-import { fetchApiData } from './apiCalls';
+import { fetchApiData, postApiData } from './apiCalls';
 import domUpdates from './domUpdates';
 
 //Import classes:
@@ -126,8 +126,8 @@ function instantiateData(bookings, customer, rooms) {
 
 //Post stuff here
 //Add proper error handling - look @ lesson
-function postData(booking) {
-  postApiData(booking)
+function postData(userId, date, roomNumber) {
+  postApiData(userId, date, roomNumber)
   .then((response) => {
     if (!response.ok) {
       throw Error(response.statusText);
@@ -136,24 +136,21 @@ function postData(booking) {
     }
   })
   .catch(error => {
-    showPostMessage(booking, 'fail', error)
+    showPostMessage(customer, 'fail', error)
   })
 }
 
-function renderSuccessfulPost(booking) {
-  showPostMessage(booking, 'success');
-  fetchApiData(booking)
+function renderSuccessfulPost(bookings) {
+  showPostMessage(customer, 'success');
+  fetchApiData(bookings)
   .then((data) => {
     fetchData();
     instantiateData();
   })
 }
 
-function showPostMessage(booking, status, responseStatus) {
-  let messageSelector = {
-    //whatever the querySelector is for where we want the message to go
-  }
-  domUpdates.facilitatePostMessage(booking, status, responseStatus, messageSelector, customer)
+function showPostMessage(customer, status, responseStatus) {
+  domUpdates.facilitatePostMessage(status, responseStatus, roomView, customer)
 }
 ///////////
 
@@ -187,19 +184,17 @@ function populateDom(hotel) {
   //beef up populate DOM with all page views
   //pass in fetch datas through the appropriate functions here
   //console.log(hotel)
-  console.log("test1", hotel)
+  //console.log("test1", hotel)
   populateAllRooms(hotel)
   populateBooked(hotel)
 }
 
 function populateAllRooms(hotel) {
-
-
   domUpdates.populateRoomArray(hotel.rooms, roomView)
 }
 
 function populateBooked(hotel) {
-  console.log("checkHotel", hotel)
+  //console.log("checkHotel", hotel)
   switchViews(customerView, homeView, bookingView)
   domUpdates.show(roomView)
   domUpdates.hide(selectedRoom)
@@ -261,7 +256,7 @@ function bookRoom(event, hotel, customer, bookingsData) {
     parsedDate = foundDate.split("-").join("/");
 
     customer.bookARoom(customer.id, parsedDate, foundNum, bookingsData)
-    
+    postData(customer.id, parsedDate, foundNum)
     }
 
 }
