@@ -87,7 +87,7 @@ function fetchData() {
     roomsData = promiseArray[2].rooms;
 
     instantiateData(bookingsData, customersData, roomsData)
-    console.log("fetchy", customer)
+    //console.log("fetchy", customer)
     //createCustomer()
     //populateDOM()
   })
@@ -121,10 +121,10 @@ function instantiateData(bookingsData, customersData, roomsData) {
   // createCustomer();
   customer = hotel.customers[48]
   customer.isLoggedIn = true;
-  console.log("insty 1", customer);
+  //console.log("insty 1", customer);
   populateCustomerBookings(customer, todayDate, hotel)
   //hotel.
-  console.log("insty", customer)
+  //console.log("insty", customer)
   //call populate dom here
   //populateDom(hotel)
   //return
@@ -201,7 +201,7 @@ function populateCustomerBookings(customer, todayDate, hotel) {
   domUpdates.populateBookingArray(customer.filterPastBookings(todayDate), pastBookings)
   domUpdates.populateBookingArray(customer.filterFutureBookings(todayDate), futureBookings)
   domUpdates.stringDisplay(totalSpent, customer.calculateTotalSpent(hotel.rooms))
-  console.log(customer)
+  //console.log(customer)
 }
 // console.log(hotel)
 //console.log(customer.bookings.push(bookingsData[0]))
@@ -244,7 +244,7 @@ function populateAllRooms(hotel) {
 
 function populateBooked(hotel) {
 //Old:
-console.log(customer)
+//console.log(customer)
   switchViews(customerView, homeView, bookingView)
   domUpdates.show(roomView)
   domUpdates.hide(selectedRoom)
@@ -258,8 +258,8 @@ console.log(customer)
 
 function showAvailableRooms(date, type, hotel) {
   preventDefault(event);
-  console.log(customer)
-  console.log(hotel.bookings)
+  //console.log(customer)
+  //console.log(hotel.bookings)
   let parsedDate = date.split("-").join("/");
   //console.log(parsedDate)
   domUpdates.hide(selectedRoom)
