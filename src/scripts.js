@@ -1,19 +1,19 @@
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
-import { fetchApiData, postApiData } from './apiCalls';
-import domUpdates from './domUpdates';
+import { fetchApiData, postApiData } from "./apiCalls";
+import domUpdates from "./domUpdates";
 
 //Import classes:
-import Hotel from './classes/Hotel';
-import Customer from './classes/Customer';
-import Room from './classes/Room';
-import Booking from './classes/Booking';
+import Hotel from "./classes/Hotel";
+import Customer from "./classes/Customer";
+import Room from "./classes/Room";
+import Booking from "./classes/Booking";
 
 // An example of how you tell webpack to use a CSS (SCSS) file
-import './sass/index.scss';
+import "./sass/index.scss";
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
+import "./images/turing-logo.png"
 
 //Global Variables
 
@@ -57,7 +57,7 @@ accountButton.addEventListener("click", () => {
   showAccount(customer, hotel)
 });
 
-checkAvailability.addEventListener('click', () => showAvailableRooms(chosenDate.value,
+checkAvailability.addEventListener("click", () => showAvailableRooms(chosenDate.value,
 chosenType.value, hotel));
 
 //put login submit button here!!
@@ -68,12 +68,12 @@ chosenType.addEventListener("keydown", ariaStateChange)
 selectedRoom.addEventListener("click", (event) => bookRoom(event, hotel, customer, bookingsData))
 
 ///Fetch stuff here
-window.addEventListener('load', fetchData);
+window.addEventListener("load", fetchData);
 
 //Aria
 function ariaStateChange() {
   let attribute = chosenType.getAttribute("aria-expanded");
-  if (attribute === 'true') {
+  if (attribute === "true") {
    chosenType.setAttribute("aria-expanded", false);
  } else {
    chosenType.setAttribute("aria-expanded", true);
@@ -81,7 +81,7 @@ function ariaStateChange() {
 }
 
 function getData() {
-  return Promise.all([fetchApiData('bookings'), fetchApiData('customers'), fetchApiData('rooms')]);
+  return Promise.all([fetchApiData("bookings"), fetchApiData("customers"), fetchApiData("rooms")]);
 }
 
 function fetchData() {
@@ -155,12 +155,12 @@ function postData(userId, date, roomNumber) {
   })
   .catch(error => {
     //console.log(Error)
-    showPostMessage(customer, 'fail', error)
+    showPostMessage(customer, "fail", error)
   })
 }
 
 function renderSuccessfulPost(bookings) {
-  showPostMessage(customer, 'success');
+  showPostMessage(customer, "success");
   //fetchApiData("bookings")
   // .then((data) => {
   //   bookingsData = data.bookings;
@@ -298,7 +298,7 @@ function showAvailableRooms(date, type, hotel) {
 }
 
 function showSelectedRoom(event, hotel) {
-  if ((event.target.closest('article') && event instanceof MouseEvent) || event.keyCode === 13) {
+  if ((event.target.closest("article") && event instanceof MouseEvent) || event.keyCode === 13) {
     domUpdates.hide(roomView)
     domUpdates.show(selectedRoom)
     let target = event.target.closest("article")
