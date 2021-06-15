@@ -4,16 +4,14 @@
 }
 
 .view {
-  display: grid;
-  grid-gap: 20px;
+  @include grid();
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   height: 10%;
 }
 
 .room-view {
+  @include grid();
   margin-top: 3%;
-  display: grid;
-  grid-gap: 20px;
   grid-template-columns: repeat(auto-fit, 300px);
   justify-content: center;
 }
