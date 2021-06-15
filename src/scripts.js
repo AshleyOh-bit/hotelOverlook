@@ -23,7 +23,7 @@ const todayDate = "2020/04/01";
 
 //Query Selectors below
 //buttons
-const homeButton = document.querySelector("#homeButton");
+// const homeButton = document.querySelector("#homeButton");
 const bookButton = document.querySelector("#bookButton");
 const accountButton = document.querySelector("#accountButton");
 
@@ -52,11 +52,11 @@ const error = document.querySelector("#error");
 
 //Event listeners
 
-homeButton.addEventListener("click", () => {
-  switchViews(customerView, bookingView, homeView)
-  domUpdates.hide(selectedRoom)
-  //console.log(bookingsData)
-});
+// homeButton.addEventListener("click", () => {
+//   switchViews(customerView, bookingView, homeView)
+//   domUpdates.hide(selectedRoom)
+//   //console.log(bookingsData)
+// });
 
 bookButton.addEventListener("click", () => populateBooked(hotel));
 
@@ -120,7 +120,7 @@ function instantiateData(bookings, customer, rooms) {
   //populateAllRooms();
   createCustomer();
   //call populate dom here
-  populateDom(hotel)
+  //populateDom(hotel)
   //return
 }
 
@@ -259,14 +259,18 @@ function showAvailableRooms(date, customer, type, hotel) {
 }
 
 function showSelectedRoom(event, hotel) {
-  domUpdates.hide(roomView)
   domUpdates.show(selectedRoom)
   let target = event.target.closest("article")
-  let parsedID = Number.parseInt(target.id)
-  const found = hotel.rooms.find(room => {
-    return room.number === parsedID
-  })
+  // let found;
+  // if (target) {
+    let parsedID = Number.parseInt(target.id)
+    const found = hotel.rooms.find(room => {
+      return room.number === parsedID
+    })
 
+  // }
+
+  domUpdates.hide(roomView)
   domUpdates.displaySelectedRoom(selectedRoom, found, chosenDate.value)
 }
 
