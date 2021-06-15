@@ -138,6 +138,7 @@ function postData(userId, date, roomNumber) {
   postApiData(userId, date, roomNumber)
   //console.log(bookings)
   .then((response) => {
+    console.log(response)
     if (!response.ok) {
       throw Error(response.statusText);
     } else {
@@ -145,6 +146,7 @@ function postData(userId, date, roomNumber) {
     }
   })
   .catch(error => {
+    console.log(Error)
     showPostMessage(customer, 'fail', error)
   })
 }
@@ -244,7 +246,7 @@ function populateAllRooms(hotel) {
 
 function populateBooked(hotel) {
 //Old:
-//console.log(customer)
+console.log(customer)
   switchViews(customerView, homeView, bookingView)
   domUpdates.show(roomView)
   domUpdates.hide(selectedRoom)
@@ -259,7 +261,7 @@ function populateBooked(hotel) {
 function showAvailableRooms(date, type, hotel) {
   preventDefault(event);
   //console.log(customer)
-  //console.log(hotel.bookings)
+  console.log(hotel.bookings)
   let parsedDate = date.split("-").join("/");
   //console.log(parsedDate)
   domUpdates.hide(selectedRoom)

@@ -73,13 +73,14 @@ const domUpdates = {
   facilitatePostMessage(status, responseStatus, roomView, customer) {
     //console.log("post message")
     //console.log("ash")
+    console.log(responseStatus)
     let newMessage;
     // let originalMessage = messageSelectors[`${type}FormMessage`].innerText;
     roomView.innerHTML = "";
     if (status === 'success') {
       newMessage = `Room booked! Thank you for your purchase ${customer.name}.`;
     } else {
-      newMessage = `Sorry ${customer.name}, we are experiencing this error: ${responseStatus.message}`;
+      newMessage = `Sorry ${customer.name}, we are experiencing an error. Please try again`;
     }
     roomView.innerHTML = `<h3>${newMessage}</h3>`;
     // const resetMessage = setTimeout(() => {
