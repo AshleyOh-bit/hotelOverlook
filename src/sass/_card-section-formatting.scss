@@ -1,7 +1,6 @@
 .upcoming, .past, .spent {
-  @include flexColumnCenter();
-  justify-content: space-evenly;
-  // overflow-y: scroll;
+  align-items: center;
+  overflow-y: scroll;
 }
 
 .view {
