@@ -14,13 +14,8 @@ main {
 .booking-card {
   @include flexColumnCenter();
   @include mainCardStyling();
-  //background-color: white;
   border: #191970 solid -2px;
-  //box-shadow: $shadow;
   justify-content: center;
-  //margin-bottom: 3%;
-  //margin-left: auto;
-  //margin-right: auto;
   transition: transform 450ms;
   will-change: transform;
 }
@@ -33,13 +28,8 @@ main {
 .selected-room-card {
   @include flexColumnCenter();
   @include mainCardStyling();
-  //background-color: white;
-  //box-shadow: $shadow;
   display: flex;
-  //margin-bottom: 3%;
   margin-top: 3%;
-  //margin-left: auto;
-  //margin-right: auto;
   width: 80%;
   height: 70%;
   padding: 2%;

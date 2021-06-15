@@ -126,7 +126,7 @@ function instantiateData(bookingsData, customersData, roomsData) {
   customer.isLoggedIn = true;
   //console.log("insty 1", customer);
   populateCustomerBookings(customer, todayDate, hotel)
-  populateBooked(hotel)
+  // populateBooked(hotel)
   //hotel.
   //console.log("insty", customer)
   //call populate dom here
@@ -142,7 +142,7 @@ function postData(userId, date, roomNumber) {
   postApiData(userId, date, roomNumber)
   //console.log(bookings)
   .then((response) => {
-    console.log(response)
+    //console.log(response)
     if (!response.ok) {
       throw Error(response.statusText);
     } else {
@@ -168,6 +168,8 @@ function renderSuccessfulPost(bookings) {
   // })
   setTimeout(() => {
     fetchData()
+    populateBooked(hotel)
+    chosenDate.value = ""
     //show available rooms?
   }, 4000)
 }
