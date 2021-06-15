@@ -1,6 +1,6 @@
 main {
-  display: flex;
-  flex-direction: column;
+  @include flexColumnCenter();
+  align-items: normal;
 }
 
 .customer-view {
@@ -12,12 +12,10 @@ main {
 }
 
 .booking-card {
-  align-items: center;
+  @include flexColumnCenter();
   background-color: white;
   border: #191970 solid -2px;
   box-shadow: $shadow;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   margin-bottom: 3%;
   margin-left: auto;
@@ -33,12 +31,9 @@ main {
 
 .selected-room-card {
   @include flexColumnCenter();
-  // align-items: center;
   background-color: white;
   box-shadow: $shadow;
   display: flex;
-  // flex-direction: column;
-  // justify-content: center;
   margin-bottom: 3%;
   margin-top: 3%;
   margin-left: auto;
