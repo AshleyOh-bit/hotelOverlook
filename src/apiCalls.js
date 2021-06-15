@@ -18,5 +18,5 @@ export const postApiData = (userId, date, roomNumber) => {
       'Content-type': 'application/json'
     }
   })
-  .then(response => response.json())
+  //.then(response => response.json())
 }

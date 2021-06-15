@@ -6,11 +6,12 @@ header {
 	justify-content: space-around;
 	padding: 1em;
 	border-bottom: 2px black solid;
-}
 
-nav {
-  display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
-	width: 40%;
+	nav {
+	  display: flex;
+		flex-direction: row;
+		justify-content: space-evenly;
+		width: 40%;
+	}
+
 }
