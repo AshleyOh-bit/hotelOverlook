@@ -8,6 +8,7 @@ form {
   flex-direction: row;
   justify-content: space-evenly;
   padding: 1%;
+  border-bottom: $border-bottom;
 }
 
 .customer-view {
@@ -26,13 +27,13 @@ form {
   height: 10%;
 }
 
-.room-view {
-  margin-top: 3%;
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: repeat(auto-fit, 300px);
-  justify-content: center;
-}
+// .room-view {
+//   margin-top: 3%;
+//   display: grid;
+//   grid-gap: 20px;
+//   grid-template-columns: repeat(auto-fit, 300px);
+//   justify-content: center;
+// }
 
 .booking-card {
   align-items: center;

@@ -11,7 +11,7 @@ h4, h3 {
   font-size: 3vh;
   // margin: 3%;
   padding: 1%;
-  border-bottom: 2px black solid;
+  border-bottom: $border-bottom;
 }
 
 .your-bookings {
@@ -23,4 +23,10 @@ h4, h3 {
 
 .total-spent {
   border-bottom: 0px;
+}
+
+.error {
+  font-size: 2.5vh;
+  border-bottom: 0;
+  color: $accent-color;
 }
