@@ -38,6 +38,7 @@ const pastBookings = document.querySelector("#pastView")
 const totalSpent = document.querySelector("#totalSpent");
 
 //Bookings Views
+const bookingHeader = document.querySelector("#whichRooms")
 const roomView = document.querySelector("#roomView");
 const selectedRoom = document.querySelector("#selectedRoom");
 
@@ -227,6 +228,7 @@ function populateBooked(hotel) {
   switchViews(customerView, homeView, bookingView)
   domUpdates.show(roomView)
   domUpdates.hide(selectedRoom)
+  domUpdates.stringDisplay(bookingHeader, "All Rooms")
   populateAllRooms(hotel)
   //new:
   // switchViews(homeView, bookingView, customerView)
@@ -237,30 +239,21 @@ function populateBooked(hotel) {
 
 function showAvailableRooms(date, customer, type, hotel) {
   preventDefault(event);
-  //console.log(hotel.bookings)
+
   let parsedDate = date.split("-").join("/");
-  //console.log(parsedDate)
   domUpdates.hide(selectedRoom)
   domUpdates.show(roomView)
-  // date = chosenDate.value || ""
-  // type = chosenType.value || ""
   if (!date) {
     domUpdates.show(error)
-    //how do i remove an event listener to keep the user from selecting a room if there is no date specified
-    //roomView.removeEventListener("click", function(event) {
-      //add a function @ same scope of event listeners and try to call it here instead of adding
-      //an extra event listener
-      //fetchData()
-      //showSelectedRoom(event, hotel)
-    //})
   } else if (type) {
     domUpdates.hide(error)
     roomView.addEventListener("click", (event) => showSelectedRoom(event, hotel))
+    domUpdates.stringDisplay(bookingHeader, "Rooms available for this date:")
     domUpdates.populateRoomArray(hotel.filterRoomsByType(type, parsedDate, customer), roomView)
   } else {
     domUpdates.hide(error)
     roomView.addEventListener("click", (event) => showSelectedRoom(event, hotel))
-    //console.log(hotel.bookings)
+    domUpdates.stringDisplay(bookingHeader, "Rooms available for this date:")
     domUpdates.populateRoomArray(hotel.filterRoomsByAvailability(parsedDate, customer), roomView)
   }
 }

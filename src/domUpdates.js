@@ -47,6 +47,7 @@ const domUpdates = {
   stringDisplay(element, data) {
     console.log("here")
     element.innerHTML = "";
+    element.innerText = ""
     element.innerText = data;
   },
 
