@@ -196,7 +196,7 @@ function confirmUser(event) {
   }
   //console.log(idMatch)
   if (idMatch) {
-    customer = new Customer(customer.id, idMatch.name)
+    customer = new Customer(idMatch.id, idMatch.name)
     console.log(customer.id)
     domUpdates.show(bookButton)
     domUpdates.show(accountButton)
