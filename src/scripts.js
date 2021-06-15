@@ -49,9 +49,16 @@ const chosenType = document.querySelector("select");
 
 //Errors
 const error = document.querySelector("#error");
+const usernameError = document.querySelector("#usernameError");
+const passwordError = document.querySelector("#passwordError");
+const invalidInput = document.querySelector("#invalidInput");
+
+//Log In Form
+const username = document.querySelector("#username");
+const password = document.querySelector("#password");
+const submitLogin = document.querySelector("#submitLogin");
 
 //Event listeners
-
 bookButton.addEventListener("click", () => populateBooked(hotel));
 accountButton.addEventListener("click", () => {
   showAccount(customer, hotel)
@@ -60,7 +67,8 @@ accountButton.addEventListener("click", () => {
 checkAvailability.addEventListener('click', () => showAvailableRooms(chosenDate.value,
 chosenType.value, hotel));
 
-//put login submit button here!!
+submitLogin.addEventListener("click")
+submitLogin.addEventListener("keydown")
 
 chosenType.addEventListener("click", ariaStateChange)
 chosenType.addEventListener("keydown", ariaStateChange)
@@ -87,66 +95,42 @@ function getData() {
 function fetchData() {
   getData()
   .then((promiseArray) => {
-    //console.log(promiseArray)
-    //check for the correct indexes on these
     bookingsData = promiseArray[0].bookings;
     customersData = promiseArray[1].customers;
     roomsData = promiseArray[2].rooms;
-
     instantiateData(bookingsData, customersData, roomsData)
-    //console.log("fetchy", customer)
-    //createCustomer()
-    //populateDOM()
   })
   .catch((err) => showErrMesssage(err))
 };
 
 function instantiateData(bookingsData, customersData, roomsData) {
   let instRooms, instCustomers, instBookings;
-
   instRooms = roomsData.map(room => {
     return new Room(room.number, room.roomType, room.bidet, room.bedSize, room.numBeds, room.costPerNight)
   });
-
   instCustomers = customersData.map(customer => {
     return new Customer(customer.id, customer.name)
   });
-
-  // instBookings = bookingsData.map(booking => {
-  //   return new Booking(booking.userID, booking.date, booking.roomNumber)
-  // });
   instBookings = bookingsData.map(booking => {
   booking = new Booking(booking.userID, booking.date, booking.roomNumber)
   booking.generateRandomId(bookingsData)
   return booking
-
   });
-  //console.log(bookingsData[0])
+
   hotel = new Hotel(instRooms, instBookings, instCustomers, todayDate);
-  //console.log(hotel)
-  //populateAllRooms();
-  // createCustomer();
+
   customer = hotel.customers[48]
   customer.isLoggedIn = true;
-  //console.log("insty 1", customer);
+
   populateCustomerBookings(customer, todayDate, hotel)
-  // populateBooked(hotel)
-  //hotel.
-  //console.log("insty", customer)
-  //call populate dom here
-  //populateDom(hotel)
-  //return
 }
 
-//console.log(hotel)
 
-//Post stuff here
-//Add proper error handling - look @ lesson
+
+//Post
 function postData(userId, date, roomNumber) {
   postApiData(userId, date, roomNumber)
-  //console.log(bookings)
   .then((response) => {
-    //console.log(response)
     if (!response.ok) {
       throw Error(response.statusText);
     } else {
@@ -154,27 +138,16 @@ function postData(userId, date, roomNumber) {
     }
   })
   .catch(error => {
-    //console.log(Error)
     showPostMessage(customer, 'fail', error)
   })
 }
 
 function renderSuccessfulPost(bookings) {
   showPostMessage(customer, 'success');
-  //fetchApiData("bookings")
-  // .then((data) => {
-  //   bookingsData = data.bookings;
-  //   // setTimeout(() => {
-  //   //   fetchData()
-  //   // }, 4000)
-  //   //fetchData();
-  //   //instantiateData();
-  // })
   setTimeout(() => {
     fetchData()
     populateBooked(hotel)
     chosenDate.value = ""
-    //show available rooms?
   }, 4000)
 }
 
@@ -194,19 +167,30 @@ function showErrMesssage(err) {
   }
   domUpdates.stringDisplay(customerView, message)
 };
-///////////
 
-///Practicing populating user data
-// function createCustomer() {
-//   customer = new Customer(49, "Eldridge Muller")
-//   customer.isLoggedIn = true;
-//   customer.bookings.push(hotel.bookings[0])
-//   customer.bookings.push(hotel.bookings[1])
-//   //console.log(customer.bookings)
-//   // domUpdates.populateBookingArray(customer.filterPastBookings(todayDate), pastBookings)
-//   // domUpdates.populateBookingArray(customer.filterFutureBookings(todayDate), futureBookings)
-//   // domUpdates.stringDisplay(totalSpent, customer.calculateTotalSpent(hotel.rooms))
-// }
+function confirmUser(username, password) {
+  // fetchData();
+  // let usernameWord, usernameID, idMatch;
+  // if (username.value && username.value.length === 10) {
+  //   usernameWord = username.value.slice(0, 8)
+  //   usernameID = username.value.slice(8, 10)
+  // } else {
+  //   domUpdates.show(usernameError)
+  // }
+  //
+  // if (usernameWord ==== "Customer" && typeof usernameID === "number") {
+  //   idMatch = hotel.customers.find(customer => {
+  //     return customer.id === username.id
+  //   })
+  // }
+  //
+  // if (!password.value && password.value !== "overlook2021") {
+  //   domUpdates.show(passwordError)
+  // }
+  //let usernameWord
+  // if (username.value.includes("Customer"))
+  //if username matches, show buttons
+}
 
 function populateCustomerBookings(customer, todayDate, hotel) {
   const bookingsMatches = hotel.bookings.filter(booking => {

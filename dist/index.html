@@ -13,8 +13,8 @@
     <h1>The Overlook Hotel</h1>
     <h2>Welcome!</h2>
     <nav>
-      <button class="book-button" id="bookButton">Book a Room</button>
-      <button class="account-button" id="accountButton">Your Account</button>
+      <button class="book-button hidden" id="bookButton">Book a Room</button>
+      <button class="account-button hidden" id="accountButton">Your Account</button>
     </nav>
   </header>
   <main>
@@ -23,8 +23,11 @@
           <h2> Please Log In </h2>
           <form class="credentials">
             <label>User name<input id="username" type="text" name="username" maxlength="30"/></label>
+            <p class="error hidden" id="usernameError">Please input a username</p>
             <label>Password<input id="password" type="password" name="password" maxlength="30"/></label>
-            <input id="submitUsername" class="submit-username" type="submit" value="Log In"></input>
+            <p class="error hidden" id="passwordError"hidden>Please input a password</p>
+            <p class="error hidden" id="invalidInput">Could not find a matching username or password. Please try again.</p>
+            <input id="submitLogin" class="submit-username" type="submit" value="Log In"></input>
           </form>
         </article>
     </section>
