@@ -288,15 +288,18 @@ function showAvailableRooms(date, type, hotel) {
 }
 
 function showSelectedRoom(event, hotel) {
-  domUpdates.hide(roomView)
-  domUpdates.show(selectedRoom)
-  let target = event.target.closest("article")
-  let parsedID = Number.parseInt(target.id)
-  const found = hotel.rooms.find(room => {
-    return room.number === parsedID
-  })
+  if (event.target.closest("article")) {
+    domUpdates.hide(roomView)
+    domUpdates.show(selectedRoom)
+    let target = event.target.closest("article")
+    let parsedID = Number.parseInt(target.id)
+    const found = hotel.rooms.find(room => {
+      return room.number === parsedID
+    })
 
-  domUpdates.displaySelectedRoom(selectedRoom, found, chosenDate.value)
+    domUpdates.displaySelectedRoom(selectedRoom, found, chosenDate.value)
+
+  }
 }
 
 function bookRoom(event, hotel, customer, bookingsData) {
