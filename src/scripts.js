@@ -171,8 +171,8 @@ function vetInput (event) {
   if (!username.value && !password.value) {
     preventDefault(event)
     domUpdates.show(usernameError)
-    console.log(passwordError)
     domUpdates.show(passwordError)
+    console.log(passwordError)
   }
   // if (!password.value || password.value !== "overlook2021") {
   //   preventDefault(event)
