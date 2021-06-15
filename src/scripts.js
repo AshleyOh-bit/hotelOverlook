@@ -52,14 +52,7 @@ const error = document.querySelector("#error");
 
 //Event listeners
 
-// homeButton.addEventListener("click", () => {
-//   switchViews(customerView, bookingView, homeView)
-//   domUpdates.hide(selectedRoom)
-//   //console.log(bookingsData)
-// });
-
 bookButton.addEventListener("click", () => populateBooked(hotel));
-
 accountButton.addEventListener("click", () => {
   showAccount(customer, hotel)
 });
@@ -69,7 +62,8 @@ chosenType.value, hotel));
 
 //put login submit button here!!
 
-// roomView.addEventListener("click", (event) => showSelectedRoom(event, hotel))
+chosenType.addEventListener("click", ariaStateChange)
+chosenType.addEventListener("keydown", ariaStateChange)
 
 selectedRoom.addEventListener("click", (event) => bookRoom(event, hotel, customer, bookingsData))
 
@@ -291,18 +285,20 @@ function showAvailableRooms(date, type, hotel) {
   } else if (type) {
     domUpdates.hide(error)
     roomView.addEventListener("click", (event) => showSelectedRoom(event, hotel))
+    roomView.addEventListener("keydown", (event) => showSelectedRoom(event, hotel))
     domUpdates.stringDisplay(bookingHeader, "Rooms available for this date:")
     domUpdates.populateRoomArray(hotel.filterRoomsByType(type, parsedDate, customer), roomView)
   } else {
     domUpdates.hide(error)
     roomView.addEventListener("click", (event) => showSelectedRoom(event, hotel))
+    roomView.addEventListener("keydown", (event) => showSelectedRoom(event, hotel))
     domUpdates.stringDisplay(bookingHeader, "Rooms available for this date:")
     domUpdates.populateRoomArray(hotel.filterRoomsByAvailability(parsedDate, customer), roomView)
   }
 }
 
 function showSelectedRoom(event, hotel) {
-  if (event.target.closest("article")) {
+  if ((event.target.closest('article') && event instanceof MouseEvent) || event.keyCode === 13) {
     domUpdates.hide(roomView)
     domUpdates.show(selectedRoom)
     let target = event.target.closest("article")
