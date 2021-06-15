@@ -1,0 +1,9 @@
+button,  .check-availability {
+  background-color: hsl(54,21%,81%);
+  border-radius: 2%;
+  border: $border-bottom;
+}
+
+button:hover, .check-availability:hover {
+  border: 1px $accent-color solid;
+}

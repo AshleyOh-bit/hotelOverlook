@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
   <title>Overlook Hotel</title>
-  <!-- <link href="./styles.css" rel="stylesheet"> -->
-  <!-- Do i need these or in sass? -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Mate+SC&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
@@ -15,41 +13,18 @@
     <h1>The Overlook Hotel</h1>
     <h2>Welcome, Ghost!</h2>
     <nav>
-      <button class="home-button" id="homeButton">Home</button>
       <button class="book-button" id="bookButton">Book a Room</button>
       <button class="account-button" id="accountButton">Your Account</button>
     </nav>
   </header>
   <main>
     <section class="home-view hidden" id="homeView">
-      <!-- <article class="selected-room-card">
-        <h2> You have selected: </h2>
-        <article class="room-details">
-          <h3>RoomType: </h3>
-          <p>Room number:</p>
-          <p>Bidet? </p>
-          <p>Bed Size: </p>
-          <p>Number of Beds: </p>
-          <p>Price Per Night: </p>
-        </article>
-        <button>Book now!</button>
-      </article> -->
     </section>
     <section class="customer-view" id="customerView">
-      <h3>Your bookings:</h3>
+      <h3 class="your-bookings">Your bookings:</h3>
       <section class="upcoming" id="upcomingBookings">
         <h4>Upcoming Visits:</h4>
         <div class="upcoming-view view" id="upcomingView">
-          <!-- <article class="booking-card">
-            <article class="room-details">
-              <h3>RoomType: </h3>
-              <p>Room number:</p>
-              <p>Bidet? </p>
-              <p>Bed Size: </p>
-              <p>Number of Beds: </p>
-              <p>Price Per Night: </p>
-            </article>
-          </article> -->
         </div>
       </section>
       <section class="past" id="pastBookings">
@@ -59,56 +34,37 @@
           </article>
         </div>
       </section>
-      <section>
+      <section class="spent">
         <h4>Your total spent to date:</h4>
-        <h4 class="total-spent" id="totalSpent">A big number</h4>
+        <h4 class="total-spent" id="totalSpent"></h4>
       </section>
     </section>
     <section class="booking-view hidden" id="bookingView">
       <h3>Book your stay</h3>
       <section class="date-selection" id="dateSelection">
         <form>
-          <!-- <p class="date-choice">Choose Your Date</p> -->
-        <label> Choose Your Date <input type="date" class="drop-down-calendar" id="dateStart" name="book-start" value="" min="2021-06-16" max="2021-12-31" required ></label>
-        <h3 class="error hidden" id="error"> Please choose a date </h3>
-        <!-- <input type="date" class="drop-down-calendar" id="dateEnd" name="book-end" value="" min="2020-01-01"> -->
-          <!-- <p class="room-type-choice">Room Type Choice</p> -->
-          <label>Room Type Choice<select>
+        <div>
+          <label> Choose Your Date: <input type="date" class="drop-down-calendar" id="dateStart" name="book-start" value="" min="2021-06-16" max="2021-12-31" required ></label>
+          <h3 class="error hidden" id="error"> Please choose a date </h3>
+        </div>
+          <label>Choose Your Room:<select>
             <option></option>
             <option value="suite">Suite</option>
             <option value="single room">Single Room</option>
             <option value="junior suite">Junior Suite</option>
             <option value="residential suite">Residential Suite</option>
           </select></label>
-          <input id="checkAvailability" type="submit" value="Check Availability"></input>
+          <input id="checkAvailability" class="check-availability" type="submit" value="Check Availability"></input>
         </form>
       </section>
+      <h3 class="which-rooms" id="whichRooms"></h3>
       <section class="room-view" id="roomView">
       </section>
     </section>
     <section class="selected-room hidden" id="selectedRoom">
       <article class="selected-room-card">
-        <!-- <h2> You have selected: </h2> -->
-        <!-- <article class="room-details">
-          <h3>RoomType: </h3>
-          <p>Room number:</p>
-          <p>Bidet? </p>
-          <p>Bed Size: </p>
-          <p>Number of Beds: </p>
-          <p>Price Per Night: </p>
-        </article>
-        <button>Book now!</button>
-      </article> -->
     </section>
   </main>
-  <!-- <footer>
-    <h5>666 West Bachmann Drive, Castle Rock, ME</h5>
-    <h5>666-214-7000</h5>
-    <h5>theHotelOverlook@cujo.com</h5>
-  </footer> -->
-
-  <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
-
 </body>
 </html>

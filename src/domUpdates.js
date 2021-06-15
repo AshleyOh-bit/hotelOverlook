@@ -18,8 +18,8 @@ const domUpdates = {
         location.innerHTML +=
         `<article class="booking-card" id="${element.number}" tabindex=0>
           <article class="room-details" id="${element.number}">
-          <h3>RoomType: ${element.roomType}</h3>
-          <p>Room number: ${element.number}</p>
+          <p>Room Type: ${element.roomType}</p>
+          <p>Room Number: ${element.number}</p>
           <p>Bidet? ${element.bidet}</p>
           <p>Bed Size: ${element.bedSize}</p>
           <p>Number of Beds: ${element.numBeds}</p>
@@ -36,7 +36,7 @@ const domUpdates = {
           location.innerHTML +=
           `<article id="${element.roomNumber}" class="booking-card" tabindex=0>
             <article class="room-details">
-              <h3>Your ID: ${element.userID}</h3>
+              <p>Your ID: ${element.userID}</p>
               <p>Date Booked: ${element.date}</p>
               <p>Room Number: ${element.roomNumber}</p>
             </article>
@@ -45,19 +45,23 @@ const domUpdates = {
     },
 
   stringDisplay(element, data) {
-    console.log("here")
+    //console.log("here")
     element.innerHTML = "";
+    //element.innerText = ""
     element.innerText = data;
   },
 
   displaySelectedRoom(element, data, date) {
+    if (!data) {
+      return
+    }
     element.innerHTML = "";
     element.innerHTML =
     `<article id="${data.number}" class="selected-room-card ${data.number} ${date}">
         <h2> You have selected: </h2>
         <article class="room-details">
-          <h3>RoomType: ${data.roomType}</h3>
-          <p>Room number: ${data.number}</p>
+          <p>Room Type: ${data.roomType}</p>
+          <p>Room Number: ${data.number}</p>
           <p>Bidet? ${data.bidet}</p>
           <p>Bed Size: ${data.bedSize}</p>
           <p>Number of Beds: ${data.numBeds}</p>
