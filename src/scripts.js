@@ -117,9 +117,13 @@ function instantiateData(bookings, customer, rooms) {
   hotel = new Hotel(instRooms, instBookings, instCustomers, todayDate);
   //console.log(hotel)
   //populateAllRooms();
-  createCustomer();
+  // createCustomer();
+  customer = new Customer(49, "Eldridge Muller")
+  customer.isLoggedIn = true;
+  populateCustomerBookings(customer, todayDate, hotel)
+  //hotel.
   //call populate dom here
-  populateDom(hotel)
+  //populateDom(hotel)
   //return
 }
 
@@ -174,12 +178,27 @@ function showErrMesssage(err) {
 ///////////
 
 ///Practicing populating user data
-function createCustomer() {
-  customer = new Customer(49, "Eldridge Muller")
-  customer.isLoggedIn = true;
-  customer.bookings.push(hotel.bookings[0])
-  customer.bookings.push(hotel.bookings[1])
-  //console.log(customer.bookings)
+// function createCustomer() {
+//   customer = new Customer(49, "Eldridge Muller")
+//   customer.isLoggedIn = true;
+//   customer.bookings.push(hotel.bookings[0])
+//   customer.bookings.push(hotel.bookings[1])
+//   //console.log(customer.bookings)
+//   // domUpdates.populateBookingArray(customer.filterPastBookings(todayDate), pastBookings)
+//   // domUpdates.populateBookingArray(customer.filterFutureBookings(todayDate), futureBookings)
+//   // domUpdates.stringDisplay(totalSpent, customer.calculateTotalSpent(hotel.rooms))
+// }
+
+function populateCustomerBookings(customer, todayDate, hotel) {
+  const bookingsMatches = hotel.bookings.filter(booking => {
+    return booking.userID === customer.id
+  })
+  customer.bookings = bookingsMatches
+  console.log(todayDate)
+  console.log(bookingsMatches[0].date)
+  console.log(customer.filterFutureBookings(todayDate))
+  console.log("customer", customer.bookings)
+  domUpdates.populateBookingArray(customer.bookings, futureBookings)
   domUpdates.populateBookingArray(customer.filterPastBookings(todayDate), pastBookings)
   domUpdates.populateBookingArray(customer.filterFutureBookings(todayDate), futureBookings)
   domUpdates.stringDisplay(totalSpent, customer.calculateTotalSpent(hotel.rooms))

@@ -31,7 +31,8 @@ const domUpdates = {
   },
 
   populateBookingArray(array, location) {
-      location.innerHTML = "";
+    console.log(array)
+      //location.innerHTML = "";
         array.forEach(element => {
           location.innerHTML +=
           `<article id="${element.roomNumber}" class="booking-card" tabindex=0>
