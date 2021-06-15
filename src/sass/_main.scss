@@ -3,20 +3,11 @@ main {
   flex-direction: column;
 }
 
-// form {
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-evenly;
-//   padding: 1%;
-//   border-bottom: $border-bottom;
-// }
-
 .customer-view {
   margin-top: 3%;
   display: grid;
 	grid-gap: 2%;
   grid-template-rows: 1% 33% 33% 33%;
-	// padding: 3%;
   height: 100%;
 }
 

@@ -1,6 +1,11 @@
 button,  .check-availability {
   background-color: hsl(54,21%,81%);
+  border-radius: 2%;
   border: $border-bottom;
+}
+
+.check-availability {
+  width: 25%;
 }
 
 button:hover, .check-availability:hover {
