@@ -28,6 +28,7 @@ class User {
     //find where id / name matches
     //then test to see if the password passes
     if (this.username === username && this.password === password) {
+      //make sure isLoggedIn the last step
       this.isLoggedIn = true;
     } else if (this.password !== password) {
       return `Sorry, we could not find any users to match that password. Please try again.`

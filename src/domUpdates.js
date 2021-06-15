@@ -73,7 +73,7 @@ const domUpdates = {
   facilitatePostMessage(status, responseStatus, roomView, customer) {
     //console.log("post message")
     //console.log("ash")
-    console.log(responseStatus)
+    //console.log(responseStatus)
     let newMessage;
     // let originalMessage = messageSelectors[`${type}FormMessage`].innerText;
     roomView.innerHTML = "";

@@ -1,0 +1,15 @@
+form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 1%;
+  border-bottom: $border-bottom;
+}
+
+select, input {
+  margin: 1%;
+}
+
+.drop-down-calendar {
+  border: $border-bottom;
+}

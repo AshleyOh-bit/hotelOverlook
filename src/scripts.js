@@ -66,6 +66,8 @@ accountButton.addEventListener("click", () => {
 checkAvailability.addEventListener('click', () => showAvailableRooms(chosenDate.value,
 chosenType.value, hotel));
 
+//put login submit button here!!
+
 // roomView.addEventListener("click", (event) => showSelectedRoom(event, hotel))
 
 selectedRoom.addEventListener("click", (event) => bookRoom(event, hotel, customer, bookingsData))
@@ -123,6 +125,7 @@ function instantiateData(bookingsData, customersData, roomsData) {
   customer.isLoggedIn = true;
   //console.log("insty 1", customer);
   populateCustomerBookings(customer, todayDate, hotel)
+  populateBooked(hotel)
   //hotel.
   //console.log("insty", customer)
   //call populate dom here
@@ -146,22 +149,26 @@ function postData(userId, date, roomNumber) {
     }
   })
   .catch(error => {
-    console.log(Error)
+    //console.log(Error)
     showPostMessage(customer, 'fail', error)
   })
 }
 
 function renderSuccessfulPost(bookings) {
   showPostMessage(customer, 'success');
-  fetchApiData("bookings")
-  .then((data) => {
-    bookingsData = data.bookings;
-    setTimeout(() => {
-      fetchData()
-    }, 4000)
-    //fetchData();
-    //instantiateData();
-  })
+  //fetchApiData("bookings")
+  // .then((data) => {
+  //   bookingsData = data.bookings;
+  //   // setTimeout(() => {
+  //   //   fetchData()
+  //   // }, 4000)
+  //   //fetchData();
+  //   //instantiateData();
+  // })
+  setTimeout(() => {
+    fetchData()
+    //show available rooms?
+  }, 4000)
 }
 
 function showPostMessage(customer, status, responseStatus) {
@@ -246,7 +253,7 @@ function populateAllRooms(hotel) {
 
 function populateBooked(hotel) {
 //Old:
-console.log(customer)
+//console.log(customer)
   switchViews(customerView, homeView, bookingView)
   domUpdates.show(roomView)
   domUpdates.hide(selectedRoom)
@@ -261,7 +268,7 @@ console.log(customer)
 function showAvailableRooms(date, type, hotel) {
   preventDefault(event);
   //console.log(customer)
-  console.log(hotel.bookings)
+  //console.log(hotel.bookings)
   let parsedDate = date.split("-").join("/");
   //console.log(parsedDate)
   domUpdates.hide(selectedRoom)
