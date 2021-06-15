@@ -8,6 +8,9 @@ header {
 	border-bottom: 2px black solid;
 }
 
-// header {
-//   border-bottom: black 2px solid;
-// }
+nav {
+  display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	width: 40%;
+}
