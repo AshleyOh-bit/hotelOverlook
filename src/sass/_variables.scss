@@ -16,3 +16,11 @@ $shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
   display: grid;
   grid-gap: 20px;
 }
+
+@mixin mainCardStyling() {
+  background-color: white;
+  box-shadow: $shadow;
+  margin-bottom: 3%;
+  margin-left: auto;
+  margin-right: auto;
+}
