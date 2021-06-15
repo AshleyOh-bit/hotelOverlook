@@ -32,6 +32,10 @@ class Hotel {
   filterRoomsByType(roomType, date, customer) {
     //console.log(this.filterRoomsByAvailability(date, customer))
     const availableRooms = this.filterRoomsByAvailability(date, customer)
+    console.log(this.filterRoomsByAvailability(date, customer))
+    if (typeof availableRooms === "string") {
+      return availableRooms
+    }
     const roomMatchNums = this.rooms.filter(room => {
       return room.roomType === roomType
     }).map(room => {
