@@ -81,9 +81,6 @@ const domUpdates = {
     roomView.innerHTML = `<h3>${newMessage}</h3>`;
   }
 
-
-
-
 }
 
 export default domUpdates;

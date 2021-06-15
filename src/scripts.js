@@ -15,7 +15,7 @@ import './sass/index.scss';
 //Global Variables
 
 let bookingsData, customersData, roomsData, hotel, customer;
-const todayDate = "2020/04/01";
+const todayDate = "2021/06/15";
 
 
 //Query Selectors below
@@ -118,10 +118,7 @@ function instantiateData(bookingsData, customersData, roomsData) {
 
   hotel = new Hotel(instRooms, instBookings, instCustomers, todayDate);
 
-  customer = hotel.customers[48]
-  customer.isLoggedIn = true;
-
-  populateCustomerBookings(customer, todayDate, hotel)
+  // populateCustomerBookings(customer, todayDate, hotel)
 }
 
 
@@ -159,8 +156,7 @@ function showPostMessage(customer, status, responseStatus) {
 function showErrMesssage(err) {
   let message;
   if (err.message === "Failed to fetch") {
-
-    message = "Something went wrong. Please check your internet connection"
+    message = "So sorry, we cannot display what you're looking for. Perhaps check your internet connection?"
   } else {
     message = err.message
   }
@@ -185,18 +181,27 @@ function vetInput (event) {
 }
 
 function confirmUser(event) {
-  console.log("made it")
+  //console.log("made it")
   fetchData();
-  let usernameWord = username.value.slice(0, 8)
-  let usernameID = username.value.slice(8, 10)
-    usernameID = Number.parseInt(usernameID)
-
-
-  // if (usernameWord ==== "Customer") {
-  //   idMatch = hotel.customers.find(customer => {
-  //     return customer.id === username.id
-  //   })
-  // }
+  let idMatch, usernameWord, usernameID
+    usernameWord = username.value.slice(0, 8);
+    usernameID = username.value.slice(8, 10);
+    usernameID = Number.parseInt(usernameID);
+  // console.log(usernameWord)
+  // console.log(usernameID)
+  if (usernameWord === "Customer") {
+    idMatch = hotel.customers.find(customer => {
+      return customer.id === usernameID
+    })
+  }
+  //console.log(idMatch)
+  if (idMatch) {
+    customer = new Customer(customer.id, idMatch.name)
+    console.log(customer.id)
+    domUpdates.show(bookButton)
+    domUpdates.show(accountButton)
+    showAccount(customer, hotel)
+  }
 
   //if username matches, show buttons
 }
@@ -226,6 +231,7 @@ function showAccount(customer, hotel) {
   switchViews(bookingView, homeView, customerView)
   domUpdates.hide(selectedRoom)
   populateCustomerBookings(customer, todayDate, hotel)
+
   // domUpdates.populateBookingArray(customer.filterPastBookings(todayDate), pastBookings)
   // domUpdates.populateBookingArray(customer.filterFutureBookings(todayDate), futureBookings)
   // domUpdates.stringDisplay(totalSpent, customer.calculateTotalSpent(hotel.rooms))
@@ -237,15 +243,15 @@ function switchViews(element1, element2, showElement) {
   domUpdates.show(showElement);
 }
 
-function populateDom(hotel) {
-  //beef up populate DOM with all page views
-  //pass in fetch datas through the appropriate functions here
-  //console.log(hotel)
-  //console.log("test1", hotel)
-  //console.log("populateDom")
-  populateAllRooms(hotel)
-  populateBooked(hotel)
-}
+// function populateDom(hotel) {
+//   //beef up populate DOM with all page views
+//   //pass in fetch datas through the appropriate functions here
+//   //console.log(hotel)
+//   //console.log("test1", hotel)
+//   //console.log("populateDom")
+//   populateAllRooms(hotel)
+//   populateBooked(hotel)
+// }
 
 function populateAllRooms(hotel) {
   domUpdates.populateRoomArray(hotel.rooms, roomView)
