@@ -12,9 +12,6 @@ import Booking from './classes/Booking';
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './sass/index.scss';
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
-
 //Global Variables
 
 let bookingsData, customersData, roomsData, hotel, customer;
@@ -67,8 +64,10 @@ accountButton.addEventListener("click", () => {
 checkAvailability.addEventListener('click', () => showAvailableRooms(chosenDate.value,
 chosenType.value, hotel));
 
-submitLogin.addEventListener("click")
-submitLogin.addEventListener("keydown")
+submitLogin.addEventListener("click", (event) => {
+  vetInput(event)})
+submitLogin.addEventListener("keydown", (event) => {
+  vetInput(event)})
 
 chosenType.addEventListener("click", ariaStateChange)
 chosenType.addEventListener("keydown", ariaStateChange)
@@ -168,27 +167,35 @@ function showErrMesssage(err) {
   domUpdates.stringDisplay(customerView, message)
 };
 
-function confirmUser(username, password) {
-  // fetchData();
-  // let usernameWord, usernameID, idMatch;
-  // if (username.value && username.value.length === 10) {
-  //   usernameWord = username.value.slice(0, 8)
-  //   usernameID = username.value.slice(8, 10)
-  // } else {
-  //   domUpdates.show(usernameError)
+function vetInput (event) {
+  if (!username.value && !password.value) {
+    preventDefault(event)
+    domUpdates.show(usernameError)
+    console.log(passwordError)
+    domUpdates.show(passwordError)
+  }
+  // if (!password.value || password.value !== "overlook2021") {
+  //   preventDefault(event)
+  //   //domUpdates.hide(usernameError)
   // }
-  //
-  // if (usernameWord ==== "Customer" && typeof usernameID === "number") {
+  if (username.value.length === 10 && password.value === "overlook2021") {
+    confirmUser(username, password)
+  }
+}
+
+function confirmUser() {
+  fetchData();
+  let usernameWord = username.value.slice(0, 8)
+  let usernameID = username.value.slice(8, 10)
+    usernameID = Number.parseInt(usernameID)
+
+
+  // if (usernameWord ==== "Customer") {
   //   idMatch = hotel.customers.find(customer => {
   //     return customer.id === username.id
   //   })
   // }
-  //
-  // if (!password.value && password.value !== "overlook2021") {
-  //   domUpdates.show(passwordError)
-  // }
-  //let usernameWord
-  // if (username.value.includes("Customer"))
+
   //if username matches, show buttons
 }
 
