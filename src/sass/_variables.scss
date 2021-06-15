@@ -1,1 +1,13 @@
+// Colors
 $primary-background: hsl(50,25%,90%);
+$border-bottom: 1px black solid;
+$accent-color: red;
+$shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+
+
+//Mixins
+@mixin flexColumnCenter() {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
