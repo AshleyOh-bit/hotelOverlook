@@ -12,7 +12,6 @@ const domUpdates = {
     "string") {
       this.stringDisplay(location, data)
     } else {
-
       location.innerHTML = "";
       data.forEach(element => {
         location.innerHTML +=
@@ -31,7 +30,6 @@ const domUpdates = {
   },
 
   populateBookingArray(array, location) {
-    //console.log(array)
       location.innerHTML = "";
         array.forEach(element => {
           location.innerHTML +=
@@ -46,9 +44,7 @@ const domUpdates = {
     },
 
   stringDisplay(element, data) {
-    //console.log("here")
     element.innerHTML = "";
-    //element.innerText = ""
     element.innerText = data;
   },
 
@@ -75,11 +71,7 @@ const domUpdates = {
     },
 
   facilitatePostMessage(status, responseStatus, roomView, customer) {
-    //console.log("post message")
-    //console.log("ash")
-    //console.log(responseStatus)
     let newMessage;
-    // let originalMessage = messageSelectors[`${type}FormMessage`].innerText;
     roomView.innerHTML = "";
     if (status === 'success') {
       newMessage = `Room booked! Thank you for your purchase ${customer.name}.`;
@@ -87,9 +79,6 @@ const domUpdates = {
       newMessage = `Sorry ${customer.name}, we are experiencing an error. Please try again`;
     }
     roomView.innerHTML = `<h3>${newMessage}</h3>`;
-    // const resetMessage = setTimeout(() => {
-    // messageSelectors[`${type}FormMessage`].innerText = originalMessage;
-    // }, 5000)
   }
 
 
