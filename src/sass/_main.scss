@@ -32,18 +32,19 @@ main {
 }
 
 .selected-room-card {
-  align-items: center;
+  @include flexColumnCenter();
+  // align-items: center;
   background-color: white;
   box-shadow: $shadow;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  // flex-direction: column;
+  // justify-content: center;
   margin-bottom: 3%;
   margin-top: 3%;
   margin-left: auto;
   margin-right: auto;
   width: 80%;
-  height: 50%;
+  height: 70%;
   padding: 2%;
 }
 
