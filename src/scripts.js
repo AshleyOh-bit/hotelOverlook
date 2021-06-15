@@ -76,6 +76,16 @@ selectedRoom.addEventListener("click", (event) => bookRoom(event, hotel, custome
 ///Fetch stuff here
 window.addEventListener('load', fetchData);
 
+//Aria
+function ariaStateChange() {
+  let attribute = chosenType.getAttribute("aria-expanded");
+  if (attribute === 'true') {
+   chosenType.setAttribute("aria-expanded", false);
+ } else {
+   chosenType.setAttribute("aria-expanded", true);
+ }
+}
+
 function getData() {
   return Promise.all([fetchApiData('bookings'), fetchApiData('customers'), fetchApiData('rooms')]);
 }
