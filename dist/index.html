@@ -22,9 +22,11 @@
       <article id="loginCard" class="login-card">
           <h2> Please Log In </h2>
           <form class="credentials">
-            <label>User name<input id="username" type="text" name="username" maxlength="30"/></label>
+            <label for="username">User name</label>
+            <input id="username" type="text" name="username" maxlength="10" required="required"/>
             <p class="error hidden" id="usernameError">Please input a valid username</p>
-            <label>Password<input id="password" type="password" name="password" maxlength="30"/></label>
+            <label for="password">Password</label>
+              <input id="password" type="password" name="password" maxlength="12" required="required"/>
             <p class="error hidden" id="passwordError">Please input a valid password</p>
             <p class="error hidden" id="invalidInput">Could not find a matching username or password. Please try again.</p>
             <input id="submitLogin" class="submit-username" type="submit" value="Log In"></input>

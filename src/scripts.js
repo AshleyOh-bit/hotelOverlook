@@ -170,29 +170,22 @@ function showErrMesssage(err) {
 function vetInput (event) {
   domUpdates.hide(usernameError)
   domUpdates.hide(passwordError)
-  username.value = ""
-  password.value = ""
+  //console.log(password.value)
   if (!username.value && !password.value) {
     preventDefault(event)
     domUpdates.show(usernameError)
     domUpdates.show(passwordError)
-  } else if (username.value.length !== 10) {
-    preventDefault(event)
-    domUpdates.show(usernameError)
-  } else if (password !== "overlook2021") {
+  } else if (password.value !== "overlook2021") {
     preventDefault(event)
     domUpdates.show(passwordError)
   } else {
     preventDefault(event)
     confirmUser(username, password)
   }
-
-  // if (username.value.length === 10 && password.value === "overlook2021") {
-  //   confirmUser(username, password)
-  // }
 }
 
-function confirmUser() {
+function confirmUser(event) {
+  console.log("made it")
   fetchData();
   let usernameWord = username.value.slice(0, 8)
   let usernameID = username.value.slice(8, 10)
