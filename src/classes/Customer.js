@@ -31,7 +31,7 @@ class Customer extends User {
     found.forEach(room => {
         total += room.costPerNight
       })
-      total = Math.round(total)
+      total = total.toFixed(2)
     return total
   }
 }

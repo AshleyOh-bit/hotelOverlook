@@ -30,9 +30,7 @@ class Hotel {
   }
 
   filterRoomsByType(roomType, date, customer) {
-    //console.log(this.filterRoomsByAvailability(date, customer))
     const availableRooms = this.filterRoomsByAvailability(date, customer)
-    console.log(this.filterRoomsByAvailability(date, customer))
     if (typeof availableRooms === "string") {
       return availableRooms
     }
@@ -41,28 +39,18 @@ class Hotel {
     }).map(room => {
       return room.number
     })
-    //console.log(roomMatchNums)
-    //return roomMatches
     const roomsOnDate = availableRooms.reduce((accumulator, currentRoom) => {
       if (roomMatchNums.includes(currentRoom.number)) {
         accumulator.push(currentRoom)
       }
       return accumulator
     }, [])
-    //
     if (!roomsOnDate.length) {
       return `Sorry, there are no ${roomType}s available on that date. Please choose another room type or date.`
     } else {
 
       return roomsOnDate
     }
-    // const dateMatches = this.bookings.filter(currentBooking => {
-    //   return currentBooking.date === date
-    // })
-    //
-    // const dateRoomMatches = dateMatches.
-
-
   }
 }
 

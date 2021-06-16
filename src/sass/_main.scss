@@ -20,12 +20,12 @@ main {
   will-change: transform;
 }
 
-.room-details {
+.room-details, .login-details {
 	margin: 1.25em;
   width: 90%;
 }
 
-.selected-room-card {
+.selected-room-card, .login-card {
   @include flexColumnCenter();
   @include mainCardStyling();
   display: flex;
@@ -33,6 +33,11 @@ main {
   width: 80%;
   height: 70%;
   padding: 2%;
+}
+
+.credentials {
+  @include flexColumnCenter();
+  border: 1px black solid;
 }
 
 .hidden {
