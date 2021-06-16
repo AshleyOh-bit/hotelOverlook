@@ -177,7 +177,10 @@ function confirmUser(event) {
     usernameWord = username.value.slice(0, 8);
     usernameID = username.value.slice(8, 10);
     usernameID = Number.parseInt(usernameID);
-  if (usernameWord === "Customer") {
+  if (usernameWord !== "customer") {
+    domUpdates.show(usernameError)
+  }
+  if (usernameWord === "customer") {
     idMatch = hotel.customers.find(customer => {
       return customer.id === usernameID
     })
