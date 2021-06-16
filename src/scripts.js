@@ -1,26 +1,21 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
+//Imports
 import { fetchApiData, postApiData } from './apiCalls';
 import domUpdates from './domUpdates';
-
-//Import classes:
 import Hotel from './classes/Hotel';
 import Customer from './classes/Customer';
 import Room from './classes/Room';
 import Booking from './classes/Booking';
 
-// An example of how you tell webpack to use a CSS (SCSS) file
+// Sass
 import './sass/index.scss';
 
 //Global Variables
-
 let bookingsData, customersData, roomsData, hotel, customer;
 const todayDate = "2021/06/15";
 
 
 //Query Selectors below
-//buttons
-// const homeButton = document.querySelector("#homeButton");
+//Buttons
 const bookButton = document.querySelector("#bookButton");
 const accountButton = document.querySelector("#accountButton");
 
@@ -74,7 +69,6 @@ chosenType.addEventListener("keydown", ariaStateChange)
 
 selectedRoom.addEventListener("click", (event) => bookRoom(event, hotel, customer, bookingsData))
 
-///Fetch stuff here
 window.addEventListener('load', fetchData);
 
 //Aria
@@ -87,6 +81,7 @@ function ariaStateChange() {
  }
 }
 
+///Fetch
 function getData() {
   return Promise.all([fetchApiData('bookings'), fetchApiData('customers'), fetchApiData('rooms')]);
 }
@@ -117,11 +112,7 @@ function instantiateData(bookingsData, customersData, roomsData) {
   });
 
   hotel = new Hotel(instRooms, instBookings, instCustomers, todayDate);
-
-  // populateCustomerBookings(customer, todayDate, hotel)
 }
-
-
 
 //Post
 function postData(userId, date, roomNumber) {
@@ -155,7 +146,7 @@ function showPostMessage(customer, status, responseStatus) {
 
 function showErrMesssage(err) {
   let message;
-  if (err.message === "Failed to fetch") {
+  if (err.message === "Fetch fail") {
     message = "So sorry, we cannot display what you're looking for. Perhaps check your internet connection?"
   } else {
     message = err.message
@@ -163,10 +154,10 @@ function showErrMesssage(err) {
   domUpdates.stringDisplay(customerView, message)
 };
 
+//Log In
 function vetInput (event) {
   domUpdates.hide(usernameError)
   domUpdates.hide(passwordError)
-  //console.log(password.value)
   if (!username.value && !password.value) {
     preventDefault(event)
     domUpdates.show(usernameError)
@@ -181,60 +172,44 @@ function vetInput (event) {
 }
 
 function confirmUser(event) {
-  //console.log("made it")
   fetchData();
   let idMatch, usernameWord, usernameID
     usernameWord = username.value.slice(0, 8);
     usernameID = username.value.slice(8, 10);
     usernameID = Number.parseInt(usernameID);
-  // console.log(usernameWord)
-  // console.log(usernameID)
   if (usernameWord === "Customer") {
     idMatch = hotel.customers.find(customer => {
       return customer.id === usernameID
     })
   }
-  //console.log(idMatch)
   if (idMatch) {
     customer = new Customer(idMatch.id, idMatch.name)
-    console.log(customer.id)
     domUpdates.show(bookButton)
     domUpdates.show(accountButton)
     showAccount(customer, hotel)
   }
-
-  //if username matches, show buttons
 }
 
+// Helpers
 function populateCustomerBookings(customer, todayDate, hotel) {
   const bookingsMatches = hotel.bookings.filter(booking => {
     return booking.userID === customer.id
   })
   customer.bookings = bookingsMatches
-  //domUpdates.populateBookingArray(customer.bookings, futureBookings)
+  customer.isLoggedIn = true;
   domUpdates.populateBookingArray(customer.filterPastBookings(todayDate), pastBookings)
   domUpdates.populateBookingArray(customer.filterFutureBookings(todayDate), futureBookings)
   domUpdates.stringDisplay(totalSpent, customer.calculateTotalSpent(hotel.rooms))
-  //console.log(customer)
 }
-// console.log(hotel)
-//console.log(customer.bookings.push(bookingsData[0]))
-////
 
-// Helpers
 function preventDefault(event) {
   event.preventDefault()
 }
 
 function showAccount(customer, hotel) {
-  //console.log(customer.bookings)
   switchViews(bookingView, homeView, customerView)
   domUpdates.hide(selectedRoom)
   populateCustomerBookings(customer, todayDate, hotel)
-
-  // domUpdates.populateBookingArray(customer.filterPastBookings(todayDate), pastBookings)
-  // domUpdates.populateBookingArray(customer.filterFutureBookings(todayDate), futureBookings)
-  // domUpdates.stringDisplay(totalSpent, customer.calculateTotalSpent(hotel.rooms))
 }
 
 function switchViews(element1, element2, showElement) {
@@ -243,39 +218,20 @@ function switchViews(element1, element2, showElement) {
   domUpdates.show(showElement);
 }
 
-// function populateDom(hotel) {
-//   //beef up populate DOM with all page views
-//   //pass in fetch datas through the appropriate functions here
-//   //console.log(hotel)
-//   //console.log("test1", hotel)
-//   //console.log("populateDom")
-//   populateAllRooms(hotel)
-//   populateBooked(hotel)
-// }
-
 function populateAllRooms(hotel) {
   domUpdates.populateRoomArray(hotel.rooms, roomView)
 }
 
 function populateBooked(hotel) {
-//Old:
-//console.log(customer)
   switchViews(customerView, homeView, bookingView)
   domUpdates.show(roomView)
   domUpdates.hide(selectedRoom)
   domUpdates.stringDisplay(bookingHeader, "All Rooms")
   populateAllRooms(hotel)
-  //new:
-  // switchViews(homeView, bookingView, customerView)
-  // //domUpdates.show(roomView)
-  // domUpdates.hide(selectedRoom)
-  // populateAllRooms(hotel)
 }
 
 function showAvailableRooms(date, type, hotel) {
   preventDefault(event);
-  //console.log(customer)
-  //console.log(hotel.bookings)
   let parsedDate = date.split("-").join("/");
   domUpdates.hide(selectedRoom)
   domUpdates.show(roomView)
@@ -305,15 +261,12 @@ function showSelectedRoom(event, hotel) {
     const found = hotel.rooms.find(room => {
       return room.number === parsedID
     })
-
     domUpdates.displaySelectedRoom(selectedRoom, found, chosenDate.value)
-
   }
 }
 
 function bookRoom(event, hotel, customer, bookingsData) {
   preventDefault(event)
-  // let date = document.querySelector()
   let target = event.target.closest("button")
   let article = event.target.closest("article")
   let identifiers = article.className.split(" ")
@@ -322,12 +275,10 @@ function bookRoom(event, hotel, customer, bookingsData) {
     foundRoom = hotel.rooms.find(room => {
       return article.classList.contains(room.number)
     })
-
     foundDate = identifiers.find(identifier => {
       return identifier.includes("2021")
     })
     parsedDate = foundDate.split("-").join("/");
-
     customer.bookARoom(customer.id, parsedDate, foundRoom.number, bookingsData)
     postData(customer.id, parsedDate, foundRoom.number)
     }
