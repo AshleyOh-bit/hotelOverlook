@@ -1,9 +1,6 @@
-// import { expect } from 'chai';
 import chai from 'chai';
 const expect = chai.expect;
-import User from '../src/classes/User';
 import Hotel from '../src/classes/Hotel';
-//import Manager from '../src/classes/Manager';
 import Customer from '../src/classes/Customer';
 import Room from '../src/classes/Room';
 import Booking from '../src/classes/Booking';
@@ -25,9 +22,9 @@ describe('Hotel', function() {
     });
 
     instBookings = bookings.map(booking => {
-    booking = new Booking(booking.userID, booking.date, booking.roomNumber)
-    booking.generateRandomId(bookings)
-    return booking
+      booking = new Booking(booking.userID, booking.date, booking.roomNumber)
+      booking.generateRandomId(bookings)
+      return booking
     });
 
     hotel = new Hotel(instRooms, instBookings, instCustomers, "2020/04/01");

@@ -2,7 +2,7 @@ import chai from 'chai';
 const expect = chai.expect;
 import User from '../src/classes/User';
 import Booking from '../src/classes/Booking';
-import { rooms, customers, bookings } from './test-data';
+import { bookings } from './test-data';
 
 describe('User', function() {
   let user;
