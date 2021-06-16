@@ -30,18 +30,18 @@ const domUpdates = {
   },
 
   populateBookingArray(array, location) {
-      location.innerHTML = "";
-        array.forEach(element => {
-          location.innerHTML +=
-          `<article id="${element.roomNumber}" class="booking-card" tabindex=0 role="button">
-            <article class="room-details">
-              <p>Your ID: ${element.userID}</p>
-              <p>Date Booked: ${element.date}</p>
-              <p>Room Number: ${element.roomNumber}</p>
+    location.innerHTML = "";
+    array.forEach(element => {
+      location.innerHTML +=
+        `<article id="${element.roomNumber}" class="booking-card" tabindex=0 role="button">
+          <article class="room-details">
+            <p>Your ID: ${element.userID}</p>
+            <p>Date Booked: ${element.date}</p>
+            <p>Room Number: ${element.roomNumber}</p>
             </article>
           </article>`
-        });
-    },
+    });
+  },
 
   stringDisplay(element, data) {
     element.innerHTML = "";
@@ -68,7 +68,7 @@ const domUpdates = {
         <button>Book now!</button>
       </article>
     </section>`
-    },
+  },
 
   facilitatePostMessage(status, responseStatus, roomView, customer) {
     let newMessage;

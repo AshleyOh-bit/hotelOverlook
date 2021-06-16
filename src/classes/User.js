@@ -43,7 +43,6 @@ class User {
     } else {
       return `Please log in to book a room.`
     }
-
   }
 }
 

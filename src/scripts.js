@@ -11,7 +11,7 @@ import './sass/index.scss';
 
 //Global Variables
 let bookingsData, customersData, roomsData, hotel, customer;
-const todayDate = "2021/06/15";
+const todayDate = "2021/06/16";
 
 
 //Query Selectors below
@@ -43,12 +43,12 @@ const chosenType = document.querySelector("select");
 const error = document.querySelector("#error");
 const usernameError = document.querySelector("#usernameError");
 const passwordError = document.querySelector("#passwordError");
-const invalidInput = document.querySelector("#invalidInput");
 
 //Log In Form
 const username = document.querySelector("#username");
 const password = document.querySelector("#password");
 const submitLogin = document.querySelector("#submitLogin");
+const loginCard = document.querySelector("#loginCard");
 
 //Event listeners
 bookButton.addEventListener("click", () => populateBooked(hotel));
@@ -57,12 +57,14 @@ accountButton.addEventListener("click", () => {
 });
 
 checkAvailability.addEventListener('click', () => showAvailableRooms(chosenDate.value,
-chosenType.value, hotel));
+  chosenType.value, hotel));
 
 submitLogin.addEventListener("click", (event) => {
-  vetInput(event)})
+  vetInput(event)
+})
 submitLogin.addEventListener("keydown", (event) => {
-  vetInput(event)})
+  vetInput(event)
+})
 
 chosenType.addEventListener("click", ariaStateChange)
 chosenType.addEventListener("keydown", ariaStateChange)
@@ -75,10 +77,10 @@ window.addEventListener('load', fetchData);
 function ariaStateChange() {
   let attribute = chosenType.getAttribute("aria-expanded");
   if (attribute === 'true') {
-   chosenType.setAttribute("aria-expanded", false);
- } else {
-   chosenType.setAttribute("aria-expanded", true);
- }
+    chosenType.setAttribute("aria-expanded", false);
+  } else {
+    chosenType.setAttribute("aria-expanded", true);
+  }
 }
 
 ///Fetch
@@ -88,14 +90,14 @@ function getData() {
 
 function fetchData() {
   getData()
-  .then((promiseArray) => {
-    bookingsData = promiseArray[0].bookings;
-    customersData = promiseArray[1].customers;
-    roomsData = promiseArray[2].rooms;
-    instantiateData(bookingsData, customersData, roomsData)
-  })
-  .catch((err) => showErrMesssage(err))
-};
+    .then((promiseArray) => {
+      bookingsData = promiseArray[0].bookings;
+      customersData = promiseArray[1].customers;
+      roomsData = promiseArray[2].rooms;
+      instantiateData(bookingsData, customersData, roomsData)
+    })
+    .catch((err) => showErrMesssage(err))
+}
 
 function instantiateData(bookingsData, customersData, roomsData) {
   let instRooms, instCustomers, instBookings;
@@ -106,9 +108,9 @@ function instantiateData(bookingsData, customersData, roomsData) {
     return new Customer(customer.id, customer.name)
   });
   instBookings = bookingsData.map(booking => {
-  booking = new Booking(booking.userID, booking.date, booking.roomNumber)
-  booking.generateRandomId(bookingsData)
-  return booking
+    booking = new Booking(booking.userID, booking.date, booking.roomNumber)
+    booking.generateRandomId(bookingsData)
+    return booking
   });
 
   hotel = new Hotel(instRooms, instBookings, instCustomers, todayDate);
@@ -117,16 +119,16 @@ function instantiateData(bookingsData, customersData, roomsData) {
 //Post
 function postData(userId, date, roomNumber) {
   postApiData(userId, date, roomNumber)
-  .then((response) => {
-    if (!response.ok) {
-      throw Error(response.statusText);
-    } else {
-      renderSuccessfulPost("bookings");
-    }
-  })
-  .catch(error => {
-    showPostMessage(customer, 'fail', error)
-  })
+    .then((response) => {
+      if (!response.ok) {
+        throw Error(response.statusText);
+      } else {
+        renderSuccessfulPost("bookings");
+      }
+    })
+    .catch(error => {
+      showPostMessage(customer, 'fail', error)
+    })
 }
 
 function renderSuccessfulPost(bookings) {
@@ -146,13 +148,13 @@ function showPostMessage(customer, status, responseStatus) {
 
 function showErrMesssage(err) {
   let message;
-  if (err.message === "Fetch fail") {
+  if (err.message === "Failed to fetch") {
     message = "So sorry, we cannot display what you're looking for. Perhaps check your internet connection?"
   } else {
     message = err.message
   }
-  domUpdates.stringDisplay(customerView, message)
-};
+  domUpdates.stringDisplay(loginCard, message)
+}
 
 //Log In
 function vetInput (event) {
@@ -174,9 +176,9 @@ function vetInput (event) {
 function confirmUser(event) {
   fetchData();
   let idMatch, usernameWord, usernameID
-    usernameWord = username.value.slice(0, 8);
-    usernameID = username.value.slice(8, 10);
-    usernameID = Number.parseInt(usernameID);
+  usernameWord = username.value.slice(0, 8);
+  usernameID = username.value.slice(8, 10);
+  usernameID = Number.parseInt(usernameID);
   if (usernameWord !== "customer") {
     domUpdates.show(usernameError)
   }
@@ -187,6 +189,8 @@ function confirmUser(event) {
   }
   if (idMatch) {
     customer = new Customer(idMatch.id, idMatch.name)
+    customer.setCredentials("customer50", "overlook2021")
+    customer.logIn("customer50", "overlook2021")
     domUpdates.show(bookButton)
     domUpdates.show(accountButton)
     showAccount(customer, hotel)
@@ -198,8 +202,7 @@ function populateCustomerBookings(customer, todayDate, hotel) {
   const bookingsMatches = hotel.bookings.filter(booking => {
     return booking.userID === customer.id
   })
-  customer.bookings = bookingsMatches
-  customer.isLoggedIn = true;
+  customer.consolidateBookings(bookingsMatches)
   domUpdates.populateBookingArray(customer.filterPastBookings(todayDate), pastBookings)
   domUpdates.populateBookingArray(customer.filterFutureBookings(todayDate), futureBookings)
   domUpdates.stringDisplay(totalSpent, customer.calculateTotalSpent(hotel.rooms))
@@ -287,5 +290,5 @@ function bookRoom(event, hotel, customer, bookingsData) {
     parsedDate = foundDate.split("-").join("/");
     customer.bookARoom(customer.id, parsedDate, foundRoom.number, bookingsData)
     postData(customer.id, parsedDate, foundRoom.number)
-    }
+  }
 }

@@ -2,7 +2,7 @@
 
 ## Abstract
 
-This project was written as a final project for the completion of Mod 2 of Turing School of Software and Design. The learning goals included: creating a class structure, implementing a full testing suite to test said classes, using sass to improve CSS styling, and working with APIs to send and receive data. It was also a learning goal to ask for code reviews from our mentors and peers. 
+This project was written as a final project for the completion of Mod 2 of Turing School of Software and Design. The learning goals included: creating a class structure, implementing a full testing suite to test said classes, using sass to improve CSS styling, and working with APIs to send and receive data. It was also a learning goal to ask for code reviews from our mentors and peers.
 
 The Overlook Hotel's website allows you to login with the following credentials: username: customer50; password: overlook2021. This login brings you to your dashboard, Eldridge Muller, where you can see your past bookings, future bookings, and total spent to date. The site allows you to book a room and view those bookings as cards in your dashboard.
 
@@ -43,3 +43,7 @@ Open localHost:8080 on your favorite browser, and start booking!
 - GitHub as remote host
 - GitHub projects for project management
 - Giphy + Apple screen recording for gifs
+
+## Future Iterations
+
+In future iterations of this project, I hope to build out functionality for an additional class, a Manager, who interacts with the site differently. This Manager should be able to login with different credentials, a new dashboard view with total rooms available for today's date, total revenue for today's date, and percentage of rooms occupied for today's date. In addition, the manager should be able to search for a user by name and view their booking history, add to it, or delete from it. 

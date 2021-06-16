@@ -1,9 +1,6 @@
-// import { expect } from 'chai';
 import chai from 'chai';
 const expect = chai.expect;
-import User from '../src/classes/User';
 import Hotel from '../src/classes/Hotel';
-//import Manager from '../src/classes/Manager';
 import Customer from '../src/classes/Customer';
 import Room from '../src/classes/Room';
 import Booking from '../src/classes/Booking';
@@ -25,9 +22,9 @@ describe('Hotel', function() {
     });
 
     instBookings = bookings.map(booking => {
-    booking = new Booking(booking.userID, booking.date, booking.roomNumber)
-    booking.generateRandomId(bookings)
-    return booking
+      booking = new Booking(booking.userID, booking.date, booking.roomNumber)
+      booking.generateRandomId(bookings)
+      return booking
     });
 
     hotel = new Hotel(instRooms, instBookings, instCustomers, "2020/04/01");
@@ -98,13 +95,7 @@ describe('Hotel', function() {
 
     expect(hotel.filterRoomsByAvailability("2020/04/27", customer)).to.equal(`Sorry, there are no rooms available for that date. Please try another date.`);
   });
-  //This should happen in the HTML
-  // it.skip('should alert the customer if their input is invalid', function() {
-  //   hotel.filterRoomsByAvailability("2018/04/25");
-  //   expect(hotel.filterRoomsByAvailability("2018/04/25")).to.equal(`Please choose a valid date.`);
-  // });
   //Filter by roomType
-  //happy
   it('should be able to filter rooms by type', function() {
     hotel.filterRoomsByType("suite", "2020/04/27", customer);
     expect(hotel.filterRoomsByType("suite", "2020/04/27", customer)).to.deep.equal([
@@ -140,54 +131,27 @@ describe('Hotel', function() {
       }
     ]);
   });
-  //Gonna do a dropdown menu instead
-  // it.skip('should be able to filter rooms by date and multiple types', function() {
-  //   customer.bookARoom(229, "2020/04/25", 105);
-  //   hotel.filterRoomsByType("2020/04/25", ["suite", "single room"]);
-  //   expect(hotel.filterRoomsByType("2020/04/25", ["suite", "single room"])).to.deep.equal([
-  //     {
-  //       "number": 101,
-  //       "roomType": "suite",
-  //       "bidet": false,
-  //       "bedSize": "queen",
-  //       "numBeds": 1,
-  //       "costPerNight": 154.77
-  //     },
-  //     {
-  //       "number": 102,
-  //       "roomType": "single room",
-  //       "bidet": false,
-  //       "bedSize": "full",
-  //       "numBeds": 2,
-  //       "costPerNight": 325.88
-  //     }
-  //   ]);
-  // });
-  //sad
   it('should be able to filter rooms by date and type', function() {
     customer.bookARoom(229, "2020/04/25", 105, bookings);
     customer.bookARoom(229, "2020/04/25", 101, bookings);
     hotel.filterRoomsByType("suite", "2020/04/25", customer);
     expect(hotel.filterRoomsByType("suite", "2020/04/25", customer)).to.equal(`Sorry, there are no suites available on that date. Please choose another room type or date.`);
   });
-  //Calculate booked percentage
-  //happy path below - any sad paths?
+  //Calculate Booked Percentage
   it.skip('should be able to calculate the percentage of rooms booked on current date', function() {
     customer.bookARoom(229, "2020/04/25", 105, bookings);
     customer.bookARoom(229, "2020/04/25", 101, bookings);
     hotel.calulatePercentageBooked("2020/04/25")
     expect(hotel.calulatePercentageBooked("2020/04/25")).to.equal("20% of rooms are booked for 2020/04/25");
   });
-  //calculate total revenue
-  //happy path - any sad paths?
+  //Calculate Total Revenue
   it.skip('should be able to calculate total revenue for current date', function() {
     customer.bookARoom(229, "2020/04/25", 105, bookings);
     customer.bookARoom(229, "2020/04/25", 101, bookings);
     hotel.calulateTotalRevenue("2020/04/25")
     expect(hotel.calulateTotalRevenue("2020/04/25")).to.equal("Total revenue today: $499.43");
   });
-  //determine available rooms
-  //happy path
+  //Determine Available Rooms
   it.skip('should be able to determine available rooms', function() {
     customer.bookARoom(229, "2020/04/25", 105, bookings);
     customer.bookARoom(229, "2020/04/25", 101, bookings);
