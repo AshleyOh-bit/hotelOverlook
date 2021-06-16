@@ -11,7 +11,7 @@ import './sass/index.scss';
 
 //Global Variables
 let bookingsData, customersData, roomsData, hotel, customer;
-const todayDate = "2021/06/15";
+const todayDate = "2021/06/16";
 
 
 //Query Selectors below
@@ -48,6 +48,7 @@ const passwordError = document.querySelector("#passwordError");
 const username = document.querySelector("#username");
 const password = document.querySelector("#password");
 const submitLogin = document.querySelector("#submitLogin");
+const loginCard = document.querySelector("#loginCard");
 
 //Event listeners
 bookButton.addEventListener("click", () => populateBooked(hotel));
@@ -147,12 +148,12 @@ function showPostMessage(customer, status, responseStatus) {
 
 function showErrMesssage(err) {
   let message;
-  if (err.message === "Fetch fail") {
+  if (err.message === "Failed to fetch") {
     message = "So sorry, we cannot display what you're looking for. Perhaps check your internet connection?"
   } else {
     message = err.message
   }
-  domUpdates.stringDisplay(customerView, message)
+  domUpdates.stringDisplay(loginCard, message)
 }
 
 //Log In
