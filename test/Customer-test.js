@@ -90,6 +90,6 @@ describe('Customer', function() {
     customer.bookARoom(229, "2020/04/18", 105, bookings);
     customer.calculateTotalSpent(rooms);
 
-    expect(customer.calculateTotalSpent(rooms)).to.equal(611.71);
+    expect(customer.calculateTotalSpent(rooms)).to.equal("611.71");
   });
 });
