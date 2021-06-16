@@ -233,7 +233,6 @@ function populateBooked(hotel) {
 function showAvailableRooms(date, type, hotel) {
   preventDefault(event);
   let parsedDate = date.split("-").join("/");
-  console.log(parsedDate < todayDate)
   if (parsedDate < todayDate) {
     return domUpdates.stringDisplay(roomView, "Please pick a date in the future")
   }
