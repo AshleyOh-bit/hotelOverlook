@@ -202,7 +202,7 @@ function populateCustomerBookings(customer, todayDate, hotel) {
   const bookingsMatches = hotel.bookings.filter(booking => {
     return booking.userID === customer.id
   })
-  customer.bookings = bookingsMatches
+  customer.consolidateBookings(bookingsMatches)
   domUpdates.populateBookingArray(customer.filterPastBookings(todayDate), pastBookings)
   domUpdates.populateBookingArray(customer.filterFutureBookings(todayDate), futureBookings)
   domUpdates.stringDisplay(totalSpent, customer.calculateTotalSpent(hotel.rooms))

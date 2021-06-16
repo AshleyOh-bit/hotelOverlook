@@ -34,6 +34,10 @@ class Customer extends User {
       total = total.toFixed(2)
     return total
   }
+
+  consolidateBookings(hotelBookings) {
+    this.bookings = hotelBookings
+  }
 }
 
 export default Customer;
