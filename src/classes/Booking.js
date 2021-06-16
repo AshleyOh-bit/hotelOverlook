@@ -12,7 +12,6 @@ class Booking {
     let template = "8kjhdia80caplask5";
     template = template.split("")
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    //Break into another function?
     const createRandomString = () => {
       newId = "";
       const fresh = template.map(letter => {
@@ -23,14 +22,11 @@ class Booking {
     }
 
     createRandomString()
-    //console.log(bookings)
     if (bookings.some(booking => {
       booking.id === newId
     })) {
-      //this.id = newId;
       createRandomString()
     } else {
-      // createRandomString()
       this.id = newId;
     }
   }
