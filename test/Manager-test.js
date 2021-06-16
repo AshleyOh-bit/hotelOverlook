@@ -1,7 +1,5 @@
-// import { expect } from 'chai';
 import chai from 'chai';
 const expect = chai.expect;
-//import User from '../src/User';
 import Hotel from '../src/classes/Hotel';
 import Manager from '../src/classes/Manager';
 import Customer from '../src/classes/Customer';
@@ -35,8 +33,6 @@ describe('Manager', function() {
   it.skip('should be an instance of Manager', function() {
     expect(manager).to.be.an.instanceof(Manager);
   });
-  //Should be an extension of the User class?
-  //
   //Properties
   it.skip('should have an id', function() {
     expect(manager.id).to.equal(101);
@@ -44,7 +40,6 @@ describe('Manager', function() {
   it.skip('should have a name', function() {
     expect(manager.name).to.equal("Hambun Grettibean");
   });
-  //THE FOLLOWING THREE TESTS MAY BE UNECESSARY
   it.skip('should have a username', function() {
     expect(manager.username).to.equal("IamTheManager");
   });
@@ -58,8 +53,6 @@ describe('Manager', function() {
     expect(manager.isLoggedIn).to.equal(false);
   });
   //Manager-specific properties
-  //search for customer
-  //happy path:
   it.skip('should be able to search for a a customer', function() {
     manager.searchForCustomer(229)
     expect(manager.searchForCustomer(229)).to.deep.equal({
@@ -69,11 +62,9 @@ describe('Manager', function() {
       "bookings": {
         "past": [],
         "future": []
-        //Do i need to add methods here?
       }
     });
   });
-  //sad paths
   it.skip('should alert the manager if no customer is found', function() {
     manager.searchForCustomer(1029)
     expect(manager.searchForCustomer(1029)).to.deep.equal(`Sorry, Hambun Grettibean, we could not find any customers to match your search.`);
@@ -87,19 +78,16 @@ describe('Manager', function() {
     expect(manager.searchForCustomer("sarah kettabaum")).to.deep.equal(`Sorry, Hambun Grettibean, we could not find any customers to match your search.`);
   });
   //removes a booking
-  //happy path
   it.skip('should be able to remove a booking by booking id', function() {
     customer.bookARoom(229, "2020/04/18", 105);
     manager.removeBooking("8kjhdia80caplask13");
     expect(manager.hotel.bookings.length).to.equal(10);
   });
-  //sad path
   it.skip('should alert manager if booking can\'t be found', function() {
     customer.bookARoom(229, "2020/04/18", 105);
     manager.removeBooking("8kjhdia80caplaoo3");
     expect(manager.removeBooking("8kjhdia80capla3")).to.equal(`Sorry, Hambun Grettibean, we could not find any bookings to match your search.`);
   });
-  //prevent this in the HTML
   it.skip('should alert manager if input type in incorrect can\'t be found', function() {
     customer.bookARoom(229, "2020/04/18", 105);
     manager.removeBooking(229);

@@ -1,12 +1,16 @@
 import chai from 'chai';
 const expect = chai.expect;
 import Customer from '../src/classes/Customer';
+import Booking from '../src/classes/Booking';
 import { rooms, bookings } from './test-data';
 
 describe('Customer', function() {
-  let customer;
+  let customer, booking1, booking2, bookings;
   beforeEach(() => {
     customer = new Customer(229, "Cranston Shival")
+    booking1 = new Booking("582hdia80caplask1", 227, "2020/03/28", 105)
+    booking2 = new Booking("727hdia80caplask1", 228, "2020/03/29", 102)
+    bookings = [booking1, booking2];
   });
   it('should be a function', function() {
     expect(Customer).to.be.a("function");
@@ -71,5 +75,10 @@ describe('Customer', function() {
     customer.calculateTotalSpent(rooms);
 
     expect(customer.calculateTotalSpent(rooms)).to.equal("611.71");
+  });
+  it('should update all bookings with incoming data', function() {
+    customer.consolidateBookings(bookings)
+
+    expect(customer.bookings.length).to.equal(2);
   });
 });

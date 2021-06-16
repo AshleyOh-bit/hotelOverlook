@@ -31,7 +31,6 @@ describe('Booking', function() {
   });
   //Methods
   it('should generate a random id', function() {
-    //Make sure to check all bookings to check if id available?
     booking.generateRandomId(bookings);
     expect(booking.id.length).to.equal(17);
   });
