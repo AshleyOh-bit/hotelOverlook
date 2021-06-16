@@ -189,6 +189,8 @@ function confirmUser(event) {
   }
   if (idMatch) {
     customer = new Customer(idMatch.id, idMatch.name)
+    customer.setCredentials("customer50", "overlook2021")
+    customer.logIn("customer50", "overlook2021")
     domUpdates.show(bookButton)
     domUpdates.show(accountButton)
     showAccount(customer, hotel)
@@ -201,7 +203,6 @@ function populateCustomerBookings(customer, todayDate, hotel) {
     return booking.userID === customer.id
   })
   customer.bookings = bookingsMatches
-  customer.isLoggedIn = true;
   domUpdates.populateBookingArray(customer.filterPastBookings(todayDate), pastBookings)
   domUpdates.populateBookingArray(customer.filterFutureBookings(todayDate), futureBookings)
   domUpdates.stringDisplay(totalSpent, customer.calculateTotalSpent(hotel.rooms))
