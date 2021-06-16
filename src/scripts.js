@@ -234,7 +234,7 @@ function showAvailableRooms(date, type, hotel) {
   preventDefault(event);
   let parsedDate = date.split("-").join("/");
   if (parsedDate < todayDate) {
-    return domUpdates.stringDisplay(roomView, "Please pick a date in the future")
+    return domUpdates.stringDisplay(roomView, "Please pick a valid date")
   }
   domUpdates.hide(selectedRoom)
   domUpdates.show(roomView)
